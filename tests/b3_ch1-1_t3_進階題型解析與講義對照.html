@@ -1649,7 +1649,52 @@
     </footer>
 
     <script>
-    // ===== Direct Print Functions =====
+    // ===== 1. Initialize Icons on Load =====
+    function initIcons() {
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    // ===== 2. Answer Reveal Toggle Function =====
+    function toggleReveal(id, btnElement) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        
+        const btn = btnElement || (window.event ? window.event.currentTarget : null);
+        const isOpen = target.classList.toggle('open');
+        
+        if (btn) {
+            btn.classList.toggle('open', isOpen);
+            const label = btn.querySelector('.btn-label');
+            if (label) {
+                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
+            }
+            const icon = btn.querySelector('.reveal-icon');
+            if (icon) {
+                icon.textContent = isOpen ? '▲' : '▼';
+            }
+        }
+    }
+
+    // ===== 3. Dropdown Menu Logic =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    // ===== 4. Direct Print Function =====
     function printDirect(orientation) {
         let printStyle = document.getElementById('dynamic-print-style');
         if (!printStyle) {
@@ -1684,71 +1729,14 @@
             `;
         }
 
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
         setTimeout(() => {
             window.print();
         }, 150);
     }
 
-
-    // ===== Dropdown Menu Logic =====
-    function togglePrintDropdown(event) {
-        event.stopPropagation();
-        const dropdown = event.currentTarget.closest('.dropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.dropdown.active').forEach(d => {
-            if (!d.contains(e.target)) {
-                d.classList.remove('active');
-            }
-        });
-    });
-
-    lucide.createIcons();
-            }
-            const label = btn.querySelector('.btn-label');
-            if (label) {
-                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
-            }
-        });
-    });
-
-        
-        if (window.lucide) {
-            lucide.createIcons();
-        }
-    }
-
-    
-    });
-
-        // ===== Clean & Guaranteed Answer Reveal Toggle =====
-    function toggleReveal(id, btnElement) {
-        const target = document.getElementById(id);
-        if (!target) return;
-        
-        const btn = btnElement || (window.event ? window.event.currentTarget : null);
-        const isOpen = target.classList.toggle('open');
-        
-        if (btn) {
-            btn.classList.toggle('open', isOpen);
-            const label = btn.querySelector('.btn-label');
-            if (label) {
-                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
-            }
-            const icon = btn.querySelector('.reveal-icon');
-            if (icon) {
-                icon.textContent = isOpen ? '▲' : '▼';
-            }
-        }
-    }
-
-    // ===== Scroll & Theme =====
-    lucide.createIcons();
-
+    // ===== 5. Scroll Progress & Back to Top =====
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1766,6 +1754,7 @@
         }
     });
 
+    // ===== 6. Theme Toggle =====
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     let isDark = true;
@@ -1778,12 +1767,17 @@
                 if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
             } else {
                 document.body.setAttribute('data-theme', 'light');
-                themeIcon.setAttribute('data-lucide', 'moon');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
             }
-            lucide.createIcons();
+            initIcons();
         });
     }
+
+    // Initialize immediately
+    document.addEventListener('DOMContentLoaded', initIcons);
+    window.addEventListener('load', initIcons);
+    initIcons();
+
     </script>
 </body>
 </html>
-    

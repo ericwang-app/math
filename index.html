@@ -1354,7 +1354,31 @@
     </footer>
 
     <script>
-    // ===== Direct 1-Click Print Function =====
+    // ===== 1. Initialize Icons on Load =====
+    function initIcons() {
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    // ===== 2. Dropdown Menu Logic =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    // ===== 3. Direct Print Function =====
     function printDirect(orientation) {
         let printStyle = document.getElementById('dynamic-print-style');
         if (!printStyle) {
@@ -1382,32 +1406,14 @@
             `;
         }
 
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
         setTimeout(() => {
             window.print();
         }, 150);
     }
 
-    // ===== Scroll & Theme =====
-
-    // ===== Dropdown Menu Logic =====
-    function togglePrintDropdown(event) {
-        event.stopPropagation();
-        const dropdown = event.currentTarget.closest('.dropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.dropdown.active').forEach(d => {
-            if (!d.contains(e.target)) {
-                d.classList.remove('active');
-            }
-        });
-    });
-
-    lucide.createIcons();
-
+    // ===== 4. Scroll Progress & Back to Top =====
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1425,6 +1431,7 @@
         }
     });
 
+    // ===== 5. Theme Toggle =====
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     let isDark = true;
@@ -1437,11 +1444,17 @@
                 if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
             } else {
                 document.body.setAttribute('data-theme', 'light');
-                themeIcon.setAttribute('data-lucide', 'moon');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
             }
-            lucide.createIcons();
+            initIcons();
         });
     }
+
+    // Initialize immediately
+    document.addEventListener('DOMContentLoaded', initIcons);
+    window.addEventListener('load', initIcons);
+    initIcons();
+
     </script>
 </body>
 </html>

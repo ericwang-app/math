@@ -9,202 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-        <script>
+    <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\(', '\)']],
-        displayMath: [['$$', '$$'], ['\[', '\]']],
-        processEscapes: true,
-        processEnvironments: true
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
       },
       options: {
         renderActions: {
           addMenu: []
-        },
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
       }
     };
-    
-    // ===== Dropdown & Print Direct Functions =====
-    function togglePrintDropdown(event) {
-        if (event) event.stopPropagation();
-        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.dropdown.active').forEach(d => {
-            if (!d.contains(e.target)) {
-                d.classList.remove('active');
-            }
-        });
-    });
-
-    function printDirect(orientation) {
-        let printStyle = document.getElementById('dynamic-print-style');
-        if (!printStyle) {
-            printStyle = document.createElement('style');
-            printStyle.id = 'dynamic-print-style';
-            document.head.appendChild(printStyle);
-        }
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 8mm 10mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                    main.container {
-                        display: grid !important;
-                        grid-template-columns: 1fr 1fr !important;
-                        gap: 8mm !important;
-                    }
-                    .doc-header, .section-header {
-                        grid-column: 1 / -1 !important;
-                    }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                }
-            `;
-        }
-
-        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
-
-        setTimeout(() => {
-            window.print();
-        }, 150);
-    }
-
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    // ===== Dropdown & Print Direct Functions =====
-    function togglePrintDropdown(event) {
-        if (event) event.stopPropagation();
-        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.dropdown.active').forEach(d => {
-            if (!d.contains(e.target)) {
-                d.classList.remove('active');
-            }
-        });
-    });
-
-    function printDirect(orientation) {
-        let printStyle = document.getElementById('dynamic-print-style');
-        if (!printStyle) {
-            printStyle = document.createElement('style');
-            printStyle.id = 'dynamic-print-style';
-            document.head.appendChild(printStyle);
-        }
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 8mm 10mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                    main.container {
-                        display: grid !important;
-                        grid-template-columns: 1fr 1fr !important;
-                        gap: 8mm !important;
-                    }
-                    .doc-header, .section-header {
-                        grid-column: 1 / -1 !important;
-                    }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                }
-            `;
-        }
-
-        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
-
-        setTimeout(() => {
-            window.print();
-        }, 150);
-    }
-
-    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest">
-    // ===== Dropdown & Print Direct Functions =====
-    function togglePrintDropdown(event) {
-        if (event) event.stopPropagation();
-        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('active');
-        }
-    }
-
-    document.addEventListener('click', (e) => {
-        document.querySelectorAll('.dropdown.active').forEach(d => {
-            if (!d.contains(e.target)) {
-                d.classList.remove('active');
-            }
-        });
-    });
-
-    function printDirect(orientation) {
-        let printStyle = document.getElementById('dynamic-print-style');
-        if (!printStyle) {
-            printStyle = document.createElement('style');
-            printStyle.id = 'dynamic-print-style';
-            document.head.appendChild(printStyle);
-        }
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 8mm 10mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                    main.container {
-                        display: grid !important;
-                        grid-template-columns: 1fr 1fr !important;
-                        gap: 8mm !important;
-                    }
-                    .doc-header, .section-header {
-                        grid-column: 1 / -1 !important;
-                    }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                }
-            `;
-        }
-
-        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
-
-        setTimeout(() => {
-            window.print();
-        }, 150);
-    }
-
-    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --bg-primary: #0b1120;
@@ -1225,7 +1046,7 @@
                 <div class="q-school-tag">師大附中</div>
             </div>
             <div class="q-body">
-                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N =$？
+                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N = $？
                 <div class="q-choices">
                     <div>(A) $4$</div>
                     <div>(B) $0$</div>
@@ -1577,7 +1398,7 @@
                 <div class="q-school-tag">臺中一中</div>
             </div>
             <div class="q-body">
-                設 $180^\circ < \theta^\circ < 270^\circ$，$r$ 為正整數，已知 $\sin 112^\circ + \sqrt{3}\cos 112^\circ - 2\sqrt{3}\sin 82^\circ = r\sin\theta^\circ$，則數對 $(r, \theta) =$？
+                設 $180^\circ < \theta^\circ < 270^\circ$，$r$ 為正整數，已知 $\sin 112^\circ + \sqrt{3}\cos 112^\circ - 2\sqrt{3}\sin 82^\circ = r\sin\theta^\circ$，則數對 $(r, \theta) = $？
             </div>
             <div class="q-ans-bar">
                 <span>標準答案：</span>
@@ -1714,7 +1535,7 @@
                 <div class="q-school-tag">鳳山高中</div>
             </div>
             <div class="q-body">
-                設 $y = a\sin x - b\cos x$ 圖形的一條對稱軸為 $x = \frac{\pi}{4}$，且直線 $L: ax - by + c = 0$ 與 $x$ 軸夾角為 $\theta$，則 $\sin\theta =$？
+                設 $y = a\sin x - b\cos x$ 圖形的一條對稱軸為 $x = \frac{\pi}{4}$，且直線 $L: ax - by + c = 0$ 與 $x$ 軸夾角為 $\theta$，則 $\sin\theta = $？
             </div>
             <div class="q-ans-bar">
                 <span>標準答案：</span>
@@ -1747,7 +1568,7 @@
                 <div class="q-school-tag">豐原高中</div>
             </div>
             <div class="q-body">
-                已知 $0 \le x \le \pi$，設 $y = 2\cos(x - \frac{\pi}{3}) - 2\cos x + 1$ 的最大值為 $M$，最小值為 $m$，則 $M + m =$？
+                已知 $0 \le x \le \pi$，設 $y = 2\cos(x - \frac{\pi}{3}) - 2\cos x + 1$ 的最大值為 $M$，最小值為 $m$，則 $M + m = $？
             </div>
             <div class="q-ans-bar">
                 <span>標準答案：</span>
@@ -1781,7 +1602,7 @@
                 <div class="q-school-tag">新竹高中</div>
             </div>
             <div class="q-body">
-                已知 $f(x) = \sqrt{3}\sin x - 3\cos x$，若在 $-\frac{\pi}{2} \le x \le \frac{\pi}{2}$ 範圍內，$f(x)$ 之最大值為 $M$、最小值為 $m$，則數對 $(M, m) =$？
+                已知 $f(x) = \sqrt{3}\sin x - 3\cos x$，若在 $-\frac{\pi}{2} \le x \le \frac{\pi}{2}$ 範圍內，$f(x)$ 之最大值為 $M$、最小值為 $m$，則數對 $(M, m) = $？
             </div>
             <div class="q-ans-bar">
                 <span>標準答案：</span>

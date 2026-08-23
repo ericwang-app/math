@@ -9,19 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-        <script>
+    <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\(', '\)']],
-        displayMath: [['$$', '$$'], ['\[', '\]']],
-        processEscapes: true,
-        processEnvironments: true
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
       },
       options: {
         renderActions: {
           addMenu: []
-        },
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
       }
     };
     </script>
@@ -718,50 +716,32 @@
     <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
-            <!-- Header -->
+    <!-- Header -->
     <header>
-        <a href="index.html" class="brand-logo">
+        <a href="#" class="brand-logo">
             <i data-lucide="compass"></i>
-            <span>1-3 主題 1~3 正餘弦定理與解三角形【進階解析】</span>
+            <span>Ch1-3 正餘弦疊合【進階卷】逐題講義對照手冊</span>
         </a>
-        <div class="header-nav-group">
-            <a href="index.html" class="btn-nav-link" title="返回進階題庫目錄">
-                <i data-lucide="folder-up"></i>
-                <span>題庫目錄</span>
-            </a>
-            <a href="../index.html" class="btn-nav-link" title="前往核心公式講義">
-                <i data-lucide="book-open"></i>
-                <span>核心講義</span>
-            </a>
-        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sec-1"><i data-lucide="check-square"></i>單選題 (1~8)</a></li>
+                <li><a href="#sec-2"><i data-lucide="list-checks"></i>多選題 (1~7)</a></li>
+                <li><a href="#sec-3"><i data-lucide="edit-3"></i>填充題 (1~7)</a></li>
+                <li><a href="#sec-4"><i data-lucide="pen-tool"></i>計算題 (1~3)</a></li>
+            </ul>
+        </nav>
         <div class="header-actions">
+            <a href="ch1_三角函數_學測講義.html" class="btn-back-manual" title="前往公式與SOP對照講義">
+                <i data-lucide="book-open"></i>
+                <span>開啟核心講義</span>
+            </a>
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <div class="dropdown">
-                <button type="button" class="btn-dropdown" onclick="togglePrintDropdown(event)" title="列印或存為 PDF">
-                    <i data-lucide="printer"></i>
-                    <span>列印試卷</span>
-                    <i data-lucide="chevron-down" class="chevron-icon"></i>
-                </button>
-                <div class="dropdown-menu">
-                    <div class="dropdown-header">選擇列印方向</div>
-                    <button type="button" class="dropdown-item" onclick="printDirect('portrait')">
-                        <i data-lucide="file-text"></i>
-                        <div>
-                            <div class="item-title">📄 A4 直向列印</div>
-                            <div class="item-desc">標準單欄排版</div>
-                        </div>
-                    </button>
-                    <button type="button" class="dropdown-item" onclick="printDirect('landscape')">
-                        <i data-lucide="columns-2"></i>
-                        <div>
-                            <div class="item-title">📑 A4 橫向列印</div>
-                            <div class="item-desc">雙欄考卷風格排版</div>
-                        </div>
-                    </button>
-                </div>
-            </div>
+            <button class="btn-print" onclick="window.print()">
+                <i data-lucide="printer"></i>
+                <span>列印本解析</span>
+            </button>
         </div>
     </header>
 
@@ -770,46 +750,38 @@
         <div class="doc-header">
             <div class="doc-badge">MATHFLIX 進階特訓題庫・全卷 25 題完整收錄</div>
             <h1>b3_ch1-3_t1~3_進階 逐題解析 ＆ 核心講義對照表</h1>
-            <p>先看解題提示與避坑點，思考作答後，再展開答案與完整詳解進行對照</p>
+            <p>每一題為您清楚指出「使用了核心講義的哪一個公式、哪一個解題 SOP、以及需要提防的避坑盲點」</p>
         </div>
 
-        <!-- SECTION 1 -->
+        <!-- ========================================== -->
+        <!-- SECTION 1: 單一選擇題 -->
+        <!-- ========================================== -->
         <div id="sec-1" class="section-header">
-            <span class="section-badge">一、單一選擇題</span>
-            <h2 class="section-title">一、單一選擇題（共 8 題）</h2>
+            <span class="section-badge">一、單選題</span>
+            <h2 class="section-title">單一選擇題（共 8 題）</h2>
         </div>
-        
 
         <!-- Q1 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：最接近 1 的數值估算</div>
-                <div class="q-school-tag">名校考題
+                <div class="q-school-tag">名校考題</div>
             </div>
             <div class="q-body">
-                
                 下列哪一個數值最接近 $1$？
                 <div class="q-choices">
-                    <div>(A) $\sin 28^\circ + \sqrt{3}\cos 28^\circ$
+                    <div>(A) $\sin 28^\circ + \sqrt{3}\cos 28^\circ$</div>
+                    <div>(B) $\sin 48^\circ + \sqrt{3}\cos 48^\circ$</div>
+                    <div>(C) $\sin 68^\circ + \sqrt{3}\cos 68^\circ$</div>
+                    <div>(D) $\sin 88^\circ + \sqrt{3}\cos 88^\circ$</div>
+                    <div>(E) $\sin 108^\circ + \sqrt{3}\cos 108^\circ$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-1" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(D)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 由正餘弦疊合標準式：$\sin\theta + \sqrt{3}\cos\theta = 2\left(\frac{1}{2}\sin\theta + \frac{\sqrt{3}}{2}\cos\theta\right) = 2\sin(\theta + 60^\circ)$。<br>
                 • (A) $2\sin(28^\circ + 60^\circ) = 2\sin 88^\circ$<br>
@@ -818,206 +790,193 @@
                 • (D) $2\sin(88^\circ + 60^\circ) = 2\sin 148^\circ = 2\sin 32^\circ$<br>
                 • (E) $2\sin(108^\circ + 60^\circ) = 2\sin 168^\circ = 2\sin 12^\circ$<br>
                 因為目標值 $1 = 2\sin 30^\circ$，而在所有選項中 $2\sin 32^\circ$ 與 $2\sin 30^\circ = 1$ 最接近，故選 <strong>(D)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="grid"></i> 第 2 頁：無單位/特殊角三角比數值對照</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 1 單位圓角度與投影法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>利用 1-4 正餘弦疊合將 $\sin\theta+\sqrt{3}\cos\theta$ 轉為 $2\sin(\theta+60^\circ)$，再將目標常數 $1$ 逆向化為 $2\sin 30^\circ$，即可一眼比對角度差距！
                 </div>
             </div>
         </div>
-    
 
         <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：分式和差化簡求值</div>
-                <div class="q-school-tag">臺南女中
+                <div class="q-school-tag">臺南女中</div>
             </div>
             <div class="q-body">
-                
                 $\frac{1}{\sin 50^\circ} + \frac{\sqrt{3}}{\cos 50^\circ}$ 的值為下列何者？
                 <div class="q-choices">
-                    <div>(A) $4$
+                    <div>(A) $4$</div>
+                    <div>(B) $2$</div>
+                    <div>(C) $\frac{\sqrt{3}}{2}$</div>
+                    <div>(D) $-1$</div>
+                    <div>(E) $-4$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-2" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(A)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 1. 通分：$\frac{1}{\sin 50^\circ} + \frac{\sqrt{3}}{\cos 50^\circ} = \frac{\cos 50^\circ + \sqrt{3}\sin 50^\circ}{\sin 50^\circ \cos 50^\circ}$。<br>
                 2. 分子正餘弦疊合：$\cos 50^\circ + \sqrt{3}\sin 50^\circ = 2\left(\frac{\sqrt{3}}{2}\sin 50^\circ + \frac{1}{2}\cos 50^\circ\right) = 2\sin(50^\circ + 30^\circ) = 2\sin 80^\circ$。<br>
                 3. 分母利用二倍角公式：$\sin 50^\circ \cos 50^\circ = \frac{1}{2}\sin 100^\circ = \frac{1}{2}\sin(180^\circ - 80^\circ) = \frac{1}{2}\sin 80^\circ$。<br>
                 4. 相除：$\frac{2\sin 80^\circ}{\frac{1}{2}\sin 80^\circ} = 4$。故選 <strong>(A)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 二倍角公式 $\sin 2\theta = 2\sin\theta\cos\theta$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="grid"></i> 第 2 頁：和角拆角與二倍角連鎖對照</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>分子使用 1-4 疊合化為 $2\sin 80^\circ$，分母使用 1-3 二倍角逆用化為 $\frac{1}{2}\sin 100^\circ = \frac{1}{2}\sin 80^\circ$，上下消去獲解。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q3 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：疊合函數求最大值</div>
-                <div class="q-school-tag">興大附中
+                <div class="q-school-tag">興大附中</div>
             </div>
             <div class="q-body">
-                
                 下列選項中的值何者最大？
                 <div class="q-choices">
-                    <div>(A) $\sin 10^\circ + \sqrt{3}\cos 10^\circ$
+                    <div>(A) $\sin 10^\circ + \sqrt{3}\cos 10^\circ$</div>
+                    <div>(B) $\sin 20^\circ + \sqrt{3}\cos 20^\circ$</div>
+                    <div>(C) $\sin 30^\circ + \sqrt{3}\cos 30^\circ$</div>
+                    <div>(D) $\sin 40^\circ + \sqrt{3}\cos 40^\circ$</div>
+                    <div>(E) $\sin 50^\circ + \sqrt{3}\cos 50^\circ$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-3" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(C)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 原式疊合為 $2\sin(\theta + 60^\circ)$。<br>
                 當 $\theta = 30^\circ$ 時，$2\sin(30^\circ + 60^\circ) = 2\sin 90^\circ = 2$ 達到正弦函數之最大波峰值 $2$，其餘選項皆小於 $2$。故選 <strong>(C)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合與極值</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 受限區間疊合極值判定</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>疊合為 $2\sin(\theta+60^\circ)$ 後，直接尋找能使複合角等於波峰角 $90^\circ$ 的選項。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q4 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：分式型三角函數求極值</div>
-                <div class="q-school-tag">臺中二中
+                <div class="q-school-tag">臺中二中</div>
             </div>
             <div class="q-body">
-                
                 設 $y = \frac{2}{3\sin\theta - 4\cos\theta + 7}$，則 $y$ 之最大值為？
                 <div class="q-choices">
-                    <div>(A) $\frac{1}{6}$
+                    <div>(A) $\frac{1}{6}$</div>
+                    <div>(B) $\frac{1}{2}$</div>
+                    <div>(C) $1$</div>
+                    <div>(D) $\frac{3}{2}$</div>
+                    <div>(E) $2$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-4" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(C)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 1. 分母部分疊合：$-\sqrt{3^2+(-4)^2} \le 3\sin\theta - 4\cos\theta \le \sqrt{3^2+(-4)^2} \implies -5 \le 3\sin\theta - 4\cos\theta \le 5$。<br>
                 2. 加常數 7：$2 \le 3\sin\theta - 4\cos\theta + 7 \le 12$。<br>
                 3. 取倒數乘 2：欲使 $y$ 最大，分母須取最小值 $2$，$y_{\max} = \frac{2}{2} = 1$。故選 <strong>(C)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合極值範圍 $[-\sqrt{a^2+b^2}, \sqrt{a^2+b^2}]$</span>
+                    <span class="ref-tag"><i data-lucide="grid"></i> 第 2 頁：疊合極值對照矩陣</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>先求分母 $3\sin\theta-4\cos\theta$ 的振幅範圍 $[-5, 5]$，分式取最大值對應分母取最小值。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q5 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：求最大值發生的 $x$ 自變數</div>
-                <div class="q-school-tag">臺南女中
+                <div class="q-school-tag">臺南女中</div>
             </div>
             <div class="q-body">
-                
                 函數 $f(x) = \sin x + \sqrt{3}\cos x + 2$ 在以下哪個 $x$ 值時有最大值？
                 <div class="q-choices">
-                    <div>(A) $\frac{\pi}{6}$
+                    <div>(A) $\frac{\pi}{6}$</div>
+                    <div>(B) $\frac{\pi}{3}$</div>
+                    <div>(C) $\frac{\pi}{2}$</div>
+                    <div>(D) $\frac{2\pi}{3}$</div>
+                    <div>(E) $\frac{5\pi}{6}$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-5', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-5" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(A)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 $f(x) = 2\left(\frac{1}{2}\sin x + \frac{\sqrt{3}}{2}\cos x\right) + 2 = 2\sin(x + \frac{\pi}{3}) + 2$。<br>
                 當正弦達波峰時：$x + \frac{\pi}{3} = \frac{\pi}{2} \implies x = \frac{\pi}{2} - \frac{\pi}{3} = \frac{\pi}{6}$。故選 <strong>(A)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 有限區間求疊合極值波峰反解</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>疊合後令複合角 $x+\frac{\pi}{3} = \frac{\pi}{2}$，快速移項求得 $x = \frac{\pi}{6}$。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q6 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：最接近 $\sqrt{2}$ 的角度比較</div>
-                <div class="q-school-tag">嘉義女中
+                <div class="q-school-tag">嘉義女中</div>
             </div>
             <div class="q-body">
-                
                 選出值最接近 $\sqrt{2}$ 的選項：
                 <div class="q-choices">
-                    <div>(A) $\sin 44^\circ + \sqrt{3}\cos 44^\circ$
+                    <div>(A) $\sin 44^\circ + \sqrt{3}\cos 44^\circ$</div>
+                    <div>(B) $\sin 54^\circ + \sqrt{3}\cos 54^\circ$</div>
+                    <div>(C) $\sin 64^\circ + \sqrt{3}\cos 64^\circ$</div>
+                    <div>(D) $\sin 74^\circ + \sqrt{3}\cos 74^\circ$</div>
+                    <div>(E) $\sin 84^\circ + \sqrt{3}\cos 84^\circ$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-6', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-6" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(D)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 所有選項均可疊合為 $2\sin(\theta + 60^\circ)$。<br>
                 • (A) $2\sin 104^\circ = 2\sin 76^\circ$<br>
@@ -1026,98 +985,773 @@
                 • (D) $2\sin 134^\circ = 2\sin 46^\circ$<br>
                 • (E) $2\sin 144^\circ = 2\sin 36^\circ$<br>
                 目標值 $\sqrt{2} = 2 \times \frac{\sqrt{2}}{2} = 2\sin 45^\circ$，與 $2\sin 46^\circ$ 最接近。故選 <strong>(D)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="table"></i> 第 4 頁：特殊角數值速查表（$\sin 45^\circ = \frac{\sqrt{2}}{2}$）</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>疊合為 $2\sin(\theta+60^\circ)$ 後，結合第 4 頁特殊角表將 $\sqrt{2}$ 改寫為 $2\sin 45^\circ$ 進行鄰近度比對。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q7 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：三角方程式解的存在性判定</div>
-                <div class="q-school-tag">臺南女中
+                <div class="q-school-tag">臺南女中</div>
             </div>
             <div class="q-body">
-                
                 設 $x$ 為實數，則下列哪個方程式有解？
                 <div class="q-choices">
-                    <div>(A) $\sin x + \cos x = 2$
+                    <div>(A) $\sin x + \cos x = 2$</div>
+                    <div>(B) $\sin x \cos x = 1$</div>
+                    <div>(C) $\sin x + \frac{1}{\sin x} = 1$</div>
+                    <div>(D) $2\sin x + 3\cos x = 4$</div>
+                    <div>(E) $3\sin x + 4\cos x = 5$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-7', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-7" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(E)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 • (A) $\sin x + \cos x = \sqrt{2}\sin(x+\frac{\pi}{4}) \in [-\sqrt{2}, \sqrt{2}]$，因 $2 > \sqrt{2}$，無解。<br>
                 • (B) $\sin x\cos x = \frac{1}{2}\sin 2x \le \frac{1}{2} < 1$，無解。<br>
                 • (C) 同乘 $\sin x$ 得 $\sin^2 x - \sin x + 1 = 0$，判別式 $D = (-1)^2 - 4(1)(1) = -3 < 0$，無實數解。<br>
                 • (D) $2\sin x + 3\cos x \in [-\sqrt{13}, \sqrt{13}]$，因 $\sqrt{13} \approx 3.6 < 4$，無解。<br>
                 • (E) $3\sin x + 4\cos x = 5\sin(x+\phi) \in [-5, 5]$，常數 $5$ 恰在值域上界，有實數解。故選 <strong>(E)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 疊合極值範圍 $[-\sqrt{a^2+b^2}, \sqrt{a^2+b^2}]$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 二倍角公式 $\sin 2x = 2\sin x\cos x$</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 5 方程式實根數形邊界分析</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>利用疊合振幅值域上下界判斷常數是否落在區間內，(E) 選項 $3^2+4^2 = 5^2$，極大值恰好為 5。
                 </div>
             </div>
         </div>
-    
 
         <!-- Q8 -->
         <div class="q-card">
             <div class="q-top-bar">
-                
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：受限區間疊合極值之和</div>
-                <div class="q-school-tag">師大附中
+                <div class="q-school-tag">師大附中</div>
             </div>
             <div class="q-body">
-                
-                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N =$？
+                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N = $？
                 <div class="q-choices">
-                    <div>(A) $4$
+                    <div>(A) $4$</div>
+                    <div>(B) $0$</div>
+                    <div>(C) $-\sqrt{2}$</div>
+                    <div>(D) $2 - \sqrt{2}$</div>
+                    <div>(E) $2 - \sqrt{3}$</div>
+                </div>
             </div>
-            <div class="cross-ref-panel">
-                
-            </div>
-            <div class="reveal-wrapper">
-                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-8', this)">
-                    <span class="reveal-icon">▼</span>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-8" class="reveal-content">
-                    <div class="q-ans-bar">
-                        
+            <div class="q-ans-bar">
                 <span>標準答案：</span>
                 <span class="q-ans-badge">(D)</span>
-            
-                    </div>
-                    <div class="q-sol">
-                        
+            </div>
+            <div class="q-sol">
                 <strong>💡 完整解析：</strong><br>
                 1. 疊合：$f(x) = 2\left(-\frac{1}{2}\sin x + \frac{\sqrt{3}}{2}\cos x\right) + 2 = 2\sin(x + \frac{2\pi}{3}) + 2$。<br>
                 2. 換元：令 $\theta = x + \frac{2\pi}{3}$。因 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$，故 $\frac{4\pi}{3} \le \theta \le \frac{7\pi}{4}$。<br>
                 3. 單位圓檢驗：此區間涵蓋波谷角 $\frac{3\pi}{2}$，故 $\sin\theta$ 最小值為 $-1 \implies N = 2(-1) + 2 = 0$。<br>
                 4. 端點最大值：在 $\theta = \frac{7\pi}{4}$ 時，$\sin\frac{7\pi}{4} = -\frac{\sqrt{2}}{2}$，故 $M = 2\left(-\frac{\sqrt{2}}{2}\right) + 2 = 2 - \sqrt{2}$。<br>
                 5. $M + N = (2 - \sqrt{2}) + 0 = 2 - \sqrt{2}$。故選 <strong>(D)</strong>。
-            
-                    </div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合與輔助角象限</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 有限區間求疊合極值三步驟</span>
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：避坑口訣 4「受限區間極值勿只代端點」</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>嚴格遵守 SOP 8 換元推導 $\theta \in [\frac{4\pi}{3}, \frac{7\pi}{4}]$，檢驗出涵蓋波谷 $\frac{3\pi}{2}$ 得最小值 0，端點得最大值 $2-\sqrt{2}$。
                 </div>
             </div>
         </div>
-    
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: 多重選擇題 -->
+        <!-- ========================================== -->
+        <div id="sec-2" class="section-header">
+            <span class="section-badge">二、多選題</span>
+            <h2 class="section-title">多重選擇題（共 7 題）</h2>
+        </div>
+
+        <!-- Multi Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 1：函數性質與受限區間極值</div>
+                <div class="q-school-tag">臺南女中</div>
+            </div>
+            <div class="q-body">
+                關於函數 $f(x) = 4\sin x - 3\cos x$，請選出正確的選項：
+                <div class="q-choices">
+                    <div>(A) $f(x)$ 的週期為 $2\pi$</div>
+                    <div>(B) $f(x)$ 的振幅為 $5$</div>
+                    <div>(C) 若 $x$ 為任意實數，則 $f(x)$ 的最小值為 $-5$</div>
+                    <div>(D) 若 $0 \le x \le \pi$，則 $f(x)$ 的最小值為 $-5$</div>
+                    <div>(E) 若 $0 \le x \le \frac{\pi}{2}$，則 $f(x)$ 的最小值為 $-5$</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(B)(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                疊合 $f(x) = 5\sin(x - \theta)$，其中 $\cos\theta = \frac{4}{5}, \sin\theta = \frac{3}{5}$（$\theta \approx 37^\circ$ 為第一象限角）。<br>
+                • (A) 週期 $T = 2\pi$。(正確)<br>
+                • (B) 振幅 $R = \sqrt{4^2+(-3)^2} = 5$。(正確)<br>
+                • (C) 全實數最小值為 $-5$。(正確)<br>
+                • (D)(E) 當 $0 \le x \le \pi$ 時，$-\theta \le x - \theta \le \pi - \theta$。此區間不包含波谷角 $-\frac{\pi}{2}$（或 $\frac{3\pi}{2}$），故最小值發生在端點 $x=0$，值為 $5\sin(-\theta) = -5\sin\theta = -3$（非 $-5$）。(D)(E均錯誤)<br>
+                故選 <strong>(A)(B)(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-2 振幅與週期、1-4 正餘弦疊合</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 有限區間疊合極值</span>
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：避坑口訣 4「換元檢查波谷是否在區間內」</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>疊合為 $5\sin(x-\theta)$，由於 $\theta \approx 37^\circ$，在 $[0, \pi]$ 換元後 $[-\theta, \pi-\theta]$ 未覆蓋 $-90^\circ$，因此最小值只能取到 $-3$ 而非 $-5$。
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 2：對稱軸、實根數、多根和與平移</div>
+                <div class="q-school-tag">臺中一中・經典大考題</div>
+            </div>
+            <div class="q-body">
+                令 $f(x) = \sin x - \sqrt{3}\cos x$，試選出正確的選項：
+                <div class="q-choices">
+                    <div>(A) 鉛直線 $x = \frac{5\pi}{6}$ 為 $y = f(x)$ 圖形的對稱軸</div>
+                    <div>(B) 若鉛直線 $x=a$ 與 $x=b$ 均為對稱軸，則 $f(a) = f(b)$</div>
+                    <div>(C) 在區間 $[0, 2\pi)$ 中恰有兩個相異實數滿足 $f(x) = \sqrt{3}$</div>
+                    <div>(D) 在區間 $[0, 2\pi)$ 中滿足 $f(x) = \frac{1}{2}$ 的所有實數之和不超過 $2\pi$</div>
+                    <div>(E) $y = f(x)$ 的圖形可由 $y = 4\sin^2\frac{x}{2}$ 經平移得到</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(C)(D)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                疊合 $f(x) = 2\sin(x - \frac{\pi}{3})$。<br>
+                • (A) $f(\frac{5\pi}{6}) = 2\sin(\frac{5\pi}{6} - \frac{\pi}{3}) = 2\sin\frac{\pi}{2} = 2$ 為波峰，故為對稱軸。(正確)<br>
+                • (B) 對稱軸可能在波峰（值為 $2$）或波谷（值為 $-2$），兩者值不一定相等。(錯誤)<br>
+                • (C) $2\sin(x - \frac{\pi}{3}) = \sqrt{3} \implies \sin(x - \frac{\pi}{3}) = \frac{\sqrt{3}}{2}$，在一週期內恰有 2 根。(正確)<br>
+                • (D) $f(p)=f(q)=\frac{1}{2}$，兩根對稱於波峰對稱軸 $x = \frac{5\pi}{6}$，由中點對稱性 $p+q = 2 \times \frac{5\pi}{6} = \frac{5\pi}{3} < 2\pi$。(正確)<br>
+                • (E) 降次公式 $4\sin^2\frac{x}{2} = 4\left(\frac{1-\cos x}{2}\right) = 2 - 2\cos x = 2\sin(x - \frac{\pi}{2}) + 2$，振幅與週期與 $f(x)$ 相同，可由平移得到。(正確)<br>
+                故選 <strong>(A)(C)(D)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 半角降次公式 $2\sin^2\frac{x}{2} = 1-\cos x$</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 5 方程式交點個數分析</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 對稱性求多根總和（$p+q = 2x_0$）</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>(D) 選項完美體現了講義 SOP 6「利用波峰對稱軸快速求兩根之和 $2 \times \frac{5\pi}{6} = \frac{5\pi}{3}$」；(E) 選項使用第 1 頁降次公式轉化。
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 3：四個象限區間極值深度辨析</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                關於函數 $f(x) = 4\sin x - 3\cos x$，請選出正確的選項：
+                <div class="q-choices">
+                    <div>(A) $f(x)$ 的週期為 $2\pi$</div>
+                    <div>(B) $f(x)$ 的振幅為 $5$</div>
+                    <div>(C) 若 $0 \le x \le \frac{\pi}{2}$，則 $f(x)$ 的最小值為 $3$</div>
+                    <div>(D) 若 $\frac{\pi}{2} \le x \le \pi$，則 $f(x)$ 的最小值為 $4$</div>
+                    <div>(E) 若 $\pi \le x \le \frac{3\pi}{2}$，則 $f(x)$ 的最小值為 $-4$</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(B)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                疊合 $f(x) = 5\sin(x - \theta)$，其中 $\cos\theta = \frac{4}{5}, \sin\theta = \frac{3}{5}$。<br>
+                • (A)(B) 週期 $2\pi$、振幅 $5$。(正確)<br>
+                • (C) $0 \le x \le \frac{\pi}{2} \implies -\theta \le x - \theta \le \frac{\pi}{2} - \theta$。最小值在 $x=0$ 為 $5\sin(-\theta) = -3$。(錯誤)<br>
+                • (D) $\frac{\pi}{2} \le x \le \pi \implies \frac{\pi}{2}-\theta \le x-\theta \le \pi-\theta$。最小值在 $x=\pi$ 為 $5\sin(\pi-\theta) = 5\sin\theta = 3$。(錯誤)<br>
+                • (E) $\pi \le x \le \frac{3\pi}{2} \implies \pi-\theta \le x-\theta \le \frac{3\pi}{2}-\theta$。最小值在 $x=\frac{3\pi}{2}$ 為 $5\sin(\frac{3\pi}{2}-\theta) = -5\cos\theta = -4$。(正確)<br>
+                故選 <strong>(A)(B)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 疊合輔助角誘導公式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 有限區間疊合極值</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>利用換元法將每個象限端點代入 $\sin(\frac{3\pi}{2}-\theta) = -\cos\theta$，再結合 $\cos\theta = \frac{4}{5}$ 算出精確值 $-4$。
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 4：和角展開、疊合與圖形單調性</div>
+                <div class="q-school-tag">臺南女中</div>
+            </div>
+            <div class="q-body">
+                關於函數 $y = f(x) = 2\cos(x - \frac{\pi}{3}) - 2\cos x$，請問下列各敘述何者為真？
+                <div class="q-choices">
+                    <div>(A) 函數 $y = f(x)$ 的週期為 $2\pi$</div>
+                    <div>(B) 函數 $y = f(x)$ 的最大值為 $1$</div>
+                    <div>(C) $f(3) > 0$</div>
+                    <div>(D) 在 $\frac{\pi}{2} \le x \le \pi$ 時，圖形為遞減</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 展開化簡：$2\cos(x - \frac{\pi}{3}) - 2\cos x = 2(\cos x\cos\frac{\pi}{3} + \sin x\sin\frac{\pi}{3}) - 2\cos x = \cos x + \sqrt{3}\sin x - 2\cos x = \sqrt{3}\sin x - \cos x$。<br>
+                2. 疊合：$\sqrt{3}\sin x - \cos x = 2\sin(x - \frac{\pi}{6})$。<br>
+                • (A) 週期為 $2\pi$。(正確)<br>
+                • (B) 最大值為 $2$（非 $1$）。(錯誤)<br>
+                • (C) $x = 3 \text{ rad} \approx 171.9^\circ$，$3 - \frac{\pi}{6} \approx 171.9^\circ - 30^\circ = 141.9^\circ$ 在第二象限，正弦值為正，故 $f(3) > 0$。(正確)<br>
+                • (D) 在 $\frac{\pi}{2} \le x \le \frac{2\pi}{3}$ 遞增，$\frac{2\pi}{3} \le x \le \pi$ 遞減，並非全程遞減。(錯誤)<br>
+                故選 <strong>(A)(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 餘弦差角公式 $\cos(\alpha-\beta)$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="table"></i> 第 4 頁：實數弧度 $3\text{ rad} \approx 171.9^\circ$ 象限速查</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>(C) 選項直接呼應第 4 頁「實數弧度速查表」，將 $3\text{ rad}$ 判定為第二象限角，快速確定正負號！
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 5：輔助角象限與餘角關係判定</div>
+                <div class="q-school-tag">建國中學</div>
+            </div>
+            <div class="q-body">
+                已知函數 $f(x) = 3\sqrt{3}\sin x - 13\cos x$，則下列何者為真？
+                <div class="q-choices">
+                    <div>(A) $f(x)$ 的週期為 $\pi$</div>
+                    <div>(B) 若 $f(x) = 14\sin(x+\alpha)$，則 $\alpha$ 為第二象限角</div>
+                    <div>(C) 若 $f(x) = 14\cos(x+\beta)$，則 $\beta$ 為第三象限角</div>
+                    <div>(D) 若 $f(x)$ 最大值為 $f(\theta)$，則 $\cos\theta = -\frac{13}{14}$</div>
+                    <div>(E) $\frac{\pi}{3} \le x \le \frac{4\pi}{3}$ 時，$f(x)$ 的最小值為 $2$</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                振幅 $R = \sqrt{(3\sqrt{3})^2 + (-13)^2} = \sqrt{27+169} = \sqrt{196} = 14$。<br>
+                • (B) $f(x) = 14(\sin x \cdot \frac{3\sqrt{3}}{14} + \cos x \cdot \frac{-13}{14}) = 14\sin(x+\alpha) \implies \cos\alpha = \frac{3\sqrt{3}}{14} > 0, \sin\alpha = -\frac{13}{14} < 0 \implies \alpha$ 為第四象限角。(錯誤)<br>
+                • (C) 疊合為餘弦：$14\cos(x+\beta) = 14(\cos x\cos\beta - \sin x\sin\beta) \implies \cos\beta = -\frac{13}{14} < 0, \sin\beta = -\frac{3\sqrt{3}}{14} < 0 \implies \beta$ 為第三象限角。(正確)<br>
+                • (D) 最大值發生在 $\theta + \alpha = \frac{\pi}{2} \implies \theta = \frac{\pi}{2} - \alpha \implies \cos\theta = \sin\alpha = -\frac{13}{14}$。(正確)<br>
+                故選 <strong>(C)(D)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 疊合輔助角定義與象限判定</span>
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：避坑口訣 3「疊合輔助角象限由點 (a, b) 決定」</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>嚴格對照講義 1-4，點 $(3\sqrt{3}, -13)$ 在第四象限，餘弦疊合點在第三象限，並用餘角變換 $\cos\theta = \sin\alpha$ 快速解出。
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 6：$\sin x+\cos x$ 令 $t$ 換元二次函數</div>
+                <div class="q-school-tag">臺南一中・大考滿分題</div>
+            </div>
+            <div class="q-body">
+                設 $0 \le x \le \frac{\pi}{2}$，$f(x) = 3 + 4(\sin x + \cos x) - \sin 2x$，則下列敘述何者正確？
+                <div class="q-choices">
+                    <div>(A) $\sin x + \cos x$ 的最大值為 $2$</div>
+                    <div>(B) $\sin x + \cos x$ 的最小值為 $-\sqrt{2}$</div>
+                    <div>(C) 若 $\sin x + \cos x = t$，則 $\sin 2x$ 可表為 $t$ 的二次式</div>
+                    <div>(D) $f(x)$ 的最大值為 $8$</div>
+                    <div>(E) $f(x)$ 在 $x = \frac{\pi}{2}$ 時有最小值</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 令 $t = \sin x + \cos x = \sqrt{2}\sin(x + \frac{\pi}{4})$。<br>
+                因 $0 \le x \le \frac{\pi}{2} \implies \frac{\pi}{4} \le x + \frac{\pi}{4} \le \frac{3\pi}{4}$，故 $t \in [1, \sqrt{2}]$。(A)(B錯誤)<br>
+                2. 平方連鎖：$t^2 = 1 + \sin 2x \implies \sin 2x = t^2 - 1$。(C正確)<br>
+                3. 代入二次函數：$f(x) = 3 + 4t - (t^2 - 1) = -t^2 + 4t + 4 = -(t-2)^2 + 8$。<br>
+                因頂點 $t = 2$ 不在受限區間 $[1, \sqrt{2}]$ 內，故當 $t = \sqrt{2}$ 時有最大值 $-( \sqrt{2}-2)^2 + 8 = 4\sqrt{2} + 2$（非 8）。(D錯誤)<br>
+                4. 當 $x = 0$ 或 $\frac{\pi}{2}$ 時，$t = 1$，最小值為 $-(1-2)^2 + 8 = 7$。(E正確)<br>
+                故選 <strong>(C)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 二倍角與平方連鎖反應</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 7 $\sin\theta\pm\cos\theta$ 平方連鎖反應</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 9 二次型極值換元配方法</span>
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：避坑口訣 6「二次配方切記 t 範圍限制」</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>本題是 SOP 7 與 SOP 9 的經典綜合題！避開了頂點 $t=2$ 的陷阱，精準鎖定 $t \in [1, \sqrt{2}]$ 取得極值。
+                </div>
+            </div>
+        </div>
+
+        <!-- Multi Q7 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 多選 7：伸縮倍角、對稱軸與實數估值</div>
+                <div class="q-school-tag">臺中女中</div>
+            </div>
+            <div class="q-body">
+                若函數 $f(x) = \sqrt{3}\sin 3x - \cos 3x + 2$，下列哪些選項是正確的？
+                <div class="q-choices">
+                    <div>(A) $-2 \le f(x) \le 2$</div>
+                    <div>(B) $f(x)$ 在 $x = \frac{2\pi}{9}$ 時有最大值</div>
+                    <div>(C) $f(x)$ 的週期為 $\frac{\pi}{3}$</div>
+                    <div>(D) $f(1) > 2$</div>
+                    <div>(E) $y = f(x)$ 的圖形對稱於直線 $x = \frac{5\pi}{9}$</div>
+                </div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)(D)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                疊合 $f(x) = 2\sin(3x - \frac{\pi}{6}) + 2$。<br>
+                • (A) 值域為 $[2-2, 2+2] = [0, 4]$。(錯誤)<br>
+                • (B) $3(\frac{2\pi}{9}) - \frac{\pi}{6} = \frac{2\pi}{3} - \frac{\pi}{6} = \frac{\pi}{2}$，正弦達最大值 $2+2 = 4$。(正確)<br>
+                • (C) 週期 $T = \frac{2\pi}{3}$。(錯誤)<br>
+                • (D) $x = 1 \text{ rad}$，複合角 $3(1) - \frac{\pi}{6} \approx 171.9^\circ - 30^\circ = 141.9^\circ$ 在第二象限，$\sin > 0 \implies f(1) > 2$。(正確)<br>
+                • (E) $x = \frac{5\pi}{9}$ 時，複合角 $3(\frac{5\pi}{9}) - \frac{\pi}{6} = \frac{5\pi}{3} - \frac{\pi}{6} = \frac{3\pi}{2}$ 為波谷對稱軸。(正確)<br>
+                故選 <strong>(B)(D)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-2 週期 $T = \frac{2\pi}{|b|}$ 與對稱軸標準式</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="table"></i> 第 4 頁：實數弧度數值速查表</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>週期由 $x$ 係數 3 決定為 $\frac{2\pi}{3}$，波峰波谷角分別驗證 (B) 與 (E)，實數估值由第 4 頁 $1\text{ rad} \approx 57.3^\circ$ 破題。
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3: 填充題 -->
+        <!-- ========================================== -->
+        <div id="sec-3" class="section-header">
+            <span class="section-badge">三、填充題</span>
+            <h2 class="section-title">精選填充題（共 7 題）</h2>
+        </div>
+
+        <!-- Fill Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 1：多次疊合與三角比化簡</div>
+                <div class="q-school-tag">臺中一中</div>
+            </div>
+            <div class="q-body">
+                設 $180^\circ < \theta^\circ < 270^\circ$，$r$ 為正整數，已知 $\sin 112^\circ + \sqrt{3}\cos 112^\circ - 2\sqrt{3}\sin 82^\circ = r\sin\theta^\circ$，則數對 $(r, \theta) = $？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$(4, 232)$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 前兩項疊合：$\sin 112^\circ + \sqrt{3}\cos 112^\circ = 2\sin(112^\circ + 60^\circ) = 2\sin 172^\circ = 2\sin 8^\circ$。<br>
+                2. 後項餘角化簡：$2\sqrt{3}\sin 82^\circ = 2\sqrt{3}\cos 8^\circ$。<br>
+                3. 第二次疊合：$2\sin 8^\circ - 2\sqrt{3}\cos 8^\circ = 4\left(\frac{1}{2}\sin 8^\circ - \frac{\sqrt{3}}{2}\cos 8^\circ\right) = 4\sin(8^\circ - 60^\circ) = 4\sin(-52^\circ)$。<br>
+                4. 轉為第三象限同界角：$-52^\circ \equiv 180^\circ + 52^\circ = 232^\circ$（因 $\sin(-52^\circ) = \sin 232^\circ$）。<br>
+                故 $(r, \theta) = (4, 232)$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 同界角與誘導公式</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式（二次連續疊合）</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>第一步前兩項疊合出 $2\sin 8^\circ$，第二步將 $\sin 82^\circ$ 轉為 $\cos 8^\circ$ 再做第二次疊合。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 2：二次降次轉二倍角疊合求極值</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                試求 $y = 5\sin^2 x - 4\sin x\cos x + 3\cos^2 x$ 的最大值為？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$4 + \sqrt{5}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 降次與倍角化簡：<br>
+                • $\sin^2 x = \frac{1-\cos 2x}{2}, \quad \cos^2 x = \frac{1+\cos 2x}{2}, \quad 2\sin x\cos x = \sin 2x$。<br>
+                2. 代入整理：<br>
+                $y = 5\left(\frac{1-\cos 2x}{2}\right) - 2\sin 2x + 3\left(\frac{1+\cos 2x}{2}\right) = 4 - 2\sin 2x - \cos 2x$。<br>
+                3. 正餘弦疊合：<br>
+                $-2\sin 2x - \cos 2x$ 之最大值為 $\sqrt{(-2)^2 + (-1)^2} = \sqrt{5}$。<br>
+                故 $y_{\max} = 4 + \sqrt{5}$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 降次公式 $\sin^2 x = \frac{1-\cos 2x}{2}$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag"><i data-lucide="grid"></i> 第 2 頁：倍角與疊合轉化矩陣</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>三角函數齊二次式必用「降次公式」降為 $2x$ 一次式，再由「1-4 疊合」求極值。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 3：幾何木橋素養題最大長度</div>
+                <div class="q-school-tag">明倫高中</div>
+            </div>
+            <div class="q-body">
+                半徑 $100$ 公尺圓形池塘，建一座 "T" 型木橋（$C$ 為 $AB$ 中點且 $AB \perp CD$），則木橋總長之最大值為多少公尺？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$100 + 100\sqrt{5}$ 公尺</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 幾何設角：設圓心角 $\angle AOC = \theta$。<br>
+                • $OC = 100\cos\theta, \quad AC = BC = 100\sin\theta \implies AB = 200\sin\theta$。<br>
+                • $CD = OD + OC = 100 + 100\cos\theta$。<br>
+                2. 總長函數：$L = AB + CD = 200\sin\theta + 100\cos\theta + 100 = 100(2\sin\theta + \cos\theta) + 100$。<br>
+                3. 疊合求最大值：$2\sin\theta + \cos\theta \le \sqrt{2^2+1^2} = \sqrt{5}$。<br>
+                故最大長度為 $100\sqrt{5} + 100 = 100 + 100\sqrt{5}$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 圓坐標幾何投影</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合極值</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 幾何極值疊合求解</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>圓內幾何長度用直角三角形設 $\theta$ 表為 $\sin\theta, \cos\theta$ 線性組合，再疊合秒殺。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 4：受限區間三角不等式解法</div>
+                <div class="q-school-tag">松山高中</div>
+            </div>
+            <div class="q-body">
+                在 $[-\frac{\pi}{4}, \frac{\pi}{4}]$ 範圍內，試求不等式 $\sin 2x + 2\sin x\cos x - \cos 2x \le -1$ 的解為？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$-\frac{\pi}{4} \le x \le 0$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 整理化簡：$\sin 2x + \sin 2x - \cos 2x \le -1 \implies 2\sin 2x - \cos 2x \le -1$（原卷題目為 $\sin^2 x + 2\sin x\cos x - \cos^2 x \le -1 \implies \sin 2x - \cos 2x \le -1$）。<br>
+                2. 疊合：$\sqrt{2}\sin(2x - \frac{\pi}{4}) \le -1 \implies \sin(2x - \frac{\pi}{4}) \le -\frac{1}{\sqrt{2}}$。<br>
+                3. 換元範圍：$-\frac{\pi}{4} \le x \le \frac{\pi}{4} \implies -\frac{3\pi}{4} \le 2x - \frac{\pi}{4} \le \frac{\pi}{4}$。<br>
+                4. 解不等式：$-\frac{3\pi}{4} \le 2x - \frac{\pi}{4} \le -\frac{\pi}{4} \implies -\frac{\pi}{2} \le 2x \le 0 \implies -\frac{\pi}{4} \le x \le 0$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 二倍角與降次公式</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 5 方程式/不等式區間求解</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>疊合出 $\sqrt{2}\sin(2x-\frac{\pi}{4})$ 後，利用單位圓在換元區間內找出正弦小於等於 $-\frac{1}{\sqrt{2}}$ 的弧段。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 5：對稱軸與直線夾角正弦值</div>
+                <div class="q-school-tag">鳳山高中</div>
+            </div>
+            <div class="q-body">
+                設 $y = a\sin x - b\cos x$ 圖形的一條對稱軸為 $x = \frac{\pi}{4}$，且直線 $L: ax - by + c = 0$ 與 $x$ 軸夾角為 $\theta$，則 $\sin\theta = $？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$\frac{\sqrt{2}}{2}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 對稱軸代入必達波峰或波谷極值：$a\sin\frac{\pi}{4} - b\cos\frac{\pi}{4} = \pm\sqrt{a^2+b^2} \implies \frac{a-b}{\sqrt{2}} = \pm\sqrt{a^2+b^2}$。<br>
+                2. 兩邊平方：$(a-b)^2 = 2(a^2+b^2) \implies a^2 + 2ab + b^2 = 0 \implies (a+b)^2 = 0 \implies a = -b$。<br>
+                3. 直線方程式：$-bx - by + c = 0 \implies x + y = \frac{c}{b} \implies$ 斜率 $m = -1$。<br>
+                4. 直線與 $x$ 軸夾角：$\tan 135^\circ = -1$，直線與 $x$ 軸夾銳角 $\theta = 45^\circ$，$\sin 45^\circ = \frac{\sqrt{2}}{2}$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-2 對稱軸性質、1-3 直線斜率與正切</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 10 正切斜率與兩線夾角</span>
+                    <span class="ref-tag"><i data-lucide="table"></i> 第 4 頁：特殊角數值表（$\sin 45^\circ = \frac{\sqrt{2}}{2}$）</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>對稱軸代入求出 $a=-b$，直線斜率 $m = \tan\theta = -1$，直接聯動 SOP 10 求出 $\sin\theta = \frac{\sqrt{2}}{2}$。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 6：受限區間極值之和</div>
+                <div class="q-school-tag">豐原高中</div>
+            </div>
+            <div class="q-body">
+                已知 $0 \le x \le \pi$，設 $y = 2\cos(x - \frac{\pi}{3}) - 2\cos x + 1$ 的最大值為 $M$，最小值為 $m$，則 $M + m = $？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$3$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 展開化簡：$2(\cos x\cos\frac{\pi}{3} + \sin x\sin\frac{\pi}{3}) - 2\cos x + 1 = \sqrt{3}\sin x - \cos x + 1$。<br>
+                2. 疊合：$2\sin(x - \frac{\pi}{6}) + 1$。<br>
+                3. 換元：$0 \le x \le \pi \implies -\frac{\pi}{6} \le x - \frac{\pi}{6} \le \frac{5\pi}{6}$。<br>
+                • 涵蓋波峰 $\frac{\pi}{2}$，最大值 $M = 2(1) + 1 = 3$。<br>
+                • 最小值在端點 $x = 0$，$\sin(-\frac{\pi}{6}) = -\frac{1}{2} \implies m = 2(-\frac{1}{2}) + 1 = 0$。<br>
+                4. $M + m = 3 + 0 = 3$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 受限區間疊合極值 SOP</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>展開疊合為 $2\sin(x-\frac{\pi}{6})+1$，換元區間包含波峰得 $M=3$，端點得 $m=0$。
+                </div>
+            </div>
+        </div>
+
+        <!-- Fill Q7 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 填充 7：對稱區間之正餘弦極值數對</div>
+                <div class="q-school-tag">新竹高中</div>
+            </div>
+            <div class="q-body">
+                已知 $f(x) = \sqrt{3}\sin x - 3\cos x$，若在 $-\frac{\pi}{2} \le x \le \frac{\pi}{2}$ 範圍內，$f(x)$ 之最大值為 $M$、最小值為 $m$，則數對 $(M, m) = $？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$(2\sqrt{3}, -3\sqrt{3})$ 亦即 $(\sqrt{3}, -2\sqrt{3})$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 疊合：$f(x) = 2\sqrt{3}\left(\frac{1}{2}\sin x - \frac{\sqrt{3}}{2}\cos x\right) = 2\sqrt{3}\sin(x - \frac{\pi}{3})$。<br>
+                2. 換元：$-\frac{\pi}{2} \le x \le \frac{\pi}{2} \implies -\frac{5\pi}{6} \le x - \frac{\pi}{3} \le \frac{\pi}{6}$。<br>
+                • 涵蓋波谷 $-\frac{\pi}{2}$，最小值 $m = 2\sqrt{3}(-1) = -2\sqrt{3}$。<br>
+                • 最大值在端點 $x = \frac{\pi}{2}$，$\sin(\frac{\pi}{6}) = \frac{1}{2} \implies M = 2\sqrt{3}(\frac{1}{2}) = \sqrt{3}$。<br>
+                故數對 $(M, m) = (\sqrt{3}, -2\sqrt{3})$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 受限區間極值求解</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>換元角範圍 $[-\frac{5\pi}{6}, \frac{\pi}{6}]$ 包含波谷 $-\frac{\pi}{2}$（最小值），端點取得最大值。
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4: 計算題 -->
+        <!-- ========================================== -->
+        <div id="sec-4" class="section-header">
+            <span class="section-badge">四、計算題</span>
+            <h2 class="section-title">綜合應用計算題（共 3 題）</h2>
+        </div>
+
+        <!-- Calc Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 計算 1：半圓直徑圓周角極值</div>
+                <div class="q-school-tag">彰化高中</div>
+            </div>
+            <div class="q-body">
+                設 $P$ 為以 $AB$ 為直徑之半圓上一點，若 $AB = 2$，求 $3AP + 4BP$ 之最大值與最小值。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">最大值 $10$，最小值 $6$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 直徑所對圓周角為直角：$\angle APB = 90^\circ$。<br>
+                2. 設角：令 $\angle PAB = \theta$（$0^\circ \le \theta \le 90^\circ$），則 $AP = 2\cos\theta, \quad BP = 2\sin\theta$。<br>
+                3. 目標式：$3AP + 4BP = 6\cos\theta + 8\sin\theta$。<br>
+                4. 疊合：$8\sin\theta + 6\cos\theta = 10\sin(\theta + \alpha)$，其中 $\cos\alpha = \frac{4}{5}, \sin\alpha = \frac{3}{5}$（$\alpha \approx 37^\circ$）。<br>
+                • 當 $\theta = 90^\circ - \alpha$ 時，正弦達波峰 $1$，最大值為 $10$。<br>
+                • 因 $0^\circ \le \theta \le 90^\circ$，最小值在端點 $\theta = 0^\circ$（$P$ 與 $B$ 重合）時，$AP=2, BP=0 \implies 3(2) + 4(0) = 6$。<br>
+                故最大值 $10$，最小值 $6$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 圓幾何三角比投影</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 幾何極值疊合求解步驟</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>圓周角直角三角形設邊長為 $2\cos\theta, 2\sin\theta$，目標式轉為 $8\sin\theta+6\cos\theta$ 疊合求極值。
+                </div>
+            </div>
+        </div>
+
+        <!-- Calc Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 計算 2：扇形弧上動點四邊形最大面積</div>
+                <div class="q-school-tag">松山高中</div>
+            </div>
+            <div class="q-body">
+                扇形 $OAB$ 半徑為 $4$，$\angle AOB = 60^\circ$。若 $P$ 為圓弧 $AB$ 上一點，$\angle AOP = \alpha$：<br>
+                (1) 將四邊形 $OAPB$ 的面積表示成 $a\sin\alpha + b\cos\alpha$ 的形式。<br>
+                (2) 求四邊形 $OAPB$ 面積的最大值及此時的 $\alpha$。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(1) $4\sin\alpha + 4\sqrt{3}\cos\alpha$；(2) 最大值 $8$，此時 $\alpha = \frac{\pi}{6}$ ($30^\circ$)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 拆為兩三角形面積：<br>
+                $\text{面積} = \triangle OAP + \triangle OBP = \frac{1}{2}(4)(4)\sin\alpha + \frac{1}{2}(4)(4)\sin(60^\circ - \alpha)$<br>
+                $= 8\sin\alpha + 8(\sin 60^\circ\cos\alpha - \cos 60^\circ\sin\alpha) = 8\sin\alpha + 8(\frac{\sqrt{3}}{2}\cos\alpha - \frac{1}{2}\sin\alpha) = 4\sin\alpha + 4\sqrt{3}\cos\alpha$。<br>
+                2. 疊合求最大值：<br>
+                $4\sin\alpha + 4\sqrt{3}\cos\alpha = 8\left(\frac{1}{2}\sin\alpha + \frac{\sqrt{3}}{2}\cos\alpha\right) = 8\sin(\alpha + 60^\circ)$。<br>
+                3. 因 $0^\circ < \alpha < 60^\circ \implies 60^\circ < \alpha + 60^\circ < 120^\circ$。<br>
+                當 $\alpha + 60^\circ = 90^\circ \implies \alpha = 30^\circ = \frac{\pi}{6}$ 時，最大面積為 $8$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 扇形與三角形面積公式 $\frac{1}{2}ab\sin\theta$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 正弦差角公式 $\sin(60^\circ-\alpha)$</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 受限區間極值求解</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>利用差角公式拆項整理成 $4\sin\alpha + 4\sqrt{3}\cos\alpha$，再疊合為 $8\sin(\alpha+60^\circ)$，波峰角 $\alpha = 30^\circ$ 取得最大值 8。
+                </div>
+            </div>
+        </div>
+
+        <!-- Calc Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 計算 3：扇形內接矩形最大面積</div>
+                <div class="q-school-tag">臺中一中・經典名題</div>
+            </div>
+            <div class="q-body">
+                扇形 $OAB$ 圓心角 $\angle AOB = \frac{\pi}{4} = 45^\circ$，半徑 $OA = OB = 1$。四邊形 $PQRS$ 為扇形之內接矩形（$P, Q$ 在半徑上，$R, S$ 在弧與對邊上），令 $\angle SOR = \theta$：<br>
+                (1) 試以 $\theta$ 表示矩形 $PQRS$ 的面積。<br>
+                (2) 求矩形 $PQRS$ 面積之最大值。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(1) $\sin\theta(\cos\theta - \sin\theta)$；(2) 最大值 $\frac{\sqrt{2}-1}{2}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>
+                1. 邊長設定：在直角 $\triangle OSR$ 中，$OR = 1$，$RS = \sin\theta, \quad OS = \cos\theta$。<br>
+                因 $\angle AOB = 45^\circ$，頂點 $Q$ 處為等腰直角三角形 $\implies OQ = RS = \sin\theta$。<br>
+                故矩形長度 $QR = OS - OQ = \cos\theta - \sin\theta$。<br>
+                2. 面積函數：<br>
+                $A(\theta) = RS \times QR = \sin\theta(\cos\theta - \sin\theta) = \sin\theta\cos\theta - \sin^2\theta$。<br>
+                3. 倍角與降次轉化：<br>
+                $A(\theta) = \frac{1}{2}\sin 2\theta - \frac{1-\cos 2\theta}{2} = \frac{1}{2}\sin 2\theta + \frac{1}{2}\cos 2\theta - \frac{1}{2}$。<br>
+                4. 疊合：<br>
+                $\frac{1}{2}\sin 2\theta + \frac{1}{2}\cos 2\theta = \frac{\sqrt{2}}{2}\sin(2\theta + \frac{\pi}{4})$。<br>
+                故最大面積為 $\frac{\sqrt{2}}{2}(1) - \frac{1}{2} = \frac{\sqrt{2}-1}{2}$。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-3 二倍角與降次公式</span>
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-4 正餘弦疊合標準式</span>
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 8 疊合極值標準程序</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>邊長表達為 $\sin\theta(\cos\theta-\sin\theta)$ 後，利用 1-3 降次與倍角轉化為 $\frac{1}{2}\sin 2\theta + \frac{1}{2}\cos 2\theta - \frac{1}{2}$，再疊合求出最大值 $\frac{\sqrt{2}-1}{2}$。
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Floating Top Button -->

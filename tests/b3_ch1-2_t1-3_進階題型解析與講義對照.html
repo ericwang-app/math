@@ -660,7 +660,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
+                <button class="reveal-btn" data-target="reveal-1" onclick="toggleReveal('reveal-1', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -695,7 +695,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
+                <button class="reveal-btn" data-target="reveal-2" onclick="toggleReveal('reveal-2', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -730,7 +730,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
+                <button class="reveal-btn" data-target="reveal-3" onclick="toggleReveal('reveal-3', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -771,7 +771,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
+                <button class="reveal-btn" data-target="reveal-4" onclick="toggleReveal('reveal-4', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -806,7 +806,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-5', this)">
+                <button class="reveal-btn" data-target="reveal-5" onclick="toggleReveal('reveal-5', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -847,7 +847,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-6', this)">
+                <button class="reveal-btn" data-target="reveal-6" onclick="toggleReveal('reveal-6', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -882,7 +882,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-7', this)">
+                <button class="reveal-btn" data-target="reveal-7" onclick="toggleReveal('reveal-7', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -917,7 +917,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-8', this)">
+                <button class="reveal-btn" data-target="reveal-8" onclick="toggleReveal('reveal-8', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -952,7 +952,7 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-9', this)">
+                <button class="reveal-btn" data-target="reveal-9" onclick="toggleReveal('reveal-9', this)">
                     <i data-lucide="chevron-down"></i>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
@@ -1022,22 +1022,46 @@
         }, 150);
     }
 
-    // ===== Answer reveal toggles =====
-    document.querySelectorAll('.reveal-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = document.getElementById(btn.dataset.target);
-            if (!target) return;
-            const isOpen = target.classList.toggle('open');
-            btn.classList.toggle('open', isOpen);
-            const icon = btn.querySelector('i[data-lucide]');
-            if (icon) {
-                icon.setAttribute('data-lucide', isOpen ? 'chevron-up' : 'chevron-down');
-                lucide.createIcons();
+    lucide.createIcons();
             }
             const label = btn.querySelector('.btn-label');
             if (label) {
                 label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
             }
+        });
+    });
+
+        // ===== Robust Answer Reveal Toggle Function =====
+    function toggleReveal(id, btn) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        const isOpen = target.classList.toggle('open');
+        if (btn) {
+            btn.classList.toggle('open', isOpen);
+            const icon = btn.querySelector('i[data-lucide], svg');
+            if (icon) {
+                icon.setAttribute('data-lucide', isOpen ? 'chevron-up' : 'chevron-down');
+            }
+            const label = btn.querySelector('.btn-label');
+            if (label) {
+                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
+            }
+        }
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    // Direct event delegation fallback
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.reveal-btn').forEach(btn => {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                const targetId = this.dataset.target || (this.getAttribute('onclick') && this.getAttribute('onclick').match(/toggleReveal\(['"]([^'"]+)['"]/)?.[1]);
+                if (targetId) {
+                    toggleReveal(targetId, this);
+                }
+            };
         });
     });
 

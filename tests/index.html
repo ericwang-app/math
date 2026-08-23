@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>進階題庫解析目錄｜Ch1 三角函數・高中數學加強班</title>
+    <title>高中數學加強班・章節題庫全解析目錄（基礎 ＆ 進階全收錄）</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -52,14 +52,14 @@
             backdrop-filter: blur(16px);
             background: rgba(11,17,32,0.92);
             border-bottom: 1px solid var(--border);
-            padding: 0.6rem 2rem;
+            padding: 0.65rem 2rem;
             display: flex; align-items: center; justify-content: space-between; gap: 1rem;
         }
         [data-theme="light"] header { background: rgba(248,250,252,0.94); }
 
         .brand {
             display: flex; align-items: center; gap: 0.55rem;
-            font-weight: 800; font-size: 1.05rem; text-decoration: none;
+            font-weight: 800; font-size: 1.1rem; text-decoration: none;
             background: linear-gradient(135deg, var(--blue), var(--purple));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             white-space: nowrap;
@@ -71,10 +71,10 @@
 
         .btn-outline {
             display: flex; align-items: center; gap: 0.35rem;
-            padding: 0.4rem 0.9rem; border-radius: 8px;
+            padding: 0.45rem 0.95rem; border-radius: 8px;
             border: 1px solid var(--border-hi);
             color: var(--blue); background: rgba(56,189,248,0.08);
-            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            text-decoration: none; font-weight: 600; font-size: 0.88rem;
             transition: all 0.2s;
         }
         .btn-outline:hover { background: rgba(56,189,248,0.18); }
@@ -88,53 +88,53 @@
         .btn-icon:hover { border-color: var(--blue); color: var(--blue); }
 
         /* Main */
-        main { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+        main { max-width: 1060px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
 
         /* Hero */
         .hero {
             text-align: center;
-            padding: 2rem 0 2.5rem;
+            padding: 1.5rem 0 2.2rem;
             border-bottom: 2px solid var(--border);
             margin-bottom: 2.5rem;
         }
         .hero-badge {
             display: inline-block;
-            padding: 0.22rem 0.8rem; border-radius: 9999px;
+            padding: 0.25rem 0.85rem; border-radius: 9999px;
             background: rgba(56,189,248,0.15); color: var(--blue);
-            font-size: 0.82rem; font-weight: 700; margin-bottom: 0.9rem;
+            font-size: 0.85rem; font-weight: 700; margin-bottom: 0.8rem;
             border: 1px solid rgba(56,189,248,0.3);
         }
         .hero h1 {
-            font-size: 2rem; font-weight: 900; letter-spacing: -0.02em;
+            font-size: 2.2rem; font-weight: 900; letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
         }
-        .hero p { color: var(--muted); font-size: 0.95rem; }
+        .hero p { color: var(--muted); font-size: 1rem; }
 
         /* Chapter Section */
-        .chapter { margin-bottom: 2.5rem; }
+        .chapter { margin-bottom: 3rem; }
         .chapter-label {
-            display: flex; align-items: center; gap: 0.65rem;
-            margin-bottom: 1.1rem;
-            padding-bottom: 0.45rem;
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--indigo);
         }
         .ch-badge {
             background: var(--indigo); color: #fff;
-            font-size: 0.82rem; font-weight: 800;
-            padding: 0.18rem 0.6rem; border-radius: 6px;
+            font-size: 0.88rem; font-weight: 800;
+            padding: 0.2rem 0.65rem; border-radius: 6px;
             font-family: 'JetBrains Mono', monospace;
         }
-        .chapter-label h2 { font-size: 1.15rem; font-weight: 800; }
+        .chapter-label h2 { font-size: 1.25rem; font-weight: 800; }
 
         /* Test Cards Grid */
-        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.15rem; }
 
         .test-card {
             display: block; text-decoration: none;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.15rem 1.3rem;
+            padding: 1.2rem 1.4rem;
             transition: all 0.22s ease;
             position: relative; overflow: hidden;
         }
@@ -144,36 +144,36 @@
             background: linear-gradient(180deg, var(--blue), var(--indigo));
             opacity: 0; transition: opacity 0.22s;
         }
-        .test-card:hover { border-color: var(--border-hi); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+        .test-card:hover { border-color: var(--border-hi); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
         .test-card:hover::before { opacity: 1; }
 
         .card-top {
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 0.55rem;
+            margin-bottom: 0.6rem;
         }
         .card-tag {
-            font-size: 0.72rem; font-weight: 700;
-            padding: 0.15rem 0.5rem; border-radius: 9999px;
+            font-size: 0.75rem; font-weight: 700;
+            padding: 0.18rem 0.6rem; border-radius: 9999px;
             background: rgba(56,189,248,0.12);
             border: 1px solid rgba(56,189,248,0.25);
             color: var(--blue);
         }
-        .card-tag.basic { background: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.3); color: var(--emerald); }
-        .card-tag.adv { background: rgba(192,132,252,0.12); border-color: rgba(192,132,252,0.3); color: var(--purple); }
-        .card-tag.mix { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.3); color: var(--amber); }
+        .card-tag.basic { background: rgba(52,211,153,0.15); border-color: rgba(52,211,153,0.35); color: var(--emerald); }
+        .card-tag.adv { background: rgba(192,132,252,0.15); border-color: rgba(192,132,252,0.35); color: var(--purple); }
+        .card-tag.mix { background: rgba(251,191,36,0.15); border-color: rgba(251,191,36,0.35); color: var(--amber); }
 
         .card-icon { color: var(--muted); }
 
         .card-title {
-            font-size: 1rem; font-weight: 700; color: var(--text);
-            margin-bottom: 0.3rem; line-height: 1.4;
+            font-size: 1.05rem; font-weight: 700; color: var(--text);
+            margin-bottom: 0.35rem; line-height: 1.4;
         }
-        .card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+        .card-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
 
         .card-footer {
-            display: flex; align-items: center; gap: 0.35rem;
-            margin-top: 0.85rem;
-            font-size: 0.8rem; font-weight: 600; color: var(--blue);
+            display: flex; align-items: center; gap: 0.4rem;
+            margin-top: 0.95rem;
+            font-size: 0.85rem; font-weight: 700; color: var(--blue);
         }
 
         /* Floating top btn */
@@ -189,16 +189,8 @@
 
         footer {
             border-top: 1px solid var(--border); background: var(--bg2);
-            padding: 1.75rem; text-align: center;
-            color: var(--muted); font-size: 0.84rem;
-        }
-    
-        .table-sub-label {
-            display: block;
-            font-size: 0.88rem;
-            color: var(--accent-blue, #38bdf8);
-            margin-top: 0.25rem;
-            font-weight: 500;
+            padding: 2rem; text-align: center;
+            color: var(--muted); font-size: 0.88rem;
         }
     </style>
 </head>
@@ -209,14 +201,14 @@
 <header>
     <a href="../index.html" class="brand">
         <i data-lucide="compass"></i>
-        <span>高中數學加強班・進階題庫目錄</span>
+        <span>高中數學加強班・章節題庫全解析</span>
     </a>
     <div class="header-right">
         <a href="../index.html" class="btn-outline" title="前往核心公式講義">
             <i data-lucide="book-open"></i>
             <span>核心公式講義</span>
         </a>
-        <button class="btn-icon" id="theme-toggle" title="深淺模式">
+        <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
             <i data-lucide="sun" id="theme-icon"></i>
         </button>
     </div>
@@ -224,16 +216,16 @@
 
 <main>
     <div class="hero">
-        <div class="hero-badge">MATHFLIX 進階題庫・逐題解析 ＆ 講義對照</div>
-        <h1>進階題庫 解析目錄</h1>
-        <p>選擇您要練習的卷次，每份均附逐題解析、核心公式對照與避坑提醒</p>
+        <div class="hero-badge">MATHFLIX 全系列題庫・基礎 ＆ 進階全收錄</div>
+        <h1>章節題庫 逐題解析目錄</h1>
+        <p>每份試卷皆提供題目敘述、講義模組與提示、標準答案與完整詳解算式，支援直向與橫向列印</p>
     </div>
 
     <!-- Chapter 1-1 -->
     <div class="chapter">
         <div class="chapter-label">
             <span class="ch-badge">Ch 1-1</span>
-            <h2>弧度制・扇形・三角函數圖形</h2>
+            <h2>弧度制・扇形・三角函數圖形與方程式</h2>
         </div>
         <div class="cards">
             <a href="b3_ch1-1_t1-2_基礎題型解析與講義對照.html" class="test-card">
@@ -254,7 +246,7 @@
                 <div class="card-desc">弧度制換算、扇形面積公式、圓弧滾動幾何應用</div>
                 <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
             </a>
-                        <a href="b3_ch1-1_t3_基礎題型解析與講義對照.html" class="test-card">
+            <a href="b3_ch1-1_t3_基礎題型解析與講義對照.html" class="test-card">
                 <div class="card-top">
                     <span class="card-tag basic">基礎</span>
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
@@ -272,7 +264,7 @@
                 <div class="card-desc">三角函數圖形伸縮平移、絕對值圖形、週期與振幅</div>
                 <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
             </a>
-                        <a href="b3_ch1-1_t4~6_基礎題型解析與講義對照.html" class="test-card">
+            <a href="b3_ch1-1_t4~6_基礎題型解析與講義對照.html" class="test-card">
                 <div class="card-top">
                     <span class="card-tag basic">基礎</span>
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
@@ -296,7 +288,7 @@
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
                 </div>
                 <div class="card-title">主題 7 基礎+進階</div>
-                <div class="card-desc">正弦餘弦疊合、受限區間極值、輔助角象限判定</div>
+                <div class="card-desc">正餘弦疊合、受限區間極值、輔助角象限判定</div>
                 <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
             </a>
         </div>
@@ -306,10 +298,10 @@
     <div class="chapter">
         <div class="chapter-label">
             <span class="ch-badge">Ch 1-2</span>
-            <h2>和差角・二倍角・半角・正弦定理・餘弦定理</h2>
+            <h2>和差角・二倍角・半角公式</h2>
         </div>
         <div class="cards">
-                        <a href="b3_ch1-2_t1-3_基礎題型解析與講義對照.html" class="test-card">
+            <a href="b3_ch1-2_t1-3_基礎題型解析與講義對照.html" class="test-card">
                 <div class="card-top">
                     <span class="card-tag basic">基礎</span>
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
@@ -327,7 +319,7 @@
                 <div class="card-desc">和差角公式、積化和差、三角比綜合應用</div>
                 <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
             </a>
-                        <a href="b3_ch1-2_t4~6_基礎題型解析與講義對照.html" class="test-card">
+            <a href="b3_ch1-2_t4~6_基礎題型解析與講義對照.html" class="test-card">
                 <div class="card-top">
                     <span class="card-tag basic">基礎</span>
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
@@ -352,10 +344,10 @@
     <div class="chapter">
         <div class="chapter-label">
             <span class="ch-badge">Ch 1-3</span>
-            <h2>正弦定理・餘弦定理・三角形解題</h2>
+            <h2>正餘弦疊合・極值・大考經典綜合</h2>
         </div>
         <div class="cards">
-                        <a href="b3_ch1-3_t1~3_基礎題型解析與講義對照.html" class="test-card">
+            <a href="b3_ch1-3_t1~3_基礎題型解析與講義對照.html" class="test-card">
                 <div class="card-top">
                     <span class="card-tag basic">基礎</span>
                     <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
@@ -378,12 +370,12 @@
 
 </main>
 
-<button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="返回頂部">
     <i data-lucide="arrow-up"></i>
 </button>
 
 <footer>
-    <p style="font-weight:700; color:var(--text); margin-bottom:0.3rem;">高中數學加強班 進階題庫解析系統</p>
+    <p style="font-weight:700; color:var(--text); margin-bottom:0.3rem;">高中數學加強班 專屬題庫解析系統</p>
     <p>© 2026 學測中心特訓教材｜<a href="../index.html" style="color:var(--blue); text-decoration:none;">← 返回核心公式講義</a></p>
 </footer>
 
@@ -391,21 +383,33 @@
     lucide.createIcons();
 
     window.addEventListener('scroll', () => {
-        const s = document.documentElement.scrollTop;
-        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        document.getElementById('progress-bar').style.width = (s/h*100) + '%';
-        document.getElementById('btn-top').classList.toggle('show', s > 300);
+        const topBtn = document.getElementById('btn-top');
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progress-bar').style.width = scrolled + '%';
+        if (winScroll > 300) { topBtn.classList.add('show'); }
+        else { topBtn.classList.remove('show'); }
     });
 
-    const btn = document.getElementById('theme-toggle');
-    const icon = document.getElementById('theme-icon');
-    let dark = true;
-    btn.addEventListener('click', () => {
-        dark = !dark;
-        document.body.setAttribute('data-theme', dark ? '' : 'light');
-        icon.setAttribute('data-lucide', dark ? 'sun' : 'moon');
-        lucide.createIcons();
-    });
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isDark = true;
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+    }
 </script>
+
 </body>
 </html>

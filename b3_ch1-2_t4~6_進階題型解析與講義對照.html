@@ -24,10 +24,187 @@
         skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
+    
+    // ===== Dropdown & Print Direct Functions =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    // ===== Dropdown & Print Direct Functions =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
+    </script>
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest">
+    // ===== Dropdown & Print Direct Functions =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
+    </script>
     <style>
         :root {
             --bg-primary: #0b1120;
@@ -450,6 +627,147 @@
             background: var(--bg-secondary);
         }
 
+        
+        /* ===== Header & Unified Elegant Print Dropdown ===== */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-left: auto;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-dropdown {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.45rem 0.95rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .btn-dropdown:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.18);
+        }
+        .btn-dropdown .chevron-icon {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.2s ease;
+            opacity: 0.7;
+        }
+        .dropdown.active .btn-dropdown .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown.active .btn-dropdown {
+            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.22);
+        }
+
+        .dropdown-menu {
+            display: none !important;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 0.4rem;
+            min-width: 240px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+        }
+        [data-theme="light"] .dropdown-menu {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        .dropdown.active .dropdown-menu {
+            display: block !important;
+            animation: dropdownFade 0.18s ease;
+        }
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0.35rem 0.6rem 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-sizing: border-box;
+        }
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-blue);
+        }
+        .dropdown-item i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+        .item-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 1px;
+        }
+
         @media print {
             header, #progress-bar, #btn-back-to-top, .header-actions, .reveal-btn, .dropdown, .btn-dropdown, .dropdown-menu {
                 display: none !important;
@@ -810,6 +1128,65 @@
             }
             lucide.createIcons();
         });
+    
+    // ===== Dropdown & Print Direct Functions =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
     </script>
 </body>
 </html>

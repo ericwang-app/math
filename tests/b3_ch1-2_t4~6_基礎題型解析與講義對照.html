@@ -9,17 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-    <script>
+        <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
         renderActions: {
           addMenu: []
-        }
+        },
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
     </script>
@@ -638,6 +640,14 @@
                 display: block !important;
             }
         }
+    
+        .table-sub-label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--accent-blue, #38bdf8);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -828,7 +838,7 @@
                 <div class="q-school-tag">興大附中</div>
             </div>
             <div class="q-body">
-                設 $270^\circ < \alpha < 360^\circ$ 且 $\sin\alpha + \cos\alpha = \frac{7}{17}$，則 $\sin\frac{\alpha}{2} = $【　　】。
+                設 $270^\circ < \alpha < 360^\circ$ 且 $\sin\alpha + \cos\alpha = \frac{7}{17}$，則 $\sin\frac{\alpha}{2} =$【　　】。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -863,7 +873,7 @@
                 <div class="q-school-tag">常考基礎題</div>
             </div>
             <div class="q-body">
-                設 $\sin\theta - \cos\theta = \frac{1}{2}$，則 $\sin 2\theta = $【　　】。
+                設 $\sin\theta - \cos\theta = \frac{1}{2}$，則 $\sin 2\theta =$【　　】。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -898,7 +908,7 @@
                 <div class="q-school-tag">常考基礎題</div>
             </div>
             <div class="q-body">
-                已知 $180^\circ < \theta < 270^\circ$ 且 $\sin\theta = -\frac{4}{5}$，試求：<br>(1) $\sin\frac{\theta}{2} = $【　　】。<br>(2) $\cos\frac{\theta}{2} = $【　　】。<br>(3) $\tan\frac{\theta}{2} = $【　　】。
+                已知 $180^\circ < \theta < 270^\circ$ 且 $\sin\theta = -\frac{4}{5}$，試求：<br>(1) $\sin\frac{\theta}{2} =$【　　】。<br>(2) $\cos\frac{\theta}{2} =$【　　】。<br>(3) $\tan\frac{\theta}{2} =$【　　】。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>

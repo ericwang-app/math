@@ -9,17 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-    <script>
+        <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
         renderActions: {
           addMenu: []
-        }
+        },
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
     </script>
@@ -638,6 +640,14 @@
                 display: block !important;
             }
         }
+    
+        .table-sub-label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--accent-blue, #38bdf8);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -906,7 +916,7 @@
                 <div class="q-school-tag">武陵高中</div>
             </div>
             <div class="q-body">
-                已知 $y = \cos(3x+1)$ 的圖形可藉由 $y = \cos x$ 的圖形先水平伸縮 $a$ 倍、再向左平移 $b$ 單位得到；也可藉由 $y = \sin x$ 的圖形先向左平移 $c$ 單位、再水平伸縮 $d$ 倍得到。設 $a>0, 0<b<2\pi, 0<c<2\pi, d>0$，則序組 $(a, b, c, d) = $【　　】。
+                已知 $y = \cos(3x+1)$ 的圖形可藉由 $y = \cos x$ 的圖形先水平伸縮 $a$ 倍、再向左平移 $b$ 單位得到；也可藉由 $y = \sin x$ 的圖形先向左平移 $c$ 單位、再水平伸縮 $d$ 倍得到。設 $a>0, 0<b<2\pi, 0<c<2\pi, d>0$，則序組 $(a, b, c, d) =$【　　】。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>

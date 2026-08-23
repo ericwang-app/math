@@ -9,17 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-    <script>
+        <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
         renderActions: {
           addMenu: []
-        }
+        },
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
     </script>
@@ -481,6 +483,14 @@
                 border-color: #666 !important;
             }
         }
+    
+        .table-sub-label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--accent-blue, #38bdf8);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -690,7 +700,7 @@
                 <div class="q-school-tag">明倫高中</div>
             </div>
             <div class="q-body">
-                $\cos 40^\circ \sin 160^\circ - \sin 220^\circ \cos 340^\circ = $【　　】。
+                $\cos 40^\circ \sin 160^\circ - \sin 220^\circ \cos 340^\circ =$【　　】。
             </div>
             <div class="q-ans-bar">
                 <span>標準答案：</span>

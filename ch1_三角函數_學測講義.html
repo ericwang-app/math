@@ -9,20 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
         <!-- MathJax 3 for crystal clear mathematical formulas -->
-    <script>
+        <script>
     window.MathJax = {
       tex: {
         inlineMath: [['$', '$'], ['\(', '\)']],
         displayMath: [['$$', '$$'], ['\[', '\]']],
-        processEscapes: true
-      },
-      chtml: {
-        scale: 1.18
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
         renderActions: {
           addMenu: []
-        }
+        },
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
     </script>
@@ -738,6 +737,14 @@
             }
         }
 
+    
+        .table-sub-label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--accent-blue, #38bdf8);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -887,61 +894,61 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>無單位三角比比大小</strong><br>($\sin 1, \sin 2, \cos 1, \tan 1$)</td>
+                        <td><strong>無單位三角比比大小</strong><br><span class="table-sub-label">$\sin 1, \sin 2, \cos 1, \tan 1$</span></td>
                         <td>$1\text{ rad} \approx 57.3^\circ$<br>單位圓坐標 $(\cos\theta, \sin\theta)$</td>
                         <td>1. 換算弧度為大致度數。<br>2. 正弦看高度、餘弦看橫寬、正切看斜率。<br>3. 在單位圓上標出投影比大小。</td>
                         <td>無度數符號為弧度（$\cos 10 \ne \cos 10^\circ$）。</td>
                     </tr>
                     <tr>
-                        <td><strong>扇形周長固定求最大面積</strong><br>(鐵絲圍扇形、最大面積)</td>
+                        <td><strong>扇形周長固定求最大面積</strong><br><span class="table-sub-label">鐵絲圍扇形、最大面積</span></td>
                         <td>$L = 2r + r\theta$<br>$A = \frac{1}{2}r^2\theta = \frac{1}{2}r(L-2r)$</td>
                         <td>1. 建立面積二次函數 $A = -\left(r-\frac{L}{4}\right)^2 + \frac{L^2}{16}$。<br>2. 當半徑 $r = \frac{L}{4}$（即圓心角 $\theta = 2\text{ rad}$）時，面積最大值 $A_{\max} = \frac{L^2}{16}$。</td>
                         <td>圓心角必為 $2\text{ 弧度}$（約 $114.6^\circ$）。</td>
                     </tr>
                     <tr>
-                        <td><strong>幾何滾動 / 鐘錶指針</strong><br>(輪胎滾動高度、指針夾角)</td>
+                        <td><strong>幾何滾動 / 鐘錶指針</strong><br><span class="table-sub-label">輪胎滾動高度、指針夾角</span></td>
                         <td>$d = r\theta$<br>$h = r - r\cos\theta$<br>分針 $\frac{\pi}{30}\text{ rad/分}$，時針 $\frac{\pi}{360}\text{ rad/分}$</td>
                         <td>1. 滾動直線距離 $=$ 輪緣滾過弧長 $d = r\theta$。<br>2. 旋轉角 $\theta = \frac{d}{r}$。<br>3. 利用圓心直角三角形求離地高度。</td>
                         <td>轉動角 $\theta$ 超過 $\pi$ 時注意高低差符號。</td>
                     </tr>
                     <tr>
-                        <td><strong>圖形平移伸縮變換</strong><br>($y = a\sin(bx-c)+d$)</td>
+                        <td><strong>圖形平移伸縮變換</strong><br><span class="table-sub-label">$y = a\sin(bx-c) + d$</span></td>
                         <td>$y = a\sin\left[b\left(x - \frac{c}{b}\right)\right] + d$</td>
                         <td>1. 先將 $x$ 的係數 $b$ 提出括號。<br>2. 水平向右平移量為 $\frac{c}{b}$。<br>3. 振幅為 $|a|$，週期為 $\frac{2\pi}{|b|}$。</td>
                         <td>勿直接視 $c$ 為平移量（必為 $\frac{c}{b}$）。</td>
                     </tr>
                     <tr>
-                        <td><strong>方程式實根個數 / 交點</strong><br>($\sin x = \frac{x}{3\pi}$, $\sin 2x = \cos 2x$)</td>
+                        <td><strong>方程式實根個數 / 交點</strong><br><span class="table-sub-label">$\sin x = \frac{x}{3\pi},\; \sin 2x = \cos 2x$</span></td>
                         <td>數形結合：$\begin{cases} y_1 = \sin x \\ y_2 = g(x) \end{cases}$</td>
                         <td>1. 找出直線達振幅邊界 $\pm 1$ 的範圍。<br>2. 超出範圍必無交點。<br>3. 在有效區間標出零點與波峰數交點。</td>
                         <td>注意題目給定的 $x$ 區間限制（如 $[0, 2\pi]$）。</td>
                     </tr>
                     <tr>
-                        <td><strong>對稱軸與多根總和</strong><br>(求 $\sin x = k$ 在 $[0, 2\pi]$ 根之和)</td>
+                        <td><strong>對稱軸與多根總和</strong><br><span class="table-sub-label">求 $\sin x = k$ 在 $[0, 2\pi]$ 之根和</span></td>
                         <td>$\sin$ 對稱軸 $x = \frac{\pi}{2}, \frac{3\pi}{2}$<br>$\cos$ 對稱軸 $x = \pi$</td>
                         <td>1. 找出兩對稱根的中點對稱軸 $x = x_0$。<br>2. 兩根之和直接等於 $2x_0$。<br>3. 無需算出個別未知角度值。</td>
                         <td>檢查根是否存在於指定區間內。</td>
                     </tr>
                     <tr>
-                        <td><strong>給定 $\sin\theta \pm \cos\theta = k$</strong><br>(求 $\sin 2\theta, \tan\theta$)</td>
+                        <td><strong>給定 $\sin\theta \pm \cos\theta = k$</strong><br><span class="table-sub-label">求 $\sin 2\theta, \tan\theta$</span></td>
                         <td>$(\sin\theta \pm \cos\theta)^2 = 1 \pm \sin 2\theta$<br>$\tan\theta + \frac{1}{\tan\theta} = \frac{2}{\sin 2\theta}$</td>
                         <td>1. 兩邊平方求出 $\sin 2\theta = k^2 - 1$。<br>2. 相乘 $\sin\theta\cos\theta = \frac{k^2-1}{2}$。<br>3. 相減開方 $(\sin\theta-\cos\theta)^2 = 2-k^2$。</td>
                         <td>開方時須依 $\theta$ 象限判斷正負。</td>
                     </tr>
                     <tr>
-                        <td><strong>三倍角與立方化簡</strong><br>(化簡 $\sin 3\theta, \cos 3\theta$)</td>
+                        <td><strong>三倍角與立方化簡</strong><br><span class="table-sub-label">化簡 $\sin 3\theta,\; \cos 3\theta$</span></td>
                         <td>$\sin 3\theta = 3\sin\theta - 4\sin^3\theta$<br>$\cos 3\theta = 4\cos^3\theta - 3\cos\theta$</td>
                         <td>1. 遇到 $\sin^3\theta$ 移項為 $\frac{3\sin\theta - \sin 3\theta}{4}$ 降次。<br>2. 代入特殊角（如 $\theta = 10^\circ, 20^\circ$）求值。</td>
                         <td>口訣：3 仙 - 4 仙草；4 塊 - 3 塊錢。</td>
                     </tr>
                     <tr>
-                        <td><strong>受限區間疊合極值</strong><br>($f(x) = a\sin x + b\cos x, x \in [\alpha, \beta]$)</td>
+                        <td><strong>受限區間疊合極值</strong><br><span class="table-sub-label">$f(x) = a\sin x + b\cos x,\; x \in [\alpha, \beta]$</span></td>
                         <td>$f(x) = \sqrt{a^2+b^2}\sin(x + \phi)$</td>
                         <td>1. 疊合為 $r\sin(x+\phi)$。<br>2. 換元推導複合角 $\theta = x+\phi$ 的範圍。<br>3. 檢驗是否涵蓋波峰 $\frac{\pi}{2}$ 或波谷 $\frac{3\pi}{2}$。</td>
                         <td>勿盲目只代左右端點！</td>
                     </tr>
                     <tr>
-                        <td><strong>幾何求角 / 兩線夾角</strong><br>(正方形拼接求角、兩直線夾角)</td>
+                        <td><strong>幾何求角 / 兩線夾角</strong><br><span class="table-sub-label">正方形拼接求角、兩直線夾角</span></td>
                         <td>$\tan(\alpha \pm \beta) = \frac{\tan\alpha \pm \tan\beta}{1 \mp \tan\alpha\tan\beta}$<br>$\tan\theta = \left|\frac{m_1 - m_2}{1 + m_1 m_2}\right|$</td>
                         <td>1. 將未知角拆解為直角三角形兩角之差 $\alpha-\beta$。<br>2. 讀取 $\tan\alpha, \tan\beta$。<br>3. 代入正切差角公式求值。</td>
                         <td>求銳夾角必須加絕對值。</td>

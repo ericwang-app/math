@@ -9,17 +9,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 -->
-    <script>
+        <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+        processEscapes: true,
+        processEnvironments: true
       },
       options: {
         renderActions: {
           addMenu: []
-        }
+        },
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       }
     };
     </script>
@@ -715,6 +717,14 @@
             }
         }
 
+    
+        .table-sub-label {
+            display: block;
+            font-size: 0.88rem;
+            color: var(--accent-blue, #38bdf8);
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -1089,7 +1099,7 @@
             </div>
             <div class="q-body">
                 
-                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N = $？
+                函數 $f(x) = -\sin x + \sqrt{3}\cos x + 2$ 在 $\frac{2\pi}{3} \le x \le \frac{13\pi}{12}$ 的最大值為 $M$，最小值為 $N$，求 $M + N =$？
                 <div class="q-choices">
                     <div>(A) $4$
             </div>

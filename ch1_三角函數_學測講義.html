@@ -28,33 +28,38 @@
         }
     })();
 
-    // ===== Main Manual Print Functionality =====
-    const printMenuBtn = document.getElementById('print-menu-btn');
-    const printDropdownPanel = document.getElementById('print-dropdown-panel');
-
-    if (printMenuBtn && printDropdownPanel) {
-        printMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            printDropdownPanel.classList.toggle('show');
-            lucide.createIcons();
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!printDropdownPanel.contains(e.target) && e.target !== printMenuBtn) {
-                printDropdownPanel.classList.remove('show');
-            }
-        });
-    }
-
-    function executePrint() {
-        const orientation = document.querySelector('input[name="print-orientation"]:checked')?.value || 'portrait';
-
+    
+    // ===== Direct 1-Click Print Function =====
+    function printDirect(orientation) {
         let printStyle = document.getElementById('dynamic-print-style');
         if (!printStyle) {
             printStyle = document.createElement('style');
             printStyle.id = 'dynamic-print-style';
             document.head.appendChild(printStyle);
         }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 7mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 94vh !important; }
+                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 96vh !important; }
+                }
+            `;
+        }
+
+        window.print();
+    }
+
 
         if (orientation === 'landscape') {
             printStyle.innerHTML = `
@@ -853,6 +858,48 @@
             color: #ffffff;
         }
 
+
+        /* ===== Direct Print Action Buttons ===== */
+        .print-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .btn-print {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.42rem 0.85rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.84rem;
+            box-shadow: 0 3px 10px rgba(2, 132, 199, 0.28);
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+        .btn-print-alt {
+            background: linear-gradient(135deg, #4338ca, #7e22ce);
+            box-shadow: 0 3px 10px rgba(67, 56, 202, 0.28);
+        }
+        .btn-print-quiz {
+            background: linear-gradient(135deg, #059669, #0d9488);
+            box-shadow: 0 3px 10px rgba(5, 150, 105, 0.28);
+        }
+
+        @media print {
+            .print-actions-group, .print-wrapper, .btn-print, .reveal-btn, .font-scale-control {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -884,28 +931,16 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-                    <div class="print-wrapper">
-            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向)">
+                            <div class="print-actions-group">
+            <button class="btn-print" onclick="printDirect('portrait')" title="直接以 A4 直向列印">
                 <i data-lucide="printer"></i>
-                <span>列印手冊</span>
-                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
+                <span>直向列印</span>
             </button>
-            <div class="print-dropdown-panel" id="print-dropdown-panel">
-                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印版面設定</div>
-                
-                <div class="print-opt-group">
-                    <span class="print-opt-label">📐 版面方向：</span>
-                    <div class="print-radio-group">
-                        <label class="print-radio-label">
-                            <input type="radio" name="print-orientation" value="portrait" checked>
-                            <span>📄 A4 直向 (每大主題一頁・標準)</span>
-                        </label>
-                        <label class="print-radio-label">
-                            <input type="radio" name="print-orientation" value="landscape">
-                            <span>📑 A4 橫向 (每大主題一頁・寬版)</span>
-                        </label>
-                    </div>
-                </div>
+            <button class="btn-print btn-print-alt" onclick="printDirect('landscape')" title="直接以 A4 橫向寬版列印">
+                <i data-lucide="columns-2"></i>
+                <span>橫向列印</span>
+            </button>
+        </div>
 
                 <button class="btn-do-print" onclick="executePrint()">
                     <i data-lucide="printer"></i>
@@ -1497,33 +1532,38 @@
         }
     })();
 
-    // ===== Main Manual Print Functionality =====
-    const printMenuBtn = document.getElementById('print-menu-btn');
-    const printDropdownPanel = document.getElementById('print-dropdown-panel');
-
-    if (printMenuBtn && printDropdownPanel) {
-        printMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            printDropdownPanel.classList.toggle('show');
-            lucide.createIcons();
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!printDropdownPanel.contains(e.target) && e.target !== printMenuBtn) {
-                printDropdownPanel.classList.remove('show');
-            }
-        });
-    }
-
-    function executePrint() {
-        const orientation = document.querySelector('input[name="print-orientation"]:checked')?.value || 'portrait';
-
+    
+    // ===== Direct 1-Click Print Function =====
+    function printDirect(orientation) {
         let printStyle = document.getElementById('dynamic-print-style');
         if (!printStyle) {
             printStyle = document.createElement('style');
             printStyle.id = 'dynamic-print-style';
             document.head.appendChild(printStyle);
         }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 7mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 94vh !important; }
+                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 96vh !important; }
+                }
+            `;
+        }
+
+        window.print();
+    }
+
 
         if (orientation === 'landscape') {
             printStyle.innerHTML = `

@@ -5,7 +5,7 @@
 
 ## 📚 線上閱覽
 
-👉 **[開啟教材總目錄](https://ericwang-app.github.io/math-ch1-trig/)**
+👉 **[開啟教材總目錄](https://ericwang-app.github.io/math/)**
 
 ---
 

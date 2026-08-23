@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高中數學加強班｜Ch1 三角函數 學測解題對照手冊・公式速查講義</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- MathJax 3 for crystal clear mathematical formulas -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #131d33;
+            --bg-card: rgba(26, 38, 66, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #818cf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #f43f5e;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(56, 189, 248, 0.4);
+            --table-head: rgba(30, 41, 59, 0.95);
+            --table-stripe: rgba(255, 255, 255, 0.02);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #edf2f7;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --accent-indigo: #4338ca;
+            --accent-purple: #7e22ce;
+            --accent-emerald: #047857;
+            --accent-amber: #b45309;
+            --accent-rose: #be123c;
+            --border-color: #cbd5e1;
+            --border-highlight: #0284c7;
+            --table-head: #f1f5f9;
+            --table-stripe: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 15px;
+        }
+
+        /* Top Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-rose));
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 17, 32, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            padding: 0.65rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        [data-theme="light"] header {
+            background: rgba(248, 250, 252, 0.92);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.45rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s;
+        }
+        .btn-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+        }
+
+        /* Document Title Header */
+        .doc-header {
+            text-align: center;
+            padding: 1rem 0 1.8rem 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 1.8rem;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .doc-header h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Print Page Section */
+        .print-page {
+            margin-bottom: 3.5rem;
+            scroll-margin-top: 5rem;
+        }
+
+        .section-title-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        .section-num {
+            background: var(--accent-blue);
+            color: #0b1120;
+            font-weight: 900;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        [data-theme="light"] .section-num {
+            color: #ffffff;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.1rem 1.3rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.4rem;
+        }
+
+        .formula-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.7rem 0.9rem;
+            margin: 0.55rem 0;
+            text-align: center;
+            font-size: 1.02rem;
+        }
+        [data-theme="light"] .formula-box {
+            background: #f1f5f9;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.35rem;
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        /* Master Reference Table */
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.75rem 0 1.25rem 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 0.88rem;
+        }
+        .ref-table th {
+            background: var(--table-head);
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            font-weight: 700;
+            color: var(--accent-blue);
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+        .ref-table th:last-child {
+            border-right: none;
+        }
+        .ref-table td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            line-height: 1.5;
+        }
+        .ref-table td:last-child {
+            border-right: none;
+        }
+        .ref-table tr:nth-child(even) {
+            background: var(--table-stripe);
+        }
+        .ref-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* SOP Card */
+        .sop-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--sop-color, #38bdf8);
+            border-radius: 8px;
+            padding: 0.85rem 1.05rem;
+            margin-bottom: 0.85rem;
+        }
+        .sop-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--sop-color, #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.4rem;
+        }
+        .sop-tag {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.12rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .sop-body {
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+        .sop-step {
+            margin: 0.25rem 0;
+            padding-left: 0.65rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Pitfall alert compact */
+        .pitfall-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.8rem;
+        }
+        .pitfall-box {
+            background: rgba(244, 63, 94, 0.08);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            border-radius: 8px;
+            padding: 0.8rem 0.95rem;
+            font-size: 0.86rem;
+        }
+        .pitfall-head {
+            color: var(--accent-rose);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Floating Top Button */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-indigo);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        /* ==================================================== */
+        /* EXACT 1 PAGE PER MAJOR SECTION PRINT STYLING         */
+        /* ==================================================== */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm 9mm 8mm 9mm;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 9.2pt !important;
+                line-height: 1.3 !important;
+            }
+            header, #progress-bar, #btn-back-to-top, .header-actions {
+                display: none !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .doc-header {
+                padding: 0 0 0.35rem 0 !important;
+                margin-bottom: 0.6rem !important;
+                border-bottom: 1.5pt solid #000 !important;
+            }
+            .doc-header h1 {
+                font-size: 14pt !important;
+                color: #000 !important;
+            }
+            .doc-header p {
+                font-size: 8pt !important;
+                color: #333 !important;
+            }
+            
+            /* EACH MAJOR PART FORCED TO BE EXACTLY ONE PRINT PAGE */
+            .print-page {
+                page-break-after: always !important;
+                break-after: page !important;
+                margin-bottom: 0 !important;
+                padding-top: 0.15rem !important;
+                min-height: 96vh !important;
+                box-sizing: border-box !important;
+            }
+            .print-page:last-child {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            .section-title-bar {
+                margin-bottom: 0.45rem !important;
+                padding-bottom: 0.15rem !important;
+                border-bottom: 1.5pt solid #000 !important;
+            }
+            .section-num {
+                background: #000 !important;
+                color: #fff !important;
+                font-size: 8pt !important;
+                padding: 0.1rem 0.35rem !important;
+            }
+            .section-title {
+                font-size: 10.5pt !important;
+                color: #000 !important;
+                font-weight: bold !important;
+            }
+            .card, .sop-card, .ref-table, .pitfall-box {
+                background: #ffffff !important;
+                border: 0.75pt solid #333 !important;
+                box-shadow: none !important;
+                color: #000 !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 0.35rem !important;
+                padding: 0.4rem 0.6rem !important;
+            }
+            .card-header {
+                font-size: 9pt !important;
+                color: #000 !important;
+                font-weight: bold !important;
+                padding-bottom: 0.15rem !important;
+                margin-bottom: 0.3rem !important;
+                border-bottom: 0.6pt solid #666 !important;
+            }
+            .formula-box {
+                background: #f8fafc !important;
+                border: 0.6pt solid #666 !important;
+                color: #000 !important;
+                padding: 0.25rem 0.45rem !important;
+                margin: 0.3rem 0 !important;
+                font-size: 9pt !important;
+            }
+            .bullet-list li {
+                font-size: 8pt !important;
+                line-height: 1.3 !important;
+                margin-bottom: 0.2rem !important;
+            }
+            .ref-table {
+                font-size: 7.6pt !important;
+                margin: 0.25rem 0 !important;
+            }
+            .ref-table th {
+                background: #f1f5f9 !important;
+                color: #000 !important;
+                border-color: #333 !important;
+                padding: 0.3rem 0.4rem !important;
+                font-weight: bold !important;
+            }
+            .ref-table td {
+                border-color: #333 !important;
+                padding: 0.3rem 0.4rem !important;
+                line-height: 1.28 !important;
+            }
+            .sop-title {
+                font-size: 8.6pt !important;
+                color: #000 !important;
+                font-weight: bold !important;
+                margin-bottom: 0.2rem !important;
+            }
+            .sop-tag {
+                background: #eee !important;
+                color: #000 !important;
+                border-color: #666 !important;
+                font-size: 6.8pt !important;
+                padding: 0.08rem 0.25rem !important;
+            }
+            .sop-body {
+                font-size: 7.6pt !important;
+                line-height: 1.28 !important;
+            }
+            .sop-step {
+                margin: 0.15rem 0 !important;
+                padding-left: 0.45rem !important;
+                border-left: 1.5pt solid #666 !important;
+            }
+            .pitfall-head {
+                color: #000 !important;
+                font-weight: bold !important;
+                font-size: 8.2pt !important;
+                margin-bottom: 0.1rem !important;
+            }
+            .pitfall-box {
+                font-size: 7.5pt !important;
+                line-height: 1.25 !important;
+                padding: 0.3rem 0.45rem !important;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.45rem !important;
+                margin-bottom: 0.35rem !important;
+            }
+            .pitfall-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 0.35rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="brand-logo">
+            <i data-lucide="compass"></i>
+            <span>高中數學加強班・學測解題對照手冊</span>
+        </a>
+                <nav>
+            <ul class="nav-links">
+                <li><a href="#page-1"><i data-lucide="book-marked"></i>第1頁 公式庫</a></li>
+                <li><a href="#page-2"><i data-lucide="table"></i>第2頁 題型對照</a></li>
+                <li><a href="#page-3"><i data-lucide="zap"></i>第3頁 十大SOP</a></li>
+                <li><a href="#page-4"><i data-lucide="alert-triangle"></i>第4頁 特角與避坑</a></li>
+                <li><a href="#advanced-tests" style="color: var(--accent-emerald); font-weight: bold;"><i data-lucide="folder-open"></i>進階題庫解析專區</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
+                <i data-lucide="sun" id="theme-icon"></i>
+            </button>
+            <button class="btn-print" onclick="window.print()">
+                <i data-lucide="printer"></i>
+                <span>列印 (每大重點一頁)</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ========================================== -->
+        <!-- PRINT PAGE 0: ADVANCED TESTS INDEX -->
+        <!-- ========================================== -->
+        <section id="advanced-tests" class="print-page" style="min-height: auto; margin-bottom: 2rem;">
+            <div class="section-title-bar">
+                <span class="section-num">TESTS</span>
+                <h2 class="section-title">進階題庫 逐題解析與對照專區</h2>
+            </div>
+            <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <a href="b3_ch1-1_t1-2_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-1 主題 1~2 進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-1_t3_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-1 主題 3 進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-1_t4~6_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-1 主題 4~6 進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-1_t7_基礎+進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-1 主題 7 基礎+進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-2_t1-3_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-2 主題 1~3 進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-2_t4~6_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-2 主題 4~6 進階</div>
+                    </div>
+                </a>
+                <a href="b3_ch1-3_t1~3_進階題型解析與講義對照.html" target="_blank" style="text-decoration: none;">
+                    <div class="card" style="transition: transform 0.2s; cursor: pointer;" onmouseover="this.style.transform='translateY(-3px)'; this.style.borderColor='var(--accent-blue)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--border-color)';">
+                        <div class="card-header" style="margin-bottom: 0; border-bottom: none;"><i data-lucide="file-check-2"></i> 1-3 主題 1~3 進階</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+
+        <!-- ========================================== -->
+        <!-- PRINT PAGE 1: FORMULA CHEAT SHEET -->
+        <!-- ========================================== -->
+        <section id="page-1" class="print-page">
+            <div class="doc-header">
+                <div class="doc-badge">108 課綱 數學 A/B・大考衝刺必備【第 1 頁】</div>
+                <h1>Ch1 三角函數 全章必備核心公式庫 (Formula Sheet)</h1>
+                <p>四大單元公式速查：弧度扇形、圖形伸縮平移、和差倍半角、正餘弦疊合</p>
+            </div>
+
+            <div class="grid-2">
+                <!-- 1-1 -->
+                <div class="card">
+                    <div class="card-header"><i data-lucide="circle-dot"></i> 1-1 弧度制、扇形幾何與極值</div>
+                    <div class="formula-box">
+                        $$1\text{ rad} = \left(\frac{180}{\pi}\right)^\circ \approx 57.3^\circ, \quad s = r\theta, \quad A = \frac{1}{2}r^2\theta = \frac{1}{2}rs$$
+                    </div>
+                    <ul class="bullet-list">
+                        <li><strong>周長固定之最大面積定理：</strong> 扇形周長 $L = 2r + s$ 固定時，當 $\theta = 2\text{ rad}$ 時面積最大：$A_{\max} = \frac{L^2}{16}$。</li>
+                        <li><strong>弓形面積：</strong> $A_{\text{弓}} = \frac{1}{2}r^2(\theta - \sin\theta)$（$\theta$ 須為弧度）。</li>
+                        <li><strong>同界角通式：</strong> $\theta_1 - \theta_2 = 2k\pi \quad (k \in \mathbb{Z})$。</li>
+                        <li><strong>滾動距離公式：</strong> 輪子滾動距離 $d = r\theta$；離地高度 $h = r - r\cos\theta$。</li>
+                    </ul>
+                </div>
+
+                <!-- 1-2 -->
+                <div class="card">
+                    <div class="card-header"><i data-lucide="activity"></i> 1-2 函數圖形伸縮平移與絕對值</div>
+                    <div class="formula-box">
+                        $$y = a\sin\left[b\left(x - \frac{c}{b}\right)\right] + d$$
+                    </div>
+                    <ul class="bullet-list">
+                        <li><strong>振幅與極值：</strong> 振幅 $|a|$，最大值 $d+|a|$，最小值 $d-|a|$，平衡線 $y = d$。</li>
+                        <li><strong>週期 $T$：</strong> 正弦/餘弦 $T = \frac{2\pi}{|b|}$，正切 $T = \frac{\pi}{|b|}$。</li>
+                        <li><strong>水平平移量：</strong> 向右平移 $\frac{c}{b}$ 單位（<strong>必先將 $b$ 提出！</strong>）。</li>
+                        <li><strong>對稱軸：</strong> $\sin$ 在波峰/波谷 $x = \frac{\pi}{2}+k\pi$；$\cos$ 在 $x = k\pi$。</li>
+                        <li><strong>絕對值圖形：</strong> $y = |\sin x|$ 週期減半為 $\pi$；$y = \sin|x|$ 為偶函數。</li>
+                    </ul>
+                </div>
+
+                <!-- 1-3 -->
+                <div class="card">
+                    <div class="card-header"><i data-lucide="git-branch"></i> 1-3 和差角、平方差、倍角與三倍角</div>
+                    <div class="formula-box">
+                        $$\sin(\alpha \pm \beta) = \sin\alpha\cos\beta \pm \cos\alpha\sin\beta$$
+                        $$\cos(\alpha \pm \beta) = \cos\alpha\cos\beta \mp \sin\alpha\sin\beta$$
+                        $$\tan(\alpha \pm \beta) = \frac{\tan\alpha \pm \tan\beta}{1 \mp \tan\alpha\tan\beta}, \quad \tan\theta = \left|\frac{m_1 - m_2}{1 + m_1 m_2}\right|$$
+                    </div>
+                    <ul class="bullet-list">
+                        <li><strong>正餘弦平方差：</strong> $\sin(\alpha+\beta)\sin(\alpha-\beta) = \sin^2\alpha - \sin^2\beta$。</li>
+                        <li><strong>二倍角與降次：</strong> $\sin 2\theta = 2\sin\theta\cos\theta, \quad \cos 2\theta = 2\cos^2\theta - 1 = 1 - 2\sin^2\theta$。</li>
+                        <li><strong>三倍角公式：</strong> $\sin 3\theta = 3\sin\theta - 4\sin^3\theta, \quad \cos 3\theta = 4\cos^3\theta - 3\cos\theta$。</li>
+                        <li><strong>半角公式：</strong> $\sin\frac{\theta}{2} = \pm\sqrt{\frac{1-\cos\theta}{2}}, \quad \cos\frac{\theta}{2} = \pm\sqrt{\frac{1+\cos\theta}{2}}$。</li>
+                    </ul>
+                </div>
+
+                <!-- 1-4 -->
+                <div class="card">
+                    <div class="card-header"><i data-lucide="layers"></i> 1-4 正餘弦疊合與極值判定</div>
+                    <div class="formula-box">
+                        $$a\sin x + b\cos x = \sqrt{a^2+b^2}\sin(x + \phi)$$
+                        $$\text{其中 } \cos\phi = \frac{a}{\sqrt{a^2+b^2}}, \quad \sin\phi = \frac{b}{\sqrt{a^2+b^2}}$$
+                    </div>
+                    <ul class="bullet-list">
+                        <li><strong>無限制範圍極值：</strong> $-\sqrt{a^2+b^2} \le y \le \sqrt{a^2+b^2}$，疊合後週期為 $2\pi$。</li>
+                        <li><strong>輔助角象限判定：</strong> 輔助角 $\phi$ 所在的象限由坐標點 $(a, b)$ 正負決定。</li>
+                        <li><strong>受限區間極值SOP：</strong> 換元 $\theta = x+\phi$，依單位圓檢查是否包含 $\frac{\pi}{2}$ 或 $\frac{3\pi}{2}$。</li>
+                        <li><strong>二次複合極值：</strong> $y = a\cos^2 x + b\sin x + c \implies$ 令 $t = \sin x \in [-1, 1]$ 配方。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PRINT PAGE 2: PROBLEM TYPE MAPPING TABLE -->
+        <!-- ========================================== -->
+        <section id="page-2" class="print-page">
+            <div class="section-title-bar">
+                <span class="section-num">PART 2</span>
+                <h2 class="section-title">解題題型 ↔ 核心技巧對照矩陣【第 2 頁】</h2>
+            </div>
+
+            <table class="ref-table">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">題目關鍵字 / 題型特徵</th>
+                        <th style="width: 28%;">對應核心公式</th>
+                        <th style="width: 33%;">標準解題步驟 (SOP)</th>
+                        <th style="width: 17%;">避坑提醒</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>無單位三角比比大小</strong><br>($\sin 1, \sin 2, \cos 1, \tan 1$)</td>
+                        <td>$1\text{ rad} \approx 57.3^\circ$<br>單位圓坐標 $(\cos\theta, \sin\theta)$</td>
+                        <td>1. 換算弧度為大致度數。<br>2. 正弦看高度、餘弦看橫寬、正切看斜率。<br>3. 在單位圓上標出投影比大小。</td>
+                        <td>無度數符號為弧度（$\cos 10 \ne \cos 10^\circ$）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>扇形周長固定求最大面積</strong><br>(鐵絲圍扇形、最大面積)</td>
+                        <td>$L = 2r + r\theta$<br>$A = \frac{1}{2}r^2\theta = \frac{1}{2}r(L-2r)$</td>
+                        <td>1. 建立面積二次函數 $A = -\left(r-\frac{L}{4}\right)^2 + \frac{L^2}{16}$。<br>2. 當半徑 $r = \frac{L}{4}$（即圓心角 $\theta = 2\text{ rad}$）時，面積最大值 $A_{\max} = \frac{L^2}{16}$。</td>
+                        <td>圓心角必為 $2\text{ 弧度}$（約 $114.6^\circ$）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>幾何滾動 / 鐘錶指針</strong><br>(輪胎滾動高度、指針夾角)</td>
+                        <td>$d = r\theta$<br>$h = r - r\cos\theta$<br>分針 $\frac{\pi}{30}\text{ rad/分}$，時針 $\frac{\pi}{360}\text{ rad/分}$</td>
+                        <td>1. 滾動直線距離 $=$ 輪緣滾過弧長 $d = r\theta$。<br>2. 旋轉角 $\theta = \frac{d}{r}$。<br>3. 利用圓心直角三角形求離地高度。</td>
+                        <td>轉動角 $\theta$ 超過 $\pi$ 時注意高低差符號。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>圖形平移伸縮變換</strong><br>($y = a\sin(bx-c)+d$)</td>
+                        <td>$y = a\sin\left[b\left(x - \frac{c}{b}\right)\right] + d$</td>
+                        <td>1. 先將 $x$ 的係數 $b$ 提出括號。<br>2. 水平向右平移量為 $\frac{c}{b}$。<br>3. 振幅為 $|a|$，週期為 $\frac{2\pi}{|b|}$。</td>
+                        <td>勿直接視 $c$ 為平移量（必為 $\frac{c}{b}$）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>方程式實根個數 / 交點</strong><br>($\sin x = \frac{x}{3\pi}$, $\sin 2x = \cos 2x$)</td>
+                        <td>數形結合：$\begin{cases} y_1 = \sin x \\ y_2 = g(x) \end{cases}$</td>
+                        <td>1. 找出直線達振幅邊界 $\pm 1$ 的範圍。<br>2. 超出範圍必無交點。<br>3. 在有效區間標出零點與波峰數交點。</td>
+                        <td>注意題目給定的 $x$ 區間限制（如 $[0, 2\pi]$）。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>對稱軸與多根總和</strong><br>(求 $\sin x = k$ 在 $[0, 2\pi]$ 根之和)</td>
+                        <td>$\sin$ 對稱軸 $x = \frac{\pi}{2}, \frac{3\pi}{2}$<br>$\cos$ 對稱軸 $x = \pi$</td>
+                        <td>1. 找出兩對稱根的中點對稱軸 $x = x_0$。<br>2. 兩根之和直接等於 $2x_0$。<br>3. 無需算出個別未知角度值。</td>
+                        <td>檢查根是否存在於指定區間內。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>給定 $\sin\theta \pm \cos\theta = k$</strong><br>(求 $\sin 2\theta, \tan\theta$)</td>
+                        <td>$(\sin\theta \pm \cos\theta)^2 = 1 \pm \sin 2\theta$<br>$\tan\theta + \frac{1}{\tan\theta} = \frac{2}{\sin 2\theta}$</td>
+                        <td>1. 兩邊平方求出 $\sin 2\theta = k^2 - 1$。<br>2. 相乘 $\sin\theta\cos\theta = \frac{k^2-1}{2}$。<br>3. 相減開方 $(\sin\theta-\cos\theta)^2 = 2-k^2$。</td>
+                        <td>開方時須依 $\theta$ 象限判斷正負。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>三倍角與立方化簡</strong><br>(化簡 $\sin 3\theta, \cos 3\theta$)</td>
+                        <td>$\sin 3\theta = 3\sin\theta - 4\sin^3\theta$<br>$\cos 3\theta = 4\cos^3\theta - 3\cos\theta$</td>
+                        <td>1. 遇到 $\sin^3\theta$ 移項為 $\frac{3\sin\theta - \sin 3\theta}{4}$ 降次。<br>2. 代入特殊角（如 $\theta = 10^\circ, 20^\circ$）求值。</td>
+                        <td>口訣：3 仙 - 4 仙草；4 塊 - 3 塊錢。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>受限區間疊合極值</strong><br>($f(x) = a\sin x + b\cos x, x \in [\alpha, \beta]$)</td>
+                        <td>$f(x) = \sqrt{a^2+b^2}\sin(x + \phi)$</td>
+                        <td>1. 疊合為 $r\sin(x+\phi)$。<br>2. 換元推導複合角 $\theta = x+\phi$ 的範圍。<br>3. 檢驗是否涵蓋波峰 $\frac{\pi}{2}$ 或波谷 $\frac{3\pi}{2}$。</td>
+                        <td>勿盲目只代左右端點！</td>
+                    </tr>
+                    <tr>
+                        <td><strong>幾何求角 / 兩線夾角</strong><br>(正方形拼接求角、兩直線夾角)</td>
+                        <td>$\tan(\alpha \pm \beta) = \frac{\tan\alpha \pm \tan\beta}{1 \mp \tan\alpha\tan\beta}$<br>$\tan\theta = \left|\frac{m_1 - m_2}{1 + m_1 m_2}\right|$</td>
+                        <td>1. 將未知角拆解為直角三角形兩角之差 $\alpha-\beta$。<br>2. 讀取 $\tan\alpha, \tan\beta$。<br>3. 代入正切差角公式求值。</td>
+                        <td>求銳夾角必須加絕對值。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PRINT PAGE 3: TEN TECHNIQUE SOPS -->
+        <!-- ========================================== -->
+        <section id="page-3" class="print-page">
+            <div class="section-title-bar">
+                <span class="section-num">PART 3</span>
+                <h2 class="section-title">十大解題技巧標準作業程序 (Problem-Solving SOPs)【第 3 頁】</h2>
+            </div>
+
+            <div class="grid-2">
+                <!-- SOP 1 -->
+                <div class="sop-card" style="--sop-color: #38bdf8;">
+                    <div class="sop-title">
+                        <span><i data-lucide="compass"></i> SOP 1：無單位三角比大小排序</span>
+                        <span class="sop-tag">單元 1-1</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：轉化實數弧度為近似角度：<br>
+                            $1 \approx 57.3^\circ$ (I), $2 \approx 114.6^\circ$ (II), $3 \approx 171.9^\circ$ (II末), $4 \approx 229.2^\circ$ (III)。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：由單位圓投影快速定位：<br>
+                            • 正弦（高度）：$\sin 2 > \sin 1 > \sin 3 > 0 > \sin 4$<br>
+                            • 餘弦（橫寬）：$\cos 1 > 0 > \cos 2 > \cos 4 > \cos 3$<br>
+                            • 正切（斜率）：$\tan 1 > 0 > \tan 3 > \tan 2$
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 2 -->
+                <div class="sop-card" style="--sop-color: #818cf8;">
+                    <div class="sop-title">
+                        <span><i data-lucide="maximize-2"></i> SOP 2：扇形周長固定求最大面積</span>
+                        <span class="sop-tag">極值模型</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：設周長 $L = 2r + s = 2r + r\theta$，面積 $A = \frac{1}{2}rs = \frac{1}{2}r(L-2r) = -r^2 + \frac{L}{2}r$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：配方得 $A = -\left(r - \frac{L}{4}\right)^2 + \frac{L^2}{16}$。<br>
+                            • 當 $r = \frac{L}{4}$（弧長 $s = \frac{L}{2}$，圓心角 $\theta = \frac{s}{r} = 2\text{ rad}$）時，最大面積 $A_{\max} = \frac{L^2}{16}$。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 3 -->
+                <div class="sop-card" style="--sop-color: #c084fc;">
+                    <div class="sop-title">
+                        <span><i data-lucide="rotate-cw"></i> SOP 3：幾何滾動與高度計算</span>
+                        <span class="sop-tag">素養幾何</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：滾動距離 $d = r\theta \implies \theta = \frac{d}{r}\text{ (rad)}$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：以圓心為基準建立坐標高低差：<br>
+                            • 若 $\theta \le \pi$：離地高度 $h = r - r\cos\theta$。<br>
+                            • 若 $\theta > \pi$：離地高度 $h = r + r\cos(\theta - \pi)$。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 4 -->
+                <div class="sop-card" style="--sop-color: #34d399;">
+                    <div class="sop-title">
+                        <span><i data-lucide="move"></i> SOP 4：函數圖形平移伸縮標準化</span>
+                        <span class="sop-tag">單元 1-2</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：提出 $x$ 係數：$y = a\sin\left[b\left(x - \frac{c}{b}\right)\right] + d$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：判定四大要素：<br>
+                            • 振幅 $= |a|$，週期 $T = \frac{2\pi}{|b|}$。<br>
+                            • 水平平移 $= \frac{c}{b}$（正右負左），垂直平移 $= d$（正上負下）。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 5 -->
+                <div class="sop-card" style="--sop-color: #fbbf24;">
+                    <div class="sop-title">
+                        <span><i data-lucide="trending-up"></i> SOP 5：方程式實根與交點個數分析</span>
+                        <span class="sop-tag">大考焦點</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：拆解為兩函數：$y_1 = \sin x, \quad y_2 = g(x)$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：求直線達邊界 $y = \pm 1$ 時的臨界 $x$ 值，鎖定有效區間。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：在有效區間內畫出零點與波峰，數出曲線穿透直線的交點數。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 6 -->
+                <div class="sop-card" style="--sop-color: #f43f5e;">
+                    <div class="sop-title">
+                        <span><i data-lucide="split"></i> SOP 6：利用對稱性求多根總和</span>
+                        <span class="sop-tag">頂標速解</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：確定函數在該區間內的對稱軸 $x = x_0$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：若 $x_1, x_2$ 為對稱兩根，則中點 $\frac{x_1+x_2}{2} = x_0 \implies x_1+x_2 = 2x_0$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：多組對稱根直接將各組「$2 \times \text{對稱軸}$」相加即得總和。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 7 -->
+                <div class="sop-card" style="--sop-color: #38bdf8;">
+                    <div class="sop-title">
+                        <span><i data-lucide="link"></i> SOP 7：$\sin\theta\pm\cos\theta$ 平方連鎖反應</span>
+                        <span class="sop-tag">單元 1-3</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：給定 $\sin\theta + \cos\theta = k$，平方得 $\sin 2\theta = k^2 - 1$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：積式 $\sin\theta\cos\theta = \frac{k^2-1}{2}$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：差式 $(\sin\theta-\cos\theta)^2 = 1 - \sin 2\theta = 2 - k^2$。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 8 -->
+                <div class="sop-card" style="--sop-color: #818cf8;">
+                    <div class="sop-title">
+                        <span><i data-lucide="check-circle-2"></i> SOP 8：有限區間求疊合極值</span>
+                        <span class="sop-tag">滿分關鍵</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：疊合 $f(x) = \sqrt{a^2+b^2}\sin(x + \phi)$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：若 $x \in [\alpha, \beta]$，換元求複合角 $\theta = x+\phi \in [\alpha+\phi, \beta+\phi]$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：檢查 $\theta$ 範圍是否涵蓋 $\frac{\pi}{2}$ (Max) 或 $\frac{3\pi}{2}$ (Min)；若未涵蓋則代入端點。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 9 -->
+                <div class="sop-card" style="--sop-color: #c084fc;">
+                    <div class="sop-title">
+                        <span><i data-lucide="layers"></i> SOP 9：二次型三角函數極值求解</span>
+                        <span class="sop-tag">二次配方</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：利用 $\cos^2 x = 1 - \sin^2 x$ 化為同名函數：$y = a(1-\sin^2 x) + b\sin x + c$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：令 $t = \sin x$（<strong>務必註明受限範圍 $t \in [-1, 1]$</strong>）。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：配方求拋物線頂點，並檢查頂點是否在 $[-1, 1]$ 內。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOP 10 -->
+                <div class="sop-card" style="--sop-color: #34d399;">
+                    <div class="sop-title">
+                        <span><i data-lucide="maximize-2"></i> SOP 10：正切拆角與兩線夾角</span>
+                        <span class="sop-tag">幾何解析</span>
+                    </div>
+                    <div class="sop-body">
+                        <div class="sop-step">
+                            <strong>步驟 1</strong>：將未知角表為兩已知角之差 $\theta = \alpha - \beta$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 2</strong>：由對邊/鄰邊求 $\tan\alpha, \tan\beta$。
+                        </div>
+                        <div class="sop-step">
+                            <strong>步驟 3</strong>：代入 $\tan\theta = \frac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}$ 求出數值與角度。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PRINT PAGE 4: SPECIAL VALUES & TOP 10 TRAPS -->
+        <!-- ========================================== -->
+        <section id="page-4" class="print-page">
+            <div class="section-title-bar">
+                <span class="section-num">PART 4 & 5</span>
+                <h2 class="section-title">特殊角數值速查 ＆ 十大避坑指南【第 4 頁】</h2>
+            </div>
+
+            <div class="grid-2">
+                <table class="ref-table">
+                    <thead>
+                        <tr>
+                            <th>角度 $\theta$</th>
+                            <th>弧度</th>
+                            <th>$\sin\theta$</th>
+                            <th>$\cos\theta$</th>
+                            <th>$\tan\theta$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$0^\circ$</td>
+                            <td>$0$</td>
+                            <td>$0$</td>
+                            <td>$1$</td>
+                            <td>$0$</td>
+                        </tr>
+                        <tr>
+                            <td>$30^\circ$</td>
+                            <td>$\frac{\pi}{6}$</td>
+                            <td>$\frac{1}{2}$</td>
+                            <td>$\frac{\sqrt{3}}{2}$</td>
+                            <td>$\frac{\sqrt{3}}{3}$</td>
+                        </tr>
+                        <tr>
+                            <td>$45^\circ$</td>
+                            <td>$\frac{\pi}{4}$</td>
+                            <td>$\frac{\sqrt{2}}{2}$</td>
+                            <td>$\frac{\sqrt{2}}{2}$</td>
+                            <td>$1$</td>
+                        </tr>
+                        <tr>
+                            <td>$60^\circ$</td>
+                            <td>$\frac{\pi}{3}$</td>
+                            <td>$\frac{\sqrt{3}}{2}$</td>
+                            <td>$\frac{1}{2}$</td>
+                            <td>$\sqrt{3}$</td>
+                        </tr>
+                        <tr>
+                            <td>$90^\circ$</td>
+                            <td>$\frac{\pi}{2}$</td>
+                            <td>$1$</td>
+                            <td>$0$</td>
+                            <td>無意義</td>
+                        </tr>
+                        <tr>
+                            <td>$15^\circ$</td>
+                            <td>$\frac{\pi}{12}$</td>
+                            <td>$\frac{\sqrt{6}-\sqrt{2}}{4}$</td>
+                            <td>$\frac{\sqrt{6}+\sqrt{2}}{4}$</td>
+                            <td>$2-\sqrt{3}$</td>
+                        </tr>
+                        <tr>
+                            <td>$75^\circ$</td>
+                            <td>$\frac{5\pi}{12}$</td>
+                            <td>$\frac{\sqrt{6}+\sqrt{2}}{4}$</td>
+                            <td>$\frac{\sqrt{6}-\sqrt{2}}{4}$</td>
+                            <td>$2+\sqrt{3}$</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="ref-table">
+                    <thead>
+                        <tr>
+                            <th>實數弧度 $x$</th>
+                            <th>近似角度</th>
+                            <th>所屬象限</th>
+                            <th>$\sin x$</th>
+                            <th>$\cos x$</th>
+                            <th>$\tan x$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$1\text{ rad}$</td>
+                            <td>$\approx 57.3^\circ$</td>
+                            <td>第 I 象限</td>
+                            <td>$>0$ ($0.84$)</td>
+                            <td>$>0$ ($0.54$)</td>
+                            <td>$>0$ ($1.56$)</td>
+                        </tr>
+                        <tr>
+                            <td>$2\text{ rad}$</td>
+                            <td>$\approx 114.6^\circ$</td>
+                            <td>第 II 象限</td>
+                            <td>$>0$ ($0.91$)</td>
+                            <td>$<0$ ($-0.42$)</td>
+                            <td>$<0$ ($-2.19$)</td>
+                        </tr>
+                        <tr>
+                            <td>$3\text{ rad}$</td>
+                            <td>$\approx 171.9^\circ$</td>
+                            <td>第 II 象限</td>
+                            <td>$>0$ ($0.14$)</td>
+                            <td>$<0$ ($-0.99$)</td>
+                            <td>$<0$ ($-0.14$)</td>
+                        </tr>
+                        <tr>
+                            <td>$4\text{ rad}$</td>
+                            <td>$\approx 229.2^\circ$</td>
+                            <td>第 III 象限</td>
+                            <td>$<0$ ($-0.76$)</td>
+                            <td>$<0$ ($-0.65$)</td>
+                            <td>$>0$ ($1.16$)</td>
+                        </tr>
+                        <tr>
+                            <td>$\pi \approx 3.14$</td>
+                            <td>$= 180^\circ$</td>
+                            <td>軸線界角</td>
+                            <td>$0$</td>
+                            <td>$-1$</td>
+                            <td>$0$</td>
+                        </tr>
+                        <tr>
+                            <td>$2\pi \approx 6.28$</td>
+                            <td>$= 360^\circ$</td>
+                            <td>軸線界角</td>
+                            <td>$0$</td>
+                            <td>$1$</td>
+                            <td>$0$</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Top 10 Pitfalls -->
+            <div class="pitfall-grid">
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 1. 無單位弧度誤看成度度量</div>
+                    $\cos 10$ 為 $10\text{ rad} \approx 573^\circ$（第 III 象限為負），$\cos 10^\circ > 0$，切勿混淆！
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 2. 平移量未提 $x$ 係數</div>
+                    $y = \sin(2x - \frac{\pi}{3}) = \sin[2(x - \frac{\pi}{6})]$，向右平移 $\frac{\pi}{6}$（非 $\frac{\pi}{3}$）。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 3. 疊合輔助角象限判斷錯誤</div>
+                    $-1\sin x + \sqrt{3}\cos x$ 點 $(-1, \sqrt{3})$ 在第 II 象限，輔助角為 $\frac{2\pi}{3}$（非 $\frac{\pi}{3}$）。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 4. 受限區間極值只代端點</div>
+                    求範圍極值時，務必檢驗換元後區間是否涵蓋波峰角 $\frac{\pi}{2}$ 或波谷角 $\frac{3\pi}{2}$。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 5. 兩線夾角漏加絕對值</div>
+                    求銳夾角公式必為 $\tan\theta = \left|\frac{m_1 - m_2}{1 + m_1 m_2}\right|$，保證正切值為正。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 6. 二次配方忘記 $t$ 範圍限制</div>
+                    令 $t = \sin x$ 時，必須標明 $t \in [-1, 1]$，拋物線頂點若超出範圍則取端點。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 7. 扇形面積公式代入度度量</div>
+                    $A = \frac{1}{2}r^2\theta$ 中的 $\theta$ 必須為弧度量；若給度度量須先乘 $\frac{\pi}{180}$。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 8. 正切函數週期誤記為 $2\pi$</div>
+                    $y = \tan x$ 的週期為 $\pi$；$y = \tan bx$ 的週期為 $\frac{\pi}{|b|}$。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 9. 三倍角公式係數正負寫反</div>
+                    $\sin 3\theta = 3\sin\theta - 4\sin^3\theta$；$\cos 3\theta = 4\cos^3\theta - 3\cos\theta$。
+                </div>
+
+                <div class="pitfall-box">
+                    <div class="pitfall-head"><i data-lucide="alert-octagon"></i> 10. 方程式實根忘記驗證定義域</div>
+                    涉及 $\tan x$ 或分式時，務必剔除漸近線 $x = \frac{\pi}{2} + k\pi$ 及分母為零的無效解。
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Top Button -->
+    <button id="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="返回頂部">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.3rem;">高中數學加強班 專屬解題對照手冊</p>
+        <p>© 2026 學測中心特訓教材｜編撰製作：數學教學研究組</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+
+            const topBtn = document.getElementById('btn-back-to-top');
+            if (winScroll > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        });
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let isDark = true;
+
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

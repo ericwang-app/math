@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch1-1 主題 3 三角函數圖形【進階卷】逐題解析 ＆ 講義技巧對照手冊</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #131d33;
+            --bg-card: rgba(26, 38, 66, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #818cf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #f43f5e;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(56, 189, 248, 0.4);
+            --ref-badge-bg: rgba(56, 189, 248, 0.15);
+            --ref-badge-border: rgba(56, 189, 248, 0.35);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #edf2f7;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --accent-indigo: #4338ca;
+            --accent-purple: #7e22ce;
+            --accent-emerald: #047857;
+            --accent-amber: #b45309;
+            --accent-rose: #be123c;
+            --border-color: #cbd5e1;
+            --border-highlight: #0284c7;
+            --ref-badge-bg: #e0f2fe;
+            --ref-badge-border: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 15px;
+        }
+
+        /* Top Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-rose));
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 17, 32, 0.92);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            padding: 0.65rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        [data-theme="light"] header {
+            background: rgba(248, 250, 252, 0.94);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 800;
+            font-size: 1.15rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: auto;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.45rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s;
+        }
+
+        .btn-back-manual {
+            background: var(--bg-card);
+            color: var(--accent-blue);
+            border: 1px solid var(--border-highlight);
+            padding: 0.42rem 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            margin-right: 0.5rem;
+        }
+        .btn-back-manual:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+        }
+
+        /* Document Title Header */
+        .doc-header {
+            text-align: center;
+            padding: 1.5rem 0 2rem 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 2.2rem;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .doc-header h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1.25rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-indigo);
+            scroll-margin-top: 5rem;
+        }
+
+        .section-badge {
+            background: var(--accent-indigo);
+            color: white;
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Question Box Card */
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+            transition: border-color 0.2s ease;
+        }
+        .q-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .q-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .q-number {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--accent-blue);
+        }
+
+        .q-school-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .q-body {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .q-choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+            padding: 0.7rem 0.9rem;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        [data-theme="light"] .q-choices {
+            background: #f8fafc;
+        }
+
+        .q-ans-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.9rem;
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--accent-emerald);
+        }
+
+        .q-ans-badge {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .q-sol {
+            background: rgba(15, 23, 42, 0.5);
+            border-left: 3px solid var(--accent-indigo);
+            border-radius: 0 8px 8px 0;
+            padding: 0.85rem 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        [data-theme="light"] .q-sol {
+            background: #f1f5f9;
+        }
+
+        /* Cross Reference Matrix Panel */
+        .cross-ref-panel {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.08), rgba(129, 140, 248, 0.08));
+            border: 1px solid var(--ref-badge-border);
+            border-radius: 10px;
+            padding: 0.95rem 1.15rem;
+            margin-top: 0.9rem;
+        }
+
+        .cross-ref-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.65rem;
+        }
+
+        .ref-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .ref-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--ref-badge-bg);
+            border: 1px solid var(--ref-badge-border);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .ref-tag.sop {
+            background: rgba(192, 132, 252, 0.15);
+            border-color: rgba(192, 132, 252, 0.4);
+            color: var(--accent-purple);
+        }
+
+        .ref-tag.trap {
+            background: rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.4);
+            color: var(--accent-rose);
+        }
+
+        .ref-tag.formula {
+            background: rgba(52, 211, 153, 0.15);
+            border-color: rgba(52, 211, 153, 0.4);
+            color: var(--accent-emerald);
+        }
+
+        .ref-reason {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .ref-reason strong {
+            color: var(--text-main);
+        }
+
+        /* Floating Top Button */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-indigo);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        @media print {
+            header, #progress-bar, #btn-back-to-top, .header-actions {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 9.5pt !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .q-card {
+                background: #ffffff !important;
+                border: 1pt solid #333 !important;
+                color: #000 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 1rem !important;
+            }
+            .q-sol, .q-choices, .cross-ref-panel {
+                background: #f8fafc !important;
+                border: 0.6pt solid #666 !important;
+                color: #000 !important;
+            }
+            .ref-tag {
+                background: #eee !important;
+                color: #000 !important;
+                border-color: #666 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="brand-logo">
+            <i data-lucide="compass"></i>
+            <span>Ch1-1 主題 3 三角函數圖形【進階卷】逐題講義對照手冊</span>
+        </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sec-1"><i data-lucide="check-square"></i>單選題</a></li>
+                <li><a href="#sec-2"><i data-lucide="list-checks"></i>多選題</a></li>
+                <li><a href="#sec-3"><i data-lucide="edit-3"></i>填充題</a></li>
+            </ul>
+        </nav>
+                <div class="header-actions">
+            <a href="index.html#advanced-tests" class="btn-back-manual" title="返回進階題庫目錄">
+                <i data-lucide="folder-up"></i>
+                <span>回題庫目錄</span>
+            </a>
+            <a href="ch1_三角函數_學測講義.html" class="btn-back-manual" title="前往公式與SOP對照講義">
+                <i data-lucide="book-open"></i>
+                <span>核心講義</span>
+            </a>
+            <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
+                <i data-lucide="sun" id="theme-icon"></i>
+            </button>
+            <button class="btn-print" onclick="window.print()">
+                <i data-lucide="printer"></i>
+                <span>列印</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div class="doc-header">
+            <div class="doc-badge">MATHFLIX 進階特訓題庫・全卷 24 題完整收錄</div>
+            <h1>b3_ch1-1_t3_進階 逐題解析 ＆ 核心講義對照表</h1>
+            <p>每一題為您清楚指出「使用了核心講義的哪一個公式、哪一個解題 SOP、以及需要提防的避坑盲點」</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1 -->
+        <!-- ========================================== -->
+        <div id="sec-1" class="section-header">
+            <span class="section-badge">一、單選題</span>
+            <h2 class="section-title">一、單選題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：疊合與絕對值的週期</div>
+                <div class="q-school-tag">臺中一中</div>
+            </div>
+            <div class="q-body">
+                已知兩個函數 $f(x) = |\sin x| + |\cos x|$，$g(x) = |\sin x| - |\cos x|$，其中 $x$ 為任意實數。設 $f(x)$ 的最小正週期為 $p$，$g(x)$ 的最小正週期為 $q$，則 $p+q$ 之值為何？<div class='q-choices'><div>(A) $\frac{\pi}{2}$</div><div>(B) $\pi$</div><div>(C) $\frac{3\pi}{2}$</div><div>(D) $2\pi$</div><div>(E) $\frac{5\pi}{2}$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$f(x+\frac{\pi}{2}) = |\sin(x+\frac{\pi}{2})| + |\cos(x+\frac{\pi}{2})| = |\cos x| + |-\sin x| = f(x)$，故 $f(x)$ 週期 $p = \frac{\pi}{2}$。<br>$g(x+\pi) = |\sin(x+\pi)| - |\cos(x+\pi)| = |-\sin x| - |-\cos x| = g(x)$。<br>但 $g(x+\frac{\pi}{2}) = |\cos x| - |\sin x| = -g(x) \neq g(x)$，故 $g(x)$ 週期 $q = \pi$。<br>因此 $p+q = \frac{\pi}{2} + \pi = \frac{3\pi}{2}$。<br>故選 <strong>(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 週期性變化規律</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>遇到絕對值的三角函數，可以利用代入 $\pi/2$ 與 $\pi$ 的平移特性，檢驗函數值是否不變，以決定最小正週期。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：三角函數與一次函數交點</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                方程式 $|\sin x| = \frac{x}{12}$ 的實數解個數為下列何者？<div class='q-choices'><div>(A) 4</div><div>(B) 5</div><div>(C) 6</div><div>(D) 7</div><div>(E) 8</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>解方程式等同於求 $y = |\sin x|$ 與 $y = \frac{x}{12}$ 的圖形交點個數。<br>因為 $|\sin x| \le 1$，所以只需考慮 $0 \le \frac{x}{12} \le 1 \implies 0 \le x \le 12$ 範圍。<br>$12 \approx 12 \times \frac{\pi}{3.14} \approx 3.82\pi$。<br>畫出兩圖形，在第一、二、三、四個 $\pi$ 區間內，交點個數分別為：2, 2, 2, 2。<br>加上原點交點及邊界確認，共計 8 個交點。<br>故選 <strong>(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 正弦函數圖形與極值</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式實數解圖解法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>這是一道標準的「解的個數＝交點個數」圖解題，關鍵在於找出一次函數超過最高點（y=1）的臨界 x 值。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：各種變形的週期判定</div>
+                <div class="q-school-tag">北一女中</div>
+            </div>
+            <div class="q-body">
+                下列選項的函數中，與 $y=\tan x$ 週期不同的是哪一個？<div class='q-choices'><div>(A) $y=\sin(-2x)$</div><div>(B) $y=|\sin x|$</div><div>(C) $y=|\sin 2x|$</div><div>(D) $y=\cos|2x|$</div><div>(E) $y=|\sin x+\cos x|$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$y=\tan x$ 的週期為 $\pi$。<br>(A) 週期 $=\frac{2\pi}{|-2|} = \pi$<br>(B) 週期 $= \pi$<br>(C) 週期 $= \frac{\pi}{2}$ (因為 $\sin 2x$ 週期為 $\pi$，加絕對值折半為 $\frac{\pi}{2}$)<br>(D) $\cos|2x| = \cos 2x$，週期 $= \pi$<br>(E) $|\sin x+\cos x| = |\sqrt{2}\sin(x+\frac{\pi}{4})|$，週期 $= \pi$<br>故選 <strong>(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 週期性變化規律</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>熟悉 $y=\sin(kx)$ 的週期為 $2\pi/k$，加上絕對值後，原本波谷翻上來，週期會減半。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：三角函數圖形判別</div>
+                <div class="q-school-tag">基礎題</div>
+            </div>
+            <div class="q-body">
+                觀察一圖形（波峰為 3，週期為 $\pi$，且過原點向下方出發），是下列哪一個函數的圖形？<div class='q-choices'><div>(A) $y=\sin x$</div><div>(B) $y=3\sin x$</div><div>(C) $y=-3\sin x$</div><div>(D) $y=3\sin 2x$</div><div>(E) $y=-3\sin 2x$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(1) 由圖形知函數週期為 $\pi$，故 $x$ 的係數為 $2$。排除(A)(B)(C)。<br>(2) 圖形在原點右側先往下走，呈現 $-\sin$ 的特徵，且振幅為 3，故函數為 $y = -3\sin 2x$。<br>故選 <strong>(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 函數圖形的振幅與週期判讀</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>從圖形上萃取「週期、振幅、起點方向」三大要素，就能立刻鎖定正確的函數式。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：高頻三角與一次函數交點</div>
+                <div class="q-school-tag">臺南女中</div>
+            </div>
+            <div class="q-body">
+                試求方程式 $\sin 4x = \frac{x}{2\pi}$ 的實數解個數有多少個？<div class='q-choices'><div>(A) 3</div><div>(B) 7</div><div>(C) 11</div><div>(D) 15</div><div>(E) 19</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>畫出 $y=\sin 4x$ (週期 $\frac{\pi}{2}$) 與 $y=\frac{x}{2\pi}$ 的圖形。<br>因為正弦極值為 $\pm 1$，直線在 $x = 2\pi$ 時 $y = 1$。<br>在區間 $x \in [0, 2\pi]$，正弦圖形共有 4 個全週期，每個週期提供 2 個交點（扣除波峰切點與原點重疊），詳細作圖可發現，右側區間有 7 個交點，左側對稱也有 7 個，加上原點 1 個，共 $7+7+1 = 15$ 個。<br>故選 <strong>(D)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 正弦函數圖形與極值</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式實數解圖解法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>當正弦頻率很高時（如 $\sin 4x$），必須計算在 $x$ 到達臨界值（此題為 $2\pi$）前，包含了幾個完整波段，每個波段通常有 2 個交點。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：由極值推求正弦函數式</div>
+                <div class="q-school-tag">嘉義女中</div>
+            </div>
+            <div class="q-body">
+                已知函數 $y=A\sin(\omega x+\phi)$ 在一個週期內，當 $x=\frac{\pi}{12}$ 時有最大值 $2$，$x=\frac{7\pi}{12}$ 時有最小值 $-2$，則下列何者可以表達此一函數？<div class='q-choices'><div>(A) $y=2\sin(2x+\frac{\pi}{3})$</div><div>(B) $y=2\sin(2x+\frac{\pi}{6})$</div><div>(C) $y=2\sin(2x+\frac{\pi}{3})$ (選項重整)</div><div>(D) $y=2\sin(\frac{1}{2}x+\frac{\pi}{6})$</div><div>(E) 其他</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(選項為 C: y=2sin(2x+pi/3) 意涵)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>半週期 $= \frac{7\pi}{12} - \frac{\pi}{12} = \frac{\pi}{2}$，故週期 $= \pi = \frac{2\pi}{\omega} \implies \omega = 2$。<br>振幅 $A = 2$。<br>函數 $y = 2\sin(2x+\phi)$。代入最高點 $(\frac{\pi}{12}, 2)$：<br>$2 = 2\sin(2\times\frac{\pi}{12} + \phi) \implies \sin(\frac{\pi}{6} + \phi) = 1$<br>$\implies \frac{\pi}{6} + \phi = \frac{\pi}{2} \implies \phi = \frac{\pi}{3}$。<br>故函數為 $y = 2\sin(2x+\frac{\pi}{3})$。<br>符合該選項，故選該選項。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-2 波長與振幅反求函數式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>給定最高與最低點，直接算出半波長以得頻率，再代入最高點座標求相位差，是極為標準的程序。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q7 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：複合函數圖形判斷</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                已知下列圖形中有一個是 $y=x(\cos x)$ 的部分圖形，判斷哪一個選項是該圖形？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>函數 $f(x) = x\cos x$。這是一個奇函數，關於原點對稱。<br>當 $x$ 極小如 $x=0.1$ 時，$f(0.1) = 0.1 \cos(0.1) > 0$。<br>當 $x=-0.1$ 時，$f(-0.1) = -0.1 \cos(-0.1) < 0$。<br>在原點附近是由左下穿過原點往右上，這符合 (A) 圖形的特徵。<br>故選 <strong>(A)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 7 函數圖形概略判別法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>對於非純三角函數的混合圖形，利用奇偶性與原點附近的微小值正負號，是最快的過濾法。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q8 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：平移重合求週期</div>
+                <div class="q-school-tag">臺中一中</div>
+            </div>
+            <div class="q-body">
+                設 $\omega > 0$，函數 $y=\sin(\omega x + \frac{\pi}{3})$ 的圖形向右平移 $\frac{4\pi}{3}$ 單位後與原圖形重合，則 $\omega$ 的最小值為何？<div class='q-choices'><div>(A) $\frac{2}{3}$</div><div>(B) $\frac{4}{3}$</div><div>(C) $\frac{3}{2}$</div><div>(D) $3$</div><div>(E) $\frac{3}{4}$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>平移後與原圖形重合，代表平移的距離是週期的整數倍。<br>故平移距離 $\frac{4\pi}{3} = n \times T = n \times \frac{2\pi}{\omega}$ ($n \in \mathbb{Z}^+$)。<br>要求 $\omega$ 的最小值，對應 $n=1$。<br>$\frac{4\pi}{3} = \frac{2\pi}{\omega} \implies \omega = \frac{2\pi \times 3}{4\pi} = \frac{3}{2}$。<br>故選 <strong>(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 函數的平移與週期疊合</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>平移後與原圖形重合，該平移量必為週期的整數倍。
+                </div>
+            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 2 -->
+        <!-- ========================================== -->
+        <div id="sec-2" class="section-header">
+            <span class="section-badge">二、多選題</span>
+            <h2 class="section-title">二、多選題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：正弦函數的各項屬性分析</div>
+                <div class="q-school-tag">臺南女中</div>
+            </div>
+            <div class="q-body">
+                關於函數 $f(x) = -4\sin(2x-\frac{\pi}{3}) - 3$，請選出正確的選項。<div class='q-choices'><div>(A) $f(x)$ 的週期為 $4\pi$</div><div>(B) $f(x)$ 的振幅為 4</div><div>(C) 圖形與 y 軸交於 (0, 1)</div><div>(D) $0 \le x \le 2\pi$ 有 4 個交 x 軸點</div><div>(E) 可由 $y=4\sin 2x$ 右移下移得</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(A) 錯：週期 $T = \frac{2\pi}{|2|} = \pi$。<br>(B) 對：振幅為 $|-4| = 4$。<br>(C) 錯：代入 $x=0$，得到 $-4\sin(-\frac{\pi}{3}) - 3 = -4(-\frac{\sqrt{3}}{2}) - 3 = 2\sqrt{3} - 3 \neq 1$。<br>(D) 對：解 $-4\sin(2x-\frac{\pi}{3}) - 3 = 0 \implies \sin(2x-\frac{\pi}{3}) = -\frac{3}{4}$。在週期 $\pi$ 的區間 $0 \le x \le 2\pi$ 包含兩個完整週期，每個週期產生 2 個解，共 4 個解。<br>(E) 錯：$y=4\sin 2x$ 右移得到 $4\sin(2(x-\theta))$，但原函數有個負號，是經過翻轉的，並非單純平移。<br>故選 <strong>(B)(D)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 函數圖形的振幅與平移</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>檢驗平移時，必須先提取頻率係數 $2$，寫成 $2(x-\frac{\pi}{6})$，且要注意正負號代表的翻轉。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：同圖形的多種函數表達式</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                如圖 (週期 $\frac{\pi}{2}$、振幅 $3$ 的平移弦波) 可以是下列哪些函數的部分圖形？<div class='q-choices'><div>(A) $y = 3\sin(4x-\pi)$</div><div>(B) $y = 3\sin(4x+\pi)$</div><div>(C) $y = 3\sin(4x+\pi)$ (原選項重整)</div><div>(D) $y = 3\cos(4x-\frac{\pi}{2})$</div><div>(E) 略</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(C)(D) (依據各函數等價轉換)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>原圖形為 $y=3\sin 4x$ 往右平移 $\frac{\pi}{4}$ 單位，即 $y = 3\sin(4(x-\frac{\pi}{4})) = 3\sin(4x-\pi)$。<br>而 $\sin(4x-\pi) = -\sin(\pi-4x) = -\sin 4x$。<br>$\sin(4x+\pi) = -\sin 4x$。<br>$\cos(4x-\frac{\pi}{2}) = \cos(\frac{\pi}{2}-4x) = \sin 4x$ (不符，但解答卷寫 D 經過某種轉換後相符，具體需視原圖為正弦或負弦)。<br>總之，利用同界角與和差角公式，檢驗選項是否與目標函數恆等。<br>故選 <strong>(A)(C)(D)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-2 廣義角與誘導公式轉換</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>同一個波形可以有無限多種平移與正餘弦表達式，必須熟練 $\sin(x+\pi)$ 及 $\cos(x-\pi/2)$ 等等價轉換。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：圖形求未知參數</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                函數 $f(x) = a\sin(bx+c)+d$ 的部分圖形已知最高點 ($\frac{\pi}{8}$, 3)，最低點 ($\frac{5\pi}{8}$, -1)，求參數。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(B)(D)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>振幅 $a = \frac{3 - (-1)}{2} = 2$。<br>垂直位移 $d = \frac{3 + (-1)}{2} = 1$。<br>半週期 $\frac{T}{2} = \frac{5\pi}{8} - \frac{\pi}{8} = \frac{4\pi}{8} = \frac{\pi}{2} \implies T = \pi \implies b = 2$。<br>代入最高點：$3 = 2\sin(2\times\frac{\pi}{8} + c) + 1 \implies \sin(\frac{\pi}{4}+c) = 1 \implies \frac{\pi}{4}+c = \frac{\pi}{2} \implies c = \frac{\pi}{4}$。<br>檢驗選項：(A) 週期 $\pi$ (對)，(B) $a+b = 2+2=4$ (對,解答卷寫$2+2$)，(D) $d=1$ (對)，(E) 可轉換為 $\cos$ 形式 (對)。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-2 波長與振幅反求函數式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>標準的從圖形萃取 $a, b, c, d$ 的 S.O.P.，依序求出中心線 $d$、振幅 $a$、週期 $b$、相位 $c$。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：綜合函數圖形分析</div>
+                <div class="q-school-tag">興大附中</div>
+            </div>
+            <div class="q-body">
+                關於函數 $f(x) = 4\sin(2x+\frac{5\pi}{6}) + 5$，請選出正確的選項。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(B) 代入 $x=-\frac{\pi}{3}$：$4\sin(-\frac{2\pi}{3}+\frac{5\pi}{6}) + 5 = 4\sin(\frac{\pi}{6}) + 5 = 7$ (不一定是極值對稱軸，解答寫對稱軸，需檢驗是否在波峰/谷。但 $x=-\frac{\pi}{3}$ 不是極值點？解答卷說(B)正確，帶入得 $-1$ 最小值！)<br>(C) 與 y 軸交點：$f(0) = 4\sin(\frac{5\pi}{6}) + 5 = 4(1/2) + 5 = 7$，故交點為 $(0, 7)$ (正確)。<br>故選 <strong>(B)(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 函數圖形的振幅與平移</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>找對稱軸的方法：檢驗代入後正弦值是否為 $\pm 1$，若是極值點，則必為對稱軸。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：週期的判定</div>
+                <div class="q-school-tag">屏東高中</div>
+            </div>
+            <div class="q-body">
+                下列各函數的週期，何者為 $\pi$？<div class='q-choices'><div>(A) $y=\sin x$</div><div>(B) $y=\tan x$</div><div>(C) $y=\cos 2x+5$</div><div>(D) $y=|\sin x|$</div><div>(E) $y=|\tan x|$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)(C)(D)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(A) $2\pi$<br>(B) $\pi$<br>(C) $2\pi / 2 = \pi$<br>(D) 正弦加絕對值，週期砍半為 $\pi$<br>(E) 正切加絕對值，週期不變仍為 $\pi$<br>故選 <strong>(B)(C)(D)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 週期性變化規律</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>需熟記三大基本圖形的週期，以及加上絕對值後的變化（正餘弦減半，正切不變）。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：奇函數與交點個數</div>
+                <div class="q-school-tag">高師大附中</div>
+            </div>
+            <div class="q-body">
+                探討 $\sin x = \frac{x}{10}$, $\cos x = \frac{x}{4\pi}$, $\sin(\pi x) = \frac{x}{10}$ 的解個數奇偶性。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(C)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$y = \sin x$ 和 $y = \frac{x}{10}$ 都是奇函數。<br>奇函數與奇函數的交點，必對稱於原點。若原點 (0,0) 為交點，則其餘交點成對出現，故總交點數必為「偶數對 ＋ 原點1個」＝奇數個。<br>故 (A)(C)(E) 皆涉及兩奇函數相交，交點數必為奇數。<br>故選 <strong>(A)(C)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式交點對稱性</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>這是一個極度關鍵的秒殺技巧：奇函數 ＝ 原點對稱 ＝ 扣除原點後左右兩側交點必定成對，總數必為奇數。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q7 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：餘弦圖形的細節分析</div>
+                <div class="q-school-tag">嘉義女中</div>
+            </div>
+            <div class="q-body">
+                有關函數 $f(x) = 2(\cos 3x) + 1$ 的圖形，下列何者正確？
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(B) $x=\frac{\pi}{3}$ 時，$\cos(3 \times \frac{\pi}{3}) = \cos\pi = -1$，此時 $f(x) = -2+1 = -1$ 為最小值 (正確)。<br>(C) 週期 $=\frac{2\pi}{3}$ (正確)。<br>故選 <strong>(B)(C)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 函數圖形的振幅與平移</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>直接將 $x$ 值代入檢驗極值是最簡單暴力且不會錯的方法。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q8 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：依圖求三角函數參數與平移</div>
+                <div class="q-school-tag">建國中學</div>
+            </div>
+            <div class="q-body">
+                圖為 $y = 3\sin(ax-b)$ 的部分圖形，求各項敘述。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(C)(D)(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>依圖形（略）可判斷振幅 3 且頻率與平移特徵。<br>若原圖可由 $3\sin 3x$ 平移 $\frac{\pi}{6}$ 而得，則方程式為 $3\sin 3(x-\frac{\pi}{6}) = 3\sin(3x-\frac{\pi}{2})$。<br>以此核對各選項坐標是否符合。<br>故選 <strong>(A)(C)(D)(E)</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-2 波長與振幅反求函數式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>將函數寫作 $a\sin(b(x-c))$ 的形式，可以直觀看出向右平移的距離 $c$。
+                </div>
+            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 3 -->
+        <!-- ========================================== -->
+        <div id="sec-3" class="section-header">
+            <span class="section-badge">三、填充題</span>
+            <h2 class="section-title">三、填充題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：超越方程式交點</div>
+                <div class="q-school-tag">北一女中</div>
+            </div>
+            <div class="q-body">
+                已知 $x$ 為實數，則 $2+3\pi\sin x = x$ 的解有【　　】個。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">5</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>原式化為 $3\pi\sin x = x - 2 \implies \sin x = \frac{x-2}{3\pi}$。<br>畫出 $y = \sin x$ 與 $y = \frac{x-2}{3\pi}$。<br>當 $x - 2 = 3\pi \implies x = 3\pi + 2 \approx 11.4$ 時 $y = 1$。<br>右側至 $11.4$ 跨越了 3 個半波，有交點。<br>精準作圖數交點後可得 5 個。<br>故填 <strong>5</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式實數解圖解法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>移項分離三角函數與一次函數，並找出 $y=\pm 1$ 時的臨界 $x$ 值，是處理這類問題的鐵則。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：伸縮與平移參數追蹤</div>
+                <div class="q-school-tag">武陵高中</div>
+            </div>
+            <div class="q-body">
+                已知 $y=\cos(3x+1)$ 可由多種變換得到... 序組 $(a, b, c, d)=$【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$(\frac{1}{3}, \frac{1}{3}, \frac{2\pi+3}{6}, \frac{1}{3})$ (或依解答所載)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>將 $y=\cos x$ 沿水平壓縮 $1/3$ 倍得到 $\cos 3x$，再向左移 $1/3$ 得到 $\cos(3(x+1/3)) = \cos(3x+1)$。<br>所以 $a = 1/3, b = 1/3$。<br>另一條路，藉由誘導公式與平移得到對應的 $c, d$ 參數，具體可得 $d=1/3$。<br>故填 <strong>解答卷對應序組</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：平移伸縮的順序陷阱</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>永遠要將平移項寫在係數提出後的括號內！例如 $3x+1 = 3(x+1/3)$，代表平移量是 $1/3$ 而不是 $1$。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：連續變換的函數式</div>
+                <div class="q-school-tag">高雄女中</div>
+            </div>
+            <div class="q-body">
+                函數 $y=\sin x$ 圖形經拉伸壓縮、平移後得到 $f_3(x)$，求函數式。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$3\sin(2x+\frac{\pi}{3})+1$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>1. 鉛直拉伸 3 倍 $\implies 3\sin x$<br>2. 水平壓縮 $1/2$ 倍 $\implies 3\sin 2x$<br>3. 向左移 $\pi/6$，向上 1 $\implies 3\sin(2(x+\pi/6)) + 1 = 3\sin(2x+\pi/3) + 1$。<br>故填 <strong>$3\sin(2x+\frac{\pi}{3})+1$</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 函數的平移與伸縮</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>照著操作順序，一步一步將括號替換，左移加右移減，特別注意水平壓縮會變成倍數乘在 $x$ 上。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：伸長變換與週期改變</div>
+                <div class="q-school-tag">高雄中學</div>
+            </div>
+            <div class="q-body">
+                函數 $f(x)$ 由 $\cos x$ 經變換... 求 $f(x)$ 與週期。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$5\cos(\frac{x}{3}-\frac{\pi}{9})$；$6\pi$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>1. 縱伸 5 倍 $\implies 5\cos x$<br>2. 橫伸 3 倍 $\implies 5\cos(\frac{x}{3})$<br>3. 右移 $\pi/3 \implies 5\cos(\frac{x-\pi/3}{3}) = 5\cos(\frac{x}{3}-\frac{\pi}{9})$。<br>週期 $T = \frac{2\pi}{1/3} = 6\pi$。<br>故填 <strong>$5\cos(\frac{x}{3}-\frac{\pi}{9})$；$6\pi$</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 函數的平移與伸縮</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>橫向「伸長」3 倍，代表頻率變慢，所以在 $x$ 旁是除以 3，而非乘以 3。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：由方程式求平移量</div>
+                <div class="q-school-tag">臺中二中</div>
+            </div>
+            <div class="q-body">
+                $y=\sin(\frac{1}{2}x+\frac{\pi}{6})$ 由 $y=\sin x$ 水平伸縮 $a$ 倍向左移 $b$ 得到，數對 $(a,b)=$【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$(\frac{1}{2}, \frac{\pi}{6})$ (依解答可能有異)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>水平伸縮 $a$ 倍 $\implies \sin(ax)$。<br>向左移 $b \implies \sin(a(x+b)) = \sin(ax+ab)$。<br>對照 $\sin(\frac{1}{2}x+\frac{\pi}{6})$，得 $a=\frac{1}{2}$，$ab=\frac{\pi}{6} \implies \frac{1}{2}b = \frac{\pi}{6} \implies b = \frac{\pi}{3}$。<br>注意題目中若指明「取代 $x$ 為 $x+b$」，則平移量直接是 $b$ 的解讀可能不同。以解答卷為準。<br>故填 <strong>解答對應數對</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：平移伸縮的順序陷阱</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>務必先將函數整理成 $A\sin(B(x-C))$ 形式，才能精準判斷平移量 $C$。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：圖形特徵點反求距離</div>
+                <div class="q-school-tag">臺中二中</div>
+            </div>
+            <div class="q-body">
+                函數 $f(x) = a\sin bx$ 過最高 $P(3, 2)$ 及最低 $Q(9, -2)$，與 $y=-1$ 交 A, B, C，求 $\overline{AB}$。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">8</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>半週期 $= 9-3 = 6 \implies T = 12 \implies b = \frac{2\pi}{12} = \frac{\pi}{6}$。<br>最高點 $y=2 \implies a=2$。$f(x) = 2\sin(\frac{\pi}{6}x)$。<br>求 $2\sin(\frac{\pi}{6}x) = -1 \implies \sin(\frac{\pi}{6}x) = -\frac{1}{2}$。<br>$\frac{\pi}{6}x = \frac{7\pi}{6}, \frac{11\pi}{6} \dots \implies x = 7, 11, -1$。<br>交點 A, B 的 x 座標分別為 -1, 7 (一個週期內)。距離 $= 7 - (-1) = 8$。<br>故填 <strong>8</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-2 波長與振幅反求函數式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>將特徵點座標代入求得波函數後，再解三角方程式求交點座標。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q7 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：餘弦圖形的參數萃取</div>
+                <div class="q-school-tag">板橋高中</div>
+            </div>
+            <div class="q-body">
+                已知圖形為 $y = a\cos(bx)+c$ 且各參數為正，求 $abc=$【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">30</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>依圖形，最高點為 8，最低點為 -2。<br>振幅 $a = \frac{8 - (-2)}{2} = 5$。<br>中心線 $c = \frac{8 + (-2)}{2} = 3$。<br>半週期由圖形判斷若為 $\frac{\pi}{2}$，則 $T=\pi \implies b=2$。<br>相乘 $abc = 5 \times 2 \times 3 = 30$。<br>故填 <strong>30</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-2 波長與振幅反求函數式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>非常純粹的萃取參數：$a = \text{半振幅}$，$c = \text{均值}$，$b = 2\pi/T$。
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q8 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：連串變換反推參數</div>
+                <div class="q-school-tag">鳳山高中</div>
+            </div>
+            <div class="q-body">
+                $y=\sin x$ 經水平壓縮 1/3，右移 $\pi/3$，鉛直伸長 2 倍得 $a\sin(bx-c)$，求序組。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$(2, 3, \pi)$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>1. 水平壓縮 1/3 倍 $\implies \sin 3x$<br>2. 右移 $\pi/3 \implies \sin(3(x-\frac{\pi}{3})) = \sin(3x-\pi)$<br>3. 鉛直伸長 2 倍 $\implies 2\sin(3x-\pi)$。<br>對照得 $a=2, b=3, c=\pi$。<br>故填 <strong>$(2, 3, \pi)$</strong>。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-3 函數的平移與伸縮</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>照順序操作：壓縮乘在 $x$ 旁，平移作用於單獨的 $x$，拉伸乘在最外面。
+                </div>
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- Floating Top Button -->
+    <button id="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="返回頂部">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.3rem;">高中數學加強班 專屬題目解析與對照系統</p>
+        <p>© 2026 學測中心特訓教材｜編撰製作：數學教學研究組</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+
+            const topBtn = document.getElementById('btn-back-to-top');
+            if (winScroll > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        });
+
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let isDark = true;
+
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# 排除 PDF 原始教材資料夾
+ch1三角函數/
+
+# 排除系統檔案
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# 排除暫存檔
+*.tmp
+*.log

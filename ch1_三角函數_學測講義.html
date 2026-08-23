@@ -8,125 +8,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-    <!-- MathJax 3 for crystal clear mathematical formulas -->
+        <!-- MathJax 3 for crystal clear mathematical formulas -->
     <script>
-    // ===== Font Size Zoom Controller =====
-    function setFontScale(scale) {
-        document.documentElement.style.fontSize = (scale * 16.5) + 'px';
-        document.body.style.fontSize = (scale * 16.5) + 'px';
-        document.querySelectorAll('.btn-font-scale').forEach(b => b.classList.remove('active'));
-        const activeBtn = document.getElementById('btn-scale-' + scale);
-        if (activeBtn) activeBtn.classList.add('active');
-        localStorage.setItem('math_font_scale', scale);
-    }
-
-    // Restore saved font scale
-    (function() {
-        const savedScale = localStorage.getItem('math_font_scale');
-        if (savedScale) {
-            setFontScale(parseFloat(savedScale));
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\(', '\)']],
+        displayMath: [['$$', '$$'], ['\[', '\]']],
+        processEscapes: true
+      },
+      chtml: {
+        scale: 1.18
+      },
+      options: {
+        renderActions: {
+          addMenu: []
         }
-    })();
-
-    
-    // ===== Direct 1-Click Print Function =====
-    function printDirect(orientation) {
-        let printStyle = document.getElementById('dynamic-print-style');
-        if (!printStyle) {
-            printStyle = document.createElement('style');
-            printStyle.id = 'dynamic-print-style';
-            document.head.appendChild(printStyle);
-        }
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 7mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 94vh !important; }
-                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 96vh !important; }
-                }
-            `;
-        }
-
-        window.print();
-    }
-
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 7mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 94vh !important; }
-                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 96vh !important; }
-                }
-            `;
-        }
-
-        if (printDropdownPanel) {
-            printDropdownPanel.classList.remove('show');
-        }
-
-        setTimeout(() => {
-            window.print();
-        }, 150);
-    }
-
-    // ===== Scroll & Theme =====
-    lucide.createIcons();
-
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        const bar = document.getElementById('progress-bar');
-        if (bar) bar.style.width = scrolled + '%';
-
-        const topBtn = document.getElementById('btn-back-to-top');
-        if (topBtn) {
-            if (winScroll > 300) {
-                topBtn.classList.add('show');
-            } else {
-                topBtn.classList.remove('show');
-            }
-        }
-    });
-
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    let isDark = true;
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            isDark = !isDark;
-            if (isDark) {
-                document.body.removeAttribute('data-theme');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
-            } else {
-                document.body.setAttribute('data-theme', 'light');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
-            }
-            lucide.createIcons();
-        });
-    }
-
+      }
+    };
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Lucide Icons -->
@@ -179,9 +77,9 @@
             font-family: 'Outfit', 'Noto Sans TC', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
-            line-height: 1.65;
+            line-height: 1.75;
             transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 16.5px;
+            font-size: 18px;
         }
 
         /* Top Progress Bar */
@@ -294,7 +192,7 @@
 
         /* Container */
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 2rem 1.5rem 5rem 1.5rem;
         }
@@ -320,7 +218,7 @@
         }
 
         .doc-header h1 {
-            font-size: 2.1rem;
+            font-size: 2.35rem;
             font-weight: 900;
             letter-spacing: -0.02em;
             margin-bottom: 0.4rem;
@@ -329,7 +227,7 @@
 
         .doc-header p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 1.12rem;
             max-width: 750px;
             margin: 0 auto;
         }
@@ -355,7 +253,7 @@
             font-weight: 900;
             padding: 0.2rem 0.6rem;
             border-radius: 6px;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-family: 'JetBrains Mono', monospace;
         }
         [data-theme="light"] .section-num {
@@ -363,7 +261,7 @@
         }
 
         .section-title {
-            font-size: 1.48rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: var(--text-main);
         }
@@ -385,7 +283,7 @@
         }
 
         .card-header {
-            font-size: 1.22rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--accent-blue);
             margin-bottom: 0.75rem;
@@ -403,7 +301,7 @@
             padding: 0.7rem 0.9rem;
             margin: 0.55rem 0;
             text-align: center;
-            font-size: 1.15rem;
+            font-size: 1.22rem;
         }
         [data-theme="light"] .formula-box {
             background: #f1f5f9;
@@ -417,8 +315,8 @@
             position: relative;
             padding-left: 1.2rem;
             margin-bottom: 0.35rem;
-            font-size: 1.02rem;
-            line-height: 1.68;
+            font-size: 1.08rem;
+            line-height: 1.75;
         }
         .bullet-list li::before {
             content: "•";
@@ -437,7 +335,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
-            font-size: 0.98rem;
+            font-size: 1.02rem;
         }
         .ref-table th {
             background: var(--table-head);
@@ -455,7 +353,7 @@
             padding: 0.6rem 0.8rem;
             border-bottom: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            line-height: 1.6;
+            line-height: 1.75;
         }
         .ref-table td:last-child {
             border-right: none;
@@ -477,7 +375,7 @@
             margin-bottom: 0.85rem;
         }
         .sop-title {
-            font-size: 1.12rem;
+            font-size: 1.18rem;
             font-weight: 700;
             color: var(--sop-color, #38bdf8);
             display: flex;
@@ -495,8 +393,8 @@
             color: var(--text-main);
         }
         .sop-body {
-            font-size: 0.98rem;
-            line-height: 1.65;
+            font-size: 1.05rem;
+            line-height: 1.75;
         }
         .sop-step {
             margin: 0.25rem 0;
@@ -515,10 +413,10 @@
             border: 1px solid rgba(244, 63, 94, 0.25);
             border-radius: 8px;
             padding: 0.8rem 0.95rem;
-            font-size: 0.98rem;
+            font-size: 1.02rem;
         }
         .pitfall-head {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: var(--accent-rose);
             font-weight: 700;
             display: flex;
@@ -573,10 +471,10 @@
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
-                font-size: 10.5pt !important;
-                line-height: 1.3 !important;
+                font-size: 10pt !important;
+                line-height: 1.35 !important;
             }
-            header, #progress-bar, #btn-back-to-top, .header-actions {
+            header, #progress-bar, #btn-back-to-top, .header-actions, .print-wrapper {
                 display: none !important;
             }
             .container {
@@ -590,11 +488,11 @@
                 border-bottom: 1.5pt solid #000 !important;
             }
             .doc-header h1 {
-                font-size: 14pt !important;
+                font-size: 14.5pt !important;
                 color: #000 !important;
             }
             .doc-header p {
-                font-size: 8pt !important;
+                font-size: 8.8pt !important;
                 color: #333 !important;
             }
             
@@ -620,11 +518,11 @@
             .section-num {
                 background: #000 !important;
                 color: #fff !important;
-                font-size: 8pt !important;
+                font-size: 8.5pt !important;
                 padding: 0.1rem 0.35rem !important;
             }
             .section-title {
-                font-size: 10.5pt !important;
+                font-size: 11pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
             }
@@ -639,7 +537,7 @@
                 padding: 0.4rem 0.6rem !important;
             }
             .card-header {
-                font-size: 9pt !important;
+                font-size: 9.5pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
                 padding-bottom: 0.15rem !important;
@@ -652,15 +550,15 @@
                 color: #000 !important;
                 padding: 0.25rem 0.45rem !important;
                 margin: 0.3rem 0 !important;
-                font-size: 9pt !important;
+                font-size: 9.5pt !important;
             }
             .bullet-list li {
-                font-size: 9.2pt !important;
-                line-height: 1.3 !important;
+                font-size: 8.8pt !important;
+                line-height: 1.35 !important;
                 margin-bottom: 0.2rem !important;
             }
             .ref-table {
-                font-size: 8.6pt !important;
+                font-size: 8.2pt !important;
                 margin: 0.25rem 0 !important;
             }
             .ref-table th {
@@ -673,10 +571,10 @@
             .ref-table td {
                 border-color: #333 !important;
                 padding: 0.3rem 0.4rem !important;
-                line-height: 1.28 !important;
+                line-height: 1.3 !important;
             }
             .sop-title {
-                font-size: 8.6pt !important;
+                font-size: 9pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
                 margin-bottom: 0.2rem !important;
@@ -685,12 +583,12 @@
                 background: #eee !important;
                 color: #000 !important;
                 border-color: #666 !important;
-                font-size: 6.8pt !important;
+                font-size: 7pt !important;
                 padding: 0.08rem 0.25rem !important;
             }
             .sop-body {
-                font-size: 8.6pt !important;
-                line-height: 1.28 !important;
+                font-size: 8.2pt !important;
+                line-height: 1.3 !important;
             }
             .sop-step {
                 margin: 0.15rem 0 !important;
@@ -698,15 +596,14 @@
                 border-left: 1.5pt solid #666 !important;
             }
             .pitfall-head {
-            font-size: 1.05rem;
                 color: #000 !important;
                 font-weight: bold !important;
-                font-size: 8.2pt !important;
+                font-size: 8.8pt !important;
                 margin-bottom: 0.1rem !important;
             }
             .pitfall-box {
-                font-size: 8.5pt !important;
-                line-height: 1.25 !important;
+                font-size: 8.2pt !important;
+                line-height: 1.28 !important;
                 padding: 0.3rem 0.45rem !important;
             }
             .grid-2 {
@@ -717,186 +614,6 @@
             .pitfall-grid {
                 grid-template-columns: 1fr 1fr !important;
                 gap: 0.35rem !important;
-            }
-        }
-
-        /* ===== Print Dropdown Styles ===== */
-        .print-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        .print-dropdown-panel {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: var(--bg-card, #1a2642);
-            border: 1px solid var(--border-highlight, #38bdf8);
-            border-radius: 12px;
-            padding: 1.1rem;
-            width: 300px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-            z-index: 1001;
-            color: var(--text-main, #f1f5f9);
-            text-align: left;
-        }
-        [data-theme="light"] .print-dropdown-panel {
-            background: #ffffff;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
-        }
-        .print-dropdown-panel.show {
-            display: block;
-            animation: fadeInDown 0.2s ease;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .print-opt-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--accent-blue, #38bdf8);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
-            padding-bottom: 0.4rem;
-        }
-        .print-opt-group {
-            margin-bottom: 0.85rem;
-        }
-        .print-opt-label {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-muted, #94a3b8);
-            margin-bottom: 0.35rem;
-            display: block;
-        }
-        .print-radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-        .print-radio-label {
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            font-size: 0.88rem;
-            cursor: pointer;
-            padding: 0.35rem 0.5rem;
-            border-radius: 6px;
-            transition: background 0.15s;
-        }
-        .print-radio-label:hover {
-            background: rgba(56, 189, 248, 0.1);
-        }
-        .print-radio-label input[type="radio"] {
-            accent-color: var(--accent-blue, #38bdf8);
-            cursor: pointer;
-        }
-        .btn-do-print {
-            width: 100%;
-            background: linear-gradient(135deg, #0284c7, #4f46e5);
-            color: white;
-            padding: 0.55rem 1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
-            margin-top: 0.6rem;
-            transition: all 0.2s;
-        }
-        .btn-do-print:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-        }
-
-        @media print {
-            .print-wrapper {
-                display: none !important;
-            }
-        }
-
-
-        /* ===== Font Size Zoom Controller ===== */
-        .font-scale-control {
-            display: flex;
-            align-items: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2px 4px;
-            gap: 2px;
-        }
-        .btn-font-scale {
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 4px 8px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .btn-font-scale:hover {
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent-blue);
-        }
-        .btn-font-scale.active {
-            background: var(--accent-blue);
-            color: #0b1120;
-        }
-        [data-theme="light"] .btn-font-scale.active {
-            color: #ffffff;
-        }
-
-
-        /* ===== Direct Print Action Buttons ===== */
-        .print-actions-group {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .btn-print {
-            background: linear-gradient(135deg, #0284c7, #4f46e5);
-            color: white;
-            padding: 0.42rem 0.85rem;
-            border-radius: 8px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: 0.84rem;
-            box-shadow: 0 3px 10px rgba(2, 132, 199, 0.28);
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .btn-print:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-        }
-        .btn-print-alt {
-            background: linear-gradient(135deg, #4338ca, #7e22ce);
-            box-shadow: 0 3px 10px rgba(67, 56, 202, 0.28);
-        }
-        .btn-print-quiz {
-            background: linear-gradient(135deg, #059669, #0d9488);
-            box-shadow: 0 3px 10px rgba(5, 150, 105, 0.28);
-        }
-
-        @media print {
-            .print-actions-group, .print-wrapper, .btn-print, .reveal-btn, .font-scale-control {
-                display: none !important;
             }
         }
 

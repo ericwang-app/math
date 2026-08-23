@@ -493,6 +493,160 @@
                 border-color: #666 !important;
             }
         }
+
+    
+        /* ===== Print Dropdown & Modal Styles ===== */
+        .print-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .print-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card, #1a2642);
+            border: 1px solid var(--border-highlight, #38bdf8);
+            border-radius: 12px;
+            padding: 1.2rem;
+            width: 320px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+            color: var(--text-main, #f1f5f9);
+            text-align: left;
+        }
+        [data-theme="light"] .print-dropdown-panel {
+            background: #ffffff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+        .print-dropdown-panel.show {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .print-opt-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-blue, #38bdf8);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
+            padding-bottom: 0.45rem;
+        }
+        .print-opt-group {
+            margin-bottom: 0.9rem;
+        }
+        .print-opt-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .print-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+        .print-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .print-radio-label:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .print-radio-label input[type="radio"] {
+            accent-color: var(--accent-blue, #38bdf8);
+            cursor: pointer;
+        }
+        .btn-do-print {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            margin-top: 0.8rem;
+            transition: all 0.2s;
+        }
+        .btn-do-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* ===== Answer / Solution reveal toggle ===== */
+        .reveal-wrapper {
+            margin-top: 0.9rem;
+        }
+        .reveal-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            border: 1.5px dashed var(--border-hi, rgba(56,189,248,0.4));
+            background: transparent;
+            color: var(--accent-blue, #38bdf8);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+        .reveal-btn:hover {
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(56, 189, 248, 0.06);
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block;
+        }
+        .cross-ref-panel {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        @media print {
+            .print-wrapper, .reveal-btn {
+                display: none !important;
+            }
+            /* Default in print: show solutions unless quiz mode */
+            body:not(.print-hide-solutions) .reveal-content {
+                display: block !important;
+            }
+            body.print-hide-solutions .reveal-content,
+            body.print-hide-solutions .q-ans-bar,
+            body.print-hide-solutions .q-sol {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -525,10 +679,49 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <button class="btn-print" onclick="window.print()">
+                    <div class="print-wrapper">
+            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向/測驗模式)">
                 <i data-lucide="printer"></i>
                 <span>列印</span>
+                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
             </button>
+            <div class="print-dropdown-panel" id="print-dropdown-panel">
+                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印與版面設定</div>
+                
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📐 版面方向：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="portrait" checked>
+                            <span>📄 A4 直向 (標準單欄)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="landscape">
+                            <span>📑 A4 橫向 (雙欄考卷排版)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📝 內容模式：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="full" checked>
+                            <span>完整版 (含模組提示、答案與詳解)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="quiz">
+                            <span>刷題測驗版 (隱藏答案與詳解)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-do-print" onclick="executePrint()">
+                    <i data-lucide="printer"></i>
+                    <span>開始列印 / 存為 PDF</span>
+                </button>
+            </div>
+        </div>
         </div>
     </header>
 
@@ -554,6 +747,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：弳度與三角函數值估算</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-1">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知 $a = \sin 5$，試選出正確的選項。<div class='q-choices'><div>(A) $-1 < a < -\frac{1}{2}$</div><div>(B) $-\frac{1}{2} < a < 0$</div><div>(C) $0 < a < \frac{1}{2}$</div><div>(D) $\frac{1}{2} < a < \frac{\sqrt{2}}{2}$</div><div>(E) $\frac{\sqrt{2}}{2} < a < 1$</div></div>
             </div>
@@ -581,6 +788,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：多個弳度值的比大小</div>
                 <div class="q-school-tag">松山高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-2">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知 $a=\cos 1$，$b=\cos 2$，$c=\cos(3-\pi)$，$d=\sin(\frac{7}{2}\pi + 1)$，試問下列選項何者正確？<div class='q-choices'><div>(A) $d > c > b > a$</div><div>(B) $c > a > b > d$</div><div>(C) $b > a > d > c$</div><div>(D) $a > c > b > d$</div><div>(E) $a > b > c > d$</div></div>
             </div>
@@ -608,6 +829,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：負弳度的象限判定</div>
                 <div class="q-school-tag">基礎題</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-3">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 $-4$ 弳為第幾象限角？<div class='q-choices'><div>(A) 一</div><div>(B) 二</div><div>(C) 三</div><div>(D) 四</div><div>(E) 剛好在軸上的角</div></div>
             </div>
@@ -635,6 +870,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：幾何與扇形面積結合</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-4">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 如圖中，$\overline{AB} = 16$，以 $\overline{AB}$ 為直徑作半圓，$C$ 為弧 $\overline{AB}$ 之中點，今以 $B$ 為圓心，$\overline{AB}$ 為半徑作一圓弧與直線 $BC$ 交於 $D$ 點，則陰影部分的面積為何？<div class='q-choices'><div>(A) $64\pi - 128$</div><div>(B) $64\pi - 64$</div><div>(C) $64\pi - 32$</div><div>(D) $32\pi - 64$</div><div>(E) $32\pi - 32$</div></div>
             </div>
@@ -662,6 +911,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：度與弳的混合比較</div>
                 <div class="q-school-tag">北一女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-5">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-5" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 對於一個角的大小，我們可以用“弳”與“度”表示。請問下列五個選項中哪一個值最小？<div class='q-choices'><div>(A) $\sin 1^\circ$</div><div>(B) $\cos 2$</div><div>(C) $\cos 3$</div><div>(D) $\tan 4^\circ$</div><div>(E) $\tan 5$</div></div>
             </div>
@@ -689,6 +952,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：平方弳度與三角函數值</div>
                 <div class="q-school-tag">臺南女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-6">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-6" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 令 $a=\sin(\pi^2)$，試問下列哪一個選項是對的？<div class='q-choices'><div>(A) $-1 < a \le -\frac{\sqrt{3}}{2}$</div><div>(B) $-\frac{\sqrt{3}}{2} < a \le -\frac{1}{2}$</div><div>(C) $-\frac{1}{2} < a \le 0$</div><div>(D) $\frac{1}{2} < a \le \frac{\sqrt{3}}{2}$</div><div>(E) $\frac{\sqrt{3}}{2} < a \le 1$</div></div>
             </div>
@@ -716,6 +993,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：連續弳度正弦值比較</div>
                 <div class="q-school-tag">臺南一中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-7">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-7" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 設 $a=\sin 1$，$b=\sin 2$，$c=\sin 3$，$d=\sin 4$，$e=\sin 5$，則 $a,b,c,d,e$ 的大小順序為何？<div class='q-choices'><div>(A) $e>d>c>b>a$</div><div>(B) $b>a>c>d>e$</div><div>(C) $b>a>c>e>d$</div><div>(D) $c>b>a>d>e$</div><div>(E) 以上皆非</div></div>
             </div>
@@ -743,6 +1034,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：扇形面積求弧長</div>
                 <div class="q-school-tag">臺中一中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-8">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-8" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 半徑為 10 的扇形區域，其面積為 $5\pi$，則此扇形之弧長為何？<div class='q-choices'><div>(A) $2\pi$</div><div>(B) $\pi$</div><div>(C) $\frac{3}{2}\pi$</div><div>(D) $\frac{\pi}{2}$</div></div>
             </div>
@@ -770,6 +1075,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 9 題：三角函數點的象限判定</div>
                 <div class="q-school-tag">桃園高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-9">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-9" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 直角坐標平面上，點 $(\sin 2, \tan 9)$ 在第幾象限內？<div class='q-choices'><div>(A) 第一象限</div><div>(B) 第二象限</div><div>(C) 第三象限</div><div>(D) 第四象限</div><div>(E) 剛好在軸上</div></div>
             </div>
@@ -799,12 +1118,26 @@
             <h2 class="section-title">二、多選題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q10 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：固定周長求扇形最大面積</div>
                 <div class="q-school-tag">武陵高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-10">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-10" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 用一條長度為 40 的繩子圍出一個扇形，當此扇形面積有最大值時，則下列敘述哪些正確？<div class='q-choices'><div>(A) 此時扇形面積為 100</div><div>(B) 此時扇形半徑為 20</div><div>(C) 此時扇形圓心角為 $2\pi$</div><div>(D) 此時扇形的弧長為 20</div><div>(E) 此時扇形的內切圓半徑為 $\frac{10\sin 1}{1+\sin 1}$</div></div>
             </div>
@@ -826,12 +1159,26 @@
             </div>
         </div>
     
-        <!-- Q2 -->
+        <!-- Q11 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：三角函數基本比較</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-11">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-11" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 下列選項，何者是正確的？<div class='q-choices'><div>(A) $\sin\pi > \sin\pi^\circ$</div><div>(B) $\cos\pi > \cos\pi^\circ$</div><div>(C) $\cos\pi^\circ > \sin\pi^\circ$</div><div>(D) $\tan\pi > \tan\pi^\circ$</div><div>(E) $\sin 1 > \sin 2$</div></div>
             </div>
@@ -861,12 +1208,26 @@
             <h2 class="section-title">三、填充題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q12 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：時鐘夾角轉換為弳度</div>
                 <div class="q-school-tag">明倫高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-12">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-12" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 傳統時鐘在 7 點 10 分時，時針與分針所夾之較小的角度為【　　】弳。
             </div>
@@ -888,12 +1249,26 @@
             </div>
         </div>
     
-        <!-- Q2 -->
+        <!-- Q13 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：特殊角弳度運算</div>
                 <div class="q-school-tag">鳳山高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-13">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-13" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 試求 $\cos\frac{2\pi}{3} \times \sin\frac{11\pi}{6} + \tan\frac{5\pi}{4} =$ 【　　】。
             </div>
@@ -915,12 +1290,26 @@
             </div>
         </div>
     
-        <!-- Q3 -->
+        <!-- Q14 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：同界角轉換</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-14">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-14" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 在坐標平面上，若 $\theta$ 與 $1000^\circ$ 為同界角，且 $-2\pi < \theta < 0$，試求 $\theta$ 之弧度值為【　　】。
             </div>
@@ -942,12 +1331,26 @@
             </div>
         </div>
     
-        <!-- Q4 -->
+        <!-- Q15 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：月亮形狀面積（交集）</div>
                 <div class="q-school-tag">109 學測</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-15">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-15" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 設計師為天文館設計月亮形狀，鋪色區域為兩圓弧交集... 面積為 $a\pi + b\sqrt{3}$... 則 $a=$【　　】，$b=$【　　】。
             </div>
@@ -969,12 +1372,26 @@
             </div>
         </div>
     
-        <!-- Q5 -->
+        <!-- Q16 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：硬幣滾動高度</div>
                 <div class="q-school-tag">鳳山高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-16">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-16" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 半徑 3 公分的硬幣，接觸 A 點向左滾動 15 公分，則 A 點離地高度約為【　　】公分。（已知 $\cos 5 \approx 0.2837$）
             </div>
@@ -996,12 +1413,26 @@
             </div>
         </div>
     
-        <!-- Q6 -->
+        <!-- Q17 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：扇形周長與圓周長比例</div>
                 <div class="q-school-tag">臺中女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-17">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-17" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 在半徑為 6 的圓上，有一扇形的周長為此圓周長的 $\frac{1}{3}$，則此扇形的面積為【　　】。
             </div>
@@ -1023,12 +1454,26 @@
             </div>
         </div>
     
-        <!-- Q7 -->
+        <!-- Q18 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：同心圓面積</div>
                 <div class="q-school-tag">高雄女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-18">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-18" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 同心圓弧長 $\overline{AB} = 40, \overline{CD} = 100$，$\overline{AD} = 30$，則區域面積為【　　】。
             </div>
@@ -1050,12 +1495,26 @@
             </div>
         </div>
     
-        <!-- Q8 -->
+        <!-- Q19 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：周長比轉面積比</div>
                 <div class="q-school-tag">高師大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-19">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-19" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 若一扇形的周長等於其所在圓之周長的 $\frac{1}{3}$，則此扇形的面積與其所在圓之面積的比值為【　　】。
             </div>
@@ -1091,7 +1550,8 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+
+    lucide.createIcons();
 
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;

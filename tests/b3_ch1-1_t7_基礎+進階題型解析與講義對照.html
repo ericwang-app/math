@@ -481,6 +481,160 @@
                 border-color: #666 !important;
             }
         }
+
+    
+        /* ===== Print Dropdown & Modal Styles ===== */
+        .print-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .print-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card, #1a2642);
+            border: 1px solid var(--border-highlight, #38bdf8);
+            border-radius: 12px;
+            padding: 1.2rem;
+            width: 320px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+            color: var(--text-main, #f1f5f9);
+            text-align: left;
+        }
+        [data-theme="light"] .print-dropdown-panel {
+            background: #ffffff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+        .print-dropdown-panel.show {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .print-opt-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-blue, #38bdf8);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
+            padding-bottom: 0.45rem;
+        }
+        .print-opt-group {
+            margin-bottom: 0.9rem;
+        }
+        .print-opt-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .print-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+        .print-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .print-radio-label:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .print-radio-label input[type="radio"] {
+            accent-color: var(--accent-blue, #38bdf8);
+            cursor: pointer;
+        }
+        .btn-do-print {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            margin-top: 0.8rem;
+            transition: all 0.2s;
+        }
+        .btn-do-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* ===== Answer / Solution reveal toggle ===== */
+        .reveal-wrapper {
+            margin-top: 0.9rem;
+        }
+        .reveal-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            border: 1.5px dashed var(--border-hi, rgba(56,189,248,0.4));
+            background: transparent;
+            color: var(--accent-blue, #38bdf8);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+        .reveal-btn:hover {
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(56, 189, 248, 0.06);
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block;
+        }
+        .cross-ref-panel {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        @media print {
+            .print-wrapper, .reveal-btn {
+                display: none !important;
+            }
+            /* Default in print: show solutions unless quiz mode */
+            body:not(.print-hide-solutions) .reveal-content {
+                display: block !important;
+            }
+            body.print-hide-solutions .reveal-content,
+            body.print-hide-solutions .q-ans-bar,
+            body.print-hide-solutions .q-sol {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -512,10 +666,49 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <button class="btn-print" onclick="window.print()">
+                    <div class="print-wrapper">
+            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向/測驗模式)">
                 <i data-lucide="printer"></i>
                 <span>列印</span>
+                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
             </button>
+            <div class="print-dropdown-panel" id="print-dropdown-panel">
+                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印與版面設定</div>
+                
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📐 版面方向：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="portrait" checked>
+                            <span>📄 A4 直向 (標準單欄)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="landscape">
+                            <span>📑 A4 橫向 (雙欄考卷排版)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📝 內容模式：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="full" checked>
+                            <span>完整版 (含模組提示、答案與詳解)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="quiz">
+                            <span>刷題測驗版 (隱藏答案與詳解)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-do-print" onclick="executePrint()">
+                    <i data-lucide="printer"></i>
+                    <span>開始列印 / 存為 PDF</span>
+                </button>
+            </div>
+        </div>
         </div>
     </header>
 
@@ -541,6 +734,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：生理週期與三角不等式</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-1">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 依據醫學研究，人的身體能量模式為 $P = 50(1+\sin \omega t)$，$\omega > 0$，$P\%$ 表身體能量的百分比，$t$ 表示出生後的天數。如果某人的身體能量週期是 30 天，則在一個週期中，有【　　】天身體能量的百分比不小於 $75\%$。
             </div>
@@ -570,12 +777,26 @@
             <h2 class="section-title">二、混合題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：潮汐水位與正弦函數建模</div>
                 <div class="q-school-tag">武陵高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-2">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 阿兩跟海豚刑警到龜有漁港測量海水漲落。已知水深 $y$ 與時間 $x$ 的關係為 $y = a\sin(bx+c)+d$，且 $a>0, b>0, 0<c<2\pi$。資料如下：<br>x (時)：0, 2, 4, 6, 8, 10, 12, 14<br>y (公尺)：5.5, 2.5, 1, (缺失), 5.5, 7, 5.5, 2.5<br>(1) 下列關於該函數的敘述，哪些正確？<br>(A) 週期為 16 小時 (B) 基線為 $y=5.5$ (C) 最淺水深為 1 公尺 (D) 最深水深為 7 公尺 (E) 6 時水深為 2.5 公尺。<br>(2) 請幫阿兩推算 14 時起床後，應於當日何時開始搜索大秘寶最好（水深最低時）？
             </div>
@@ -597,12 +818,26 @@
             </div>
         </div>
     
-        <!-- Q2 -->
+        <!-- Q3 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：交流電電流強度的應用</div>
                 <div class="q-school-tag">常考題</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-3">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 某工廠使用交流電的電流強度 $y$ 與時間 $t$ 關係為 $y = f(t) = 220\sin(100\pi t + \frac{\pi}{3})$。<br>(1) 當 $t = \frac{7}{120}$ 秒時，電流強度為何？ (A)10 (B)15 (C)20 (D)25 (E)30 安培。<br>(2) 電流強度 $y$ 變化的週期為何？
             </div>
@@ -624,12 +859,26 @@
             </div>
         </div>
     
-        <!-- Q3 -->
+        <!-- Q4 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：月相盈虧與正弦建模</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-4">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 天文社觀測月球亮面比例。資料點 (8, 0) 與 (22, 100) 依次為相鄰的最低與最高點。模型 $y = a\sin(b(x-h))+k$ (其中 $0 < h < 30$)。<br>(1) 此圖形的週期為？ (A)14 (B)28 (C)16 (D)32 (E)30。<br>(2) 求序組 $(a, b, h, k)$。
             </div>
@@ -665,7 +914,8 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+
+    lucide.createIcons();
 
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;

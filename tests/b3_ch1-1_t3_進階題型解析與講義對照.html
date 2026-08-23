@@ -495,6 +495,160 @@
                 border-color: #666 !important;
             }
         }
+
+    
+        /* ===== Print Dropdown & Modal Styles ===== */
+        .print-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .print-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card, #1a2642);
+            border: 1px solid var(--border-highlight, #38bdf8);
+            border-radius: 12px;
+            padding: 1.2rem;
+            width: 320px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+            color: var(--text-main, #f1f5f9);
+            text-align: left;
+        }
+        [data-theme="light"] .print-dropdown-panel {
+            background: #ffffff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+        .print-dropdown-panel.show {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .print-opt-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-blue, #38bdf8);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
+            padding-bottom: 0.45rem;
+        }
+        .print-opt-group {
+            margin-bottom: 0.9rem;
+        }
+        .print-opt-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .print-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+        .print-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .print-radio-label:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .print-radio-label input[type="radio"] {
+            accent-color: var(--accent-blue, #38bdf8);
+            cursor: pointer;
+        }
+        .btn-do-print {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            margin-top: 0.8rem;
+            transition: all 0.2s;
+        }
+        .btn-do-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* ===== Answer / Solution reveal toggle ===== */
+        .reveal-wrapper {
+            margin-top: 0.9rem;
+        }
+        .reveal-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            border: 1.5px dashed var(--border-hi, rgba(56,189,248,0.4));
+            background: transparent;
+            color: var(--accent-blue, #38bdf8);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+        .reveal-btn:hover {
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(56, 189, 248, 0.06);
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block;
+        }
+        .cross-ref-panel {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        @media print {
+            .print-wrapper, .reveal-btn {
+                display: none !important;
+            }
+            /* Default in print: show solutions unless quiz mode */
+            body:not(.print-hide-solutions) .reveal-content {
+                display: block !important;
+            }
+            body.print-hide-solutions .reveal-content,
+            body.print-hide-solutions .q-ans-bar,
+            body.print-hide-solutions .q-sol {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -527,10 +681,49 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <button class="btn-print" onclick="window.print()">
+                    <div class="print-wrapper">
+            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向/測驗模式)">
                 <i data-lucide="printer"></i>
                 <span>列印</span>
+                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
             </button>
+            <div class="print-dropdown-panel" id="print-dropdown-panel">
+                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印與版面設定</div>
+                
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📐 版面方向：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="portrait" checked>
+                            <span>📄 A4 直向 (標準單欄)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="landscape">
+                            <span>📑 A4 橫向 (雙欄考卷排版)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📝 內容模式：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="full" checked>
+                            <span>完整版 (含模組提示、答案與詳解)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="quiz">
+                            <span>刷題測驗版 (隱藏答案與詳解)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-do-print" onclick="executePrint()">
+                    <i data-lucide="printer"></i>
+                    <span>開始列印 / 存為 PDF</span>
+                </button>
+            </div>
+        </div>
         </div>
     </header>
 
@@ -556,6 +749,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：疊合與絕對值的週期</div>
                 <div class="q-school-tag">臺中一中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-1">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知兩個函數 $f(x) = |\sin x| + |\cos x|$，$g(x) = |\sin x| - |\cos x|$，其中 $x$ 為任意實數。設 $f(x)$ 的最小正週期為 $p$，$g(x)$ 的最小正週期為 $q$，則 $p+q$ 之值為何？<div class='q-choices'><div>(A) $\frac{\pi}{2}$</div><div>(B) $\pi$</div><div>(C) $\frac{3\pi}{2}$</div><div>(D) $2\pi$</div><div>(E) $\frac{5\pi}{2}$</div></div>
             </div>
@@ -583,6 +790,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：三角函數與一次函數交點</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-2">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 方程式 $|\sin x| = \frac{x}{12}$ 的實數解個數為下列何者？<div class='q-choices'><div>(A) 4</div><div>(B) 5</div><div>(C) 6</div><div>(D) 7</div><div>(E) 8</div></div>
             </div>
@@ -610,6 +831,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：各種變形的週期判定</div>
                 <div class="q-school-tag">北一女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-3">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 下列選項的函數中，與 $y=\tan x$ 週期不同的是哪一個？<div class='q-choices'><div>(A) $y=\sin(-2x)$</div><div>(B) $y=|\sin x|$</div><div>(C) $y=|\sin 2x|$</div><div>(D) $y=\cos|2x|$</div><div>(E) $y=|\sin x+\cos x|$</div></div>
             </div>
@@ -637,6 +872,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：三角函數圖形判別</div>
                 <div class="q-school-tag">基礎題</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-4">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 觀察一圖形（波峰為 3，週期為 $\pi$，且過原點向下方出發），是下列哪一個函數的圖形？<div class='q-choices'><div>(A) $y=\sin x$</div><div>(B) $y=3\sin x$</div><div>(C) $y=-3\sin x$</div><div>(D) $y=3\sin 2x$</div><div>(E) $y=-3\sin 2x$</div></div>
             </div>
@@ -664,6 +913,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：高頻三角與一次函數交點</div>
                 <div class="q-school-tag">臺南女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-5">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-5" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 試求方程式 $\sin 4x = \frac{x}{2\pi}$ 的實數解個數有多少個？<div class='q-choices'><div>(A) 3</div><div>(B) 7</div><div>(C) 11</div><div>(D) 15</div><div>(E) 19</div></div>
             </div>
@@ -691,6 +954,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：由極值推求正弦函數式</div>
                 <div class="q-school-tag">嘉義女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-6">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-6" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知函數 $y=A\sin(\omega x+\phi)$ 在一個週期內，當 $x=\frac{\pi}{12}$ 時有最大值 $2$，$x=\frac{7\pi}{12}$ 時有最小值 $-2$，則下列何者可以表達此一函數？<div class='q-choices'><div>(A) $y=2\sin(2x+\frac{\pi}{3})$</div><div>(B) $y=2\sin(2x+\frac{\pi}{6})$</div><div>(C) $y=2\sin(2x+\frac{\pi}{3})$ (選項重整)</div><div>(D) $y=2\sin(\frac{1}{2}x+\frac{\pi}{6})$</div><div>(E) 其他</div></div>
             </div>
@@ -718,6 +995,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：複合函數圖形判斷</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-7">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-7" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知下列圖形中有一個是 $y=x(\cos x)$ 的部分圖形，判斷哪一個選項是該圖形？
             </div>
@@ -745,6 +1036,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：平移重合求週期</div>
                 <div class="q-school-tag">臺中一中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-8">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-8" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 設 $\omega > 0$，函數 $y=\sin(\omega x + \frac{\pi}{3})$ 的圖形向右平移 $\frac{4\pi}{3}$ 單位後與原圖形重合，則 $\omega$ 的最小值為何？<div class='q-choices'><div>(A) $\frac{2}{3}$</div><div>(B) $\frac{4}{3}$</div><div>(C) $\frac{3}{2}$</div><div>(D) $3$</div><div>(E) $\frac{3}{4}$</div></div>
             </div>
@@ -774,12 +1079,26 @@
             <h2 class="section-title">二、多選題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q9 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：正弦函數的各項屬性分析</div>
                 <div class="q-school-tag">臺南女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-9">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-9" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 關於函數 $f(x) = -4\sin(2x-\frac{\pi}{3}) - 3$，請選出正確的選項。<div class='q-choices'><div>(A) $f(x)$ 的週期為 $4\pi$</div><div>(B) $f(x)$ 的振幅為 4</div><div>(C) 圖形與 y 軸交於 (0, 1)</div><div>(D) $0 \le x \le 2\pi$ 有 4 個交 x 軸點</div><div>(E) 可由 $y=4\sin 2x$ 右移下移得</div></div>
             </div>
@@ -801,12 +1120,26 @@
             </div>
         </div>
     
-        <!-- Q2 -->
+        <!-- Q10 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：同圖形的多種函數表達式</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-10">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-10" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 如圖 (週期 $\frac{\pi}{2}$、振幅 $3$ 的平移弦波) 可以是下列哪些函數的部分圖形？<div class='q-choices'><div>(A) $y = 3\sin(4x-\pi)$</div><div>(B) $y = 3\sin(4x+\pi)$</div><div>(C) $y = 3\sin(4x+\pi)$ (原選項重整)</div><div>(D) $y = 3\cos(4x-\frac{\pi}{2})$</div><div>(E) 略</div></div>
             </div>
@@ -828,12 +1161,26 @@
             </div>
         </div>
     
-        <!-- Q3 -->
+        <!-- Q11 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：圖形求未知參數</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-11">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-11" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 函數 $f(x) = a\sin(bx+c)+d$ 的部分圖形已知最高點 ($\frac{\pi}{8}$, 3)，最低點 ($\frac{5\pi}{8}$, -1)，求參數。
             </div>
@@ -855,12 +1202,26 @@
             </div>
         </div>
     
-        <!-- Q4 -->
+        <!-- Q12 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：綜合函數圖形分析</div>
                 <div class="q-school-tag">興大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-12">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-12" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 關於函數 $f(x) = 4\sin(2x+\frac{5\pi}{6}) + 5$，請選出正確的選項。
             </div>
@@ -882,12 +1243,26 @@
             </div>
         </div>
     
-        <!-- Q5 -->
+        <!-- Q13 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：週期的判定</div>
                 <div class="q-school-tag">屏東高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-13">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-13" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 下列各函數的週期，何者為 $\pi$？<div class='q-choices'><div>(A) $y=\sin x$</div><div>(B) $y=\tan x$</div><div>(C) $y=\cos 2x+5$</div><div>(D) $y=|\sin x|$</div><div>(E) $y=|\tan x|$</div></div>
             </div>
@@ -909,12 +1284,26 @@
             </div>
         </div>
     
-        <!-- Q6 -->
+        <!-- Q14 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：奇函數與交點個數</div>
                 <div class="q-school-tag">高師大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-14">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-14" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 探討 $\sin x = \frac{x}{10}$, $\cos x = \frac{x}{4\pi}$, $\sin(\pi x) = \frac{x}{10}$ 的解個數奇偶性。
             </div>
@@ -936,12 +1325,26 @@
             </div>
         </div>
     
-        <!-- Q7 -->
+        <!-- Q15 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：餘弦圖形的細節分析</div>
                 <div class="q-school-tag">嘉義女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-15">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-15" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 有關函數 $f(x) = 2(\cos 3x) + 1$ 的圖形，下列何者正確？
             </div>
@@ -963,12 +1366,26 @@
             </div>
         </div>
     
-        <!-- Q8 -->
+        <!-- Q16 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：依圖求三角函數參數與平移</div>
                 <div class="q-school-tag">建國中學</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-16">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-16" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 圖為 $y = 3\sin(ax-b)$ 的部分圖形，求各項敘述。
             </div>
@@ -998,12 +1415,26 @@
             <h2 class="section-title">三、填充題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q17 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：超越方程式交點</div>
                 <div class="q-school-tag">北一女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-17">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-17" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知 $x$ 為實數，則 $2+3\pi\sin x = x$ 的解有【　　】個。
             </div>
@@ -1025,12 +1456,26 @@
             </div>
         </div>
     
-        <!-- Q2 -->
+        <!-- Q18 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：伸縮與平移參數追蹤</div>
                 <div class="q-school-tag">武陵高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-18">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-18" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知 $y=\cos(3x+1)$ 可由多種變換得到... 序組 $(a, b, c, d)=$【　　】。
             </div>
@@ -1052,12 +1497,26 @@
             </div>
         </div>
     
-        <!-- Q3 -->
+        <!-- Q19 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：連續變換的函數式</div>
                 <div class="q-school-tag">高雄女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-19">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-19" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 函數 $y=\sin x$ 圖形經拉伸壓縮、平移後得到 $f_3(x)$，求函數式。
             </div>
@@ -1079,12 +1538,26 @@
             </div>
         </div>
     
-        <!-- Q4 -->
+        <!-- Q20 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：伸長變換與週期改變</div>
                 <div class="q-school-tag">高雄中學</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-20">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-20" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 函數 $f(x)$ 由 $\cos x$ 經變換... 求 $f(x)$ 與週期。
             </div>
@@ -1106,12 +1579,26 @@
             </div>
         </div>
     
-        <!-- Q5 -->
+        <!-- Q21 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：由方程式求平移量</div>
                 <div class="q-school-tag">臺中二中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-21">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-21" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 $y=\sin(\frac{1}{2}x+\frac{\pi}{6})$ 由 $y=\sin x$ 水平伸縮 $a$ 倍向左移 $b$ 得到，數對 $(a,b)=$【　　】。
             </div>
@@ -1133,12 +1620,26 @@
             </div>
         </div>
     
-        <!-- Q6 -->
+        <!-- Q22 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：圖形特徵點反求距離</div>
                 <div class="q-school-tag">臺中二中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-22">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-22" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 函數 $f(x) = a\sin bx$ 過最高 $P(3, 2)$ 及最低 $Q(9, -2)$，與 $y=-1$ 交 A, B, C，求 $\overline{AB}$。
             </div>
@@ -1160,12 +1661,26 @@
             </div>
         </div>
     
-        <!-- Q7 -->
+        <!-- Q23 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：餘弦圖形的參數萃取</div>
                 <div class="q-school-tag">板橋高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-23">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-23" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知圖形為 $y = a\cos(bx)+c$ 且各參數為正，求 $abc=$【　　】。
             </div>
@@ -1187,12 +1702,26 @@
             </div>
         </div>
     
-        <!-- Q8 -->
+        <!-- Q24 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：連串變換反推參數</div>
                 <div class="q-school-tag">鳳山高中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-24">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-24" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 $y=\sin x$ 經水平壓縮 1/3，右移 $\pi/3$，鉛直伸長 2 倍得 $a\sin(bx-c)$，求序組。
             </div>
@@ -1228,7 +1757,8 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+
+    lucide.createIcons();
 
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;

@@ -481,6 +481,160 @@
                 border-color: #666 !important;
             }
         }
+
+    
+        /* ===== Print Dropdown & Modal Styles ===== */
+        .print-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .print-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card, #1a2642);
+            border: 1px solid var(--border-highlight, #38bdf8);
+            border-radius: 12px;
+            padding: 1.2rem;
+            width: 320px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+            color: var(--text-main, #f1f5f9);
+            text-align: left;
+        }
+        [data-theme="light"] .print-dropdown-panel {
+            background: #ffffff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+        .print-dropdown-panel.show {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .print-opt-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-blue, #38bdf8);
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
+            padding-bottom: 0.45rem;
+        }
+        .print-opt-group {
+            margin-bottom: 0.9rem;
+        }
+        .print-opt-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .print-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+        .print-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .print-radio-label:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .print-radio-label input[type="radio"] {
+            accent-color: var(--accent-blue, #38bdf8);
+            cursor: pointer;
+        }
+        .btn-do-print {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            margin-top: 0.8rem;
+            transition: all 0.2s;
+        }
+        .btn-do-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        /* ===== Answer / Solution reveal toggle ===== */
+        .reveal-wrapper {
+            margin-top: 0.9rem;
+        }
+        .reveal-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            border: 1.5px dashed var(--border-hi, rgba(56,189,248,0.4));
+            background: transparent;
+            color: var(--accent-blue, #38bdf8);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 0.6rem;
+        }
+        .reveal-btn:hover {
+            background: rgba(56, 189, 248, 0.08);
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(56, 189, 248, 0.06);
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block;
+        }
+        .cross-ref-panel {
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+
+        @media print {
+            .print-wrapper, .reveal-btn {
+                display: none !important;
+            }
+            /* Default in print: show solutions unless quiz mode */
+            body:not(.print-hide-solutions) .reveal-content {
+                display: block !important;
+            }
+            body.print-hide-solutions .reveal-content,
+            body.print-hide-solutions .q-ans-bar,
+            body.print-hide-solutions .q-sol {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -513,10 +667,49 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <button class="btn-print" onclick="window.print()">
+                    <div class="print-wrapper">
+            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向/測驗模式)">
                 <i data-lucide="printer"></i>
                 <span>列印</span>
+                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
             </button>
+            <div class="print-dropdown-panel" id="print-dropdown-panel">
+                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印與版面設定</div>
+                
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📐 版面方向：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="portrait" checked>
+                            <span>📄 A4 直向 (標準單欄)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="landscape">
+                            <span>📑 A4 橫向 (雙欄考卷排版)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📝 內容模式：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="full" checked>
+                            <span>完整版 (含模組提示、答案與詳解)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-content" value="quiz">
+                            <span>刷題測驗版 (隱藏答案與詳解)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-do-print" onclick="executePrint()">
+                    <i data-lucide="printer"></i>
+                    <span>開始列印 / 存為 PDF</span>
+                </button>
+            </div>
+        </div>
         </div>
     </header>
 
@@ -542,6 +735,20 @@
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：二倍角面積問題</div>
                 <div class="q-school-tag">常考題</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-1">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 有一直角三角形的斜邊長為 8，若此直角三角形其中一個內角為銳角 $\theta$，則此直角三角形的面積為何？<br>(A) $16 \sin \theta$ (B) $16 \sin 2\theta$ (C) $16 \cos 2\theta$ (D) $24 \sin 2\theta$ (E) $24 \cos 2\theta$
             </div>
@@ -563,12 +770,26 @@
             </div>
         </div>
     
-        <!-- Q3 -->
+        <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：餘弦二倍角代換</div>
                 <div class="q-school-tag">高雄女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-2">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 已知 $\sin \theta = -\frac{7}{25}$，則 $\cos 2\theta = ?$ <br>(A) $-\frac{576}{25}$ (B) $-\frac{527}{625}$ (C) $\frac{527}{625}$ (D) $\frac{576}{625}$ (E) $\frac{24}{25}$
             </div>
@@ -598,12 +819,26 @@
             <h2 class="section-title">二、多選題</h2>
         </div>
         
-        <!-- Q5 -->
+        <!-- Q3 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：和差轉換與二倍角</div>
                 <div class="q-school-tag">師大附中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-3">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 若 $90^\circ < \theta < 180^\circ$，且 $\sin \theta + \cos \theta = \frac{1}{5}$，則下列何者為真？<br>(A) $\cos \theta = -\frac{3}{5}$ (B) $\cos 2\theta = \frac{7}{25}$ (C) $\sin 2\theta = -\frac{24}{25}$ (D) $\sin \frac{\theta}{2} = \frac{1}{\sqrt{5}}$ (E) $\tan \frac{\theta}{2} = 2$
             </div>
@@ -633,12 +868,26 @@
             <h2 class="section-title">三、填充題</h2>
         </div>
         
-        <!-- Q1 -->
+        <!-- Q4 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：二倍角方程式求解</div>
                 <div class="q-school-tag">臺南女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-4">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 設 $\pi < \theta < \frac{3\pi}{2}$，若 $\sin \theta = 3\cos 2\theta$，則 $\cos \theta$ 的值為【　　】。
             </div>
@@ -660,12 +909,26 @@
             </div>
         </div>
     
-        <!-- Q10 -->
+        <!-- Q5 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 10 題：外角與半角公式應用</div>
                 <div class="q-school-tag">嘉義女中</div>
             </div>
+            
+            
+            
+            <div class="reveal-wrapper">
+                <button class="reveal-btn" data-target="reveal-5">
+                    <i data-lucide="chevron-down"></i>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-5" class="reveal-content">
+                    
+                    
+                </div>
+            </div>
+        </div>
             <div class="q-body">
                 在 $\triangle ABC$ 中，$\angle C = 90^\circ$，$\angle B$ 的外角為 $\theta$。若 $AC=5, BC=12$，則 $\sin \frac{\theta}{2} = $【　　】。
             </div>
@@ -701,7 +964,8 @@
     </footer>
 
     <script>
-        lucide.createIcons();
+
+    lucide.createIcons();
 
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;

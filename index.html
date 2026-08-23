@@ -612,6 +612,111 @@
                 gap: 0.35rem !important;
             }
         }
+
+        /* ===== Print Dropdown Styles ===== */
+        .print-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .print-dropdown-panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--bg-card, #1a2642);
+            border: 1px solid var(--border-highlight, #38bdf8);
+            border-radius: 12px;
+            padding: 1.1rem;
+            width: 300px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+            z-index: 1001;
+            color: var(--text-main, #f1f5f9);
+            text-align: left;
+        }
+        [data-theme="light"] .print-dropdown-panel {
+            background: #ffffff;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+        }
+        .print-dropdown-panel.show {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .print-opt-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-blue, #38bdf8);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
+            padding-bottom: 0.4rem;
+        }
+        .print-opt-group {
+            margin-bottom: 0.85rem;
+        }
+        .print-opt-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted, #94a3b8);
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+        .print-radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .print-radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.88rem;
+            cursor: pointer;
+            padding: 0.35rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+        .print-radio-label:hover {
+            background: rgba(56, 189, 248, 0.1);
+        }
+        .print-radio-label input[type="radio"] {
+            accent-color: var(--accent-blue, #38bdf8);
+            cursor: pointer;
+        }
+        .btn-do-print {
+            width: 100%;
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+            margin-top: 0.6rem;
+            transition: all 0.2s;
+        }
+        .btn-do-print:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        @media print {
+            .print-wrapper {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -638,10 +743,35 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <button class="btn-print" onclick="window.print()">
+                    <div class="print-wrapper">
+            <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向)">
                 <i data-lucide="printer"></i>
-                <span>列印 (每大重點一頁)</span>
+                <span>列印手冊</span>
+                <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
             </button>
+            <div class="print-dropdown-panel" id="print-dropdown-panel">
+                <div class="print-opt-title"><i data-lucide="sliders"></i> 列印版面設定</div>
+                
+                <div class="print-opt-group">
+                    <span class="print-opt-label">📐 版面方向：</span>
+                    <div class="print-radio-group">
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="portrait" checked>
+                            <span>📄 A4 直向 (每大主題一頁・標準)</span>
+                        </label>
+                        <label class="print-radio-label">
+                            <input type="radio" name="print-orientation" value="landscape">
+                            <span>📑 A4 橫向 (每大主題一頁・寬版)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-do-print" onclick="executePrint()">
+                    <i data-lucide="printer"></i>
+                    <span>開始列印 / 存為 PDF</span>
+                </button>
+            </div>
+        </div>
         </div>
     </header>
 
@@ -1208,6 +1338,63 @@
     </footer>
 
     <script>
+
+    // ===== Main Manual Print Functionality =====
+    const printMenuBtn = document.getElementById('print-menu-btn');
+    const printDropdownPanel = document.getElementById('print-dropdown-panel');
+
+    if (printMenuBtn && printDropdownPanel) {
+        printMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            printDropdownPanel.classList.toggle('show');
+            lucide.createIcons();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!printDropdownPanel.contains(e.target) && e.target !== printMenuBtn) {
+                printDropdownPanel.classList.remove('show');
+            }
+        });
+    }
+
+    function executePrint() {
+        const orientation = document.querySelector('input[name="print-orientation"]:checked')?.value || 'portrait';
+
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 7mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 94vh !important; }
+                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 96vh !important; }
+                }
+            `;
+        }
+
+        if (printDropdownPanel) {
+            printDropdownPanel.classList.remove('show');
+        }
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
         lucide.createIcons();
 
         window.addEventListener('scroll', () => {

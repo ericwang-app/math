@@ -465,17 +465,37 @@
         }
 
         @media print {
-            header, #progress-bar, #btn-back-to-top, .header-actions {
+            header, #progress-bar, #btn-back-to-top, .header-actions, .reveal-btn, .dropdown, .btn-dropdown, .dropdown-menu {
                 display: none !important;
             }
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
-                font-size: 9.5pt !important;
+                font-size: 11pt !important;
+                line-height: 1.55 !important;
             }
             .container {
                 max-width: 100% !important;
                 padding: 0 !important;
+                margin: 0 !important;
+            }
+            .doc-header h1 {
+                font-size: 16pt !important;
+                color: #000 !important;
+                margin-bottom: 0.3rem !important;
+            }
+            .section-header {
+                margin: 1.2rem 0 0.8rem 0 !important;
+                border-bottom: 2pt solid #000 !important;
+            }
+            .section-badge {
+                background: #000 !important;
+                color: #fff !important;
+                font-size: 10pt !important;
+            }
+            .section-title {
+                font-size: 13pt !important;
+                color: #000 !important;
             }
             .q-card {
                 background: #ffffff !important;
@@ -484,28 +504,83 @@
                 box-shadow: none !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
-                margin-bottom: 1rem !important;
+                margin-bottom: 1.2rem !important;
+                padding: 1rem 1.2rem !important;
             }
-            .q-sol, .q-choices, .cross-ref-panel {
+            .q-top-bar {
+                border-bottom: 0.8pt solid #666 !important;
+                margin-bottom: 0.6rem !important;
+                padding-bottom: 0.3rem !important;
+            }
+            .q-number {
+                font-size: 12pt !important;
+                font-weight: bold !important;
+                color: #000 !important;
+            }
+            .q-body {
+                font-size: 11pt !important;
+                line-height: 1.65 !important;
+                color: #000 !important;
+                margin-bottom: 0.8rem !important;
+            }
+            .q-choices {
+                font-size: 10.5pt !important;
                 background: #f8fafc !important;
-                border: 0.6pt solid #666 !important;
+                border: 0.6pt solid #999 !important;
+                color: #000 !important;
+                padding: 0.5rem 0.8rem !important;
+            }
+            .q-ans-bar {
+                font-size: 11pt !important;
+                font-weight: bold !important;
+                color: #000 !important;
+            }
+            .q-ans-badge {
+                background: #eee !important;
+                color: #000 !important;
+                border: 0.8pt solid #333 !important;
+                font-size: 10.5pt !important;
+            }
+            .q-sol {
+                background: #f8fafc !important;
+                border-left: 3pt solid #333 !important;
+                border-top: 0.6pt solid #ccc !important;
+                border-right: 0.6pt solid #ccc !important;
+                border-bottom: 0.6pt solid #ccc !important;
+                color: #000 !important;
+                font-size: 10.5pt !important;
+                line-height: 1.6 !important;
+                padding: 0.75rem 1rem !important;
+            }
+            .cross-ref-panel {
+                background: #f8fafc !important;
+                border: 0.8pt solid #666 !important;
+                color: #000 !important;
+                padding: 0.6rem 0.8rem !important;
+                margin-top: 0.6rem !important;
+            }
+            .cross-ref-title {
+                font-size: 10.5pt !important;
+                font-weight: bold !important;
                 color: #000 !important;
             }
             .ref-tag {
                 background: #eee !important;
                 color: #000 !important;
-                border-color: #666 !important;
+                border: 0.6pt solid #666 !important;
+                font-size: 9.5pt !important;
             }
-        }
-    
-        .table-sub-label {
-            display: block;
-            font-size: 0.88rem;
-            color: var(--accent-blue, #38bdf8);
-            margin-top: 0.25rem;
-            font-weight: 500;
-        }
-    </style>
+            .ref-reason {
+                font-size: 10pt !important;
+                color: #222 !important;
+            }
+            .reveal-content {
+                display: block !important;
+            }
+            mjx-container {
+                font-size: 105% !important;
+            }
+        }</style>
 </head>
 <body>
 

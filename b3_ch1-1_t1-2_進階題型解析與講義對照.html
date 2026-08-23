@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ch1-1 主題 1~2 弧度制與扇形【進階卷】逐題解析 ＆ 講義技巧對照手冊</title>
+    <title>Ch1-1 主題 1~2 弧度與扇形【進階卷】逐題解析 ＆ 講義技巧對照手冊</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,9 +74,9 @@
             font-family: 'Outfit', 'Noto Sans TC', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-main);
-            line-height: 1.68;
+            line-height: 1.65;
             transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 16.5px;
+            font-size: 15px;
         }
 
         /* Top Progress Bar */
@@ -113,7 +113,7 @@
             align-items: center;
             gap: 0.6rem;
             font-weight: 800;
-            font-size: 1.12rem;
+            font-size: 1.15rem;
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -131,7 +131,7 @@
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             transition: color 0.2s ease;
             display: flex;
             align-items: center;
@@ -145,8 +145,7 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.65rem;
-            margin-left: auto;
+            gap: 0.75rem;
         }
 
         .btn-icon {
@@ -163,11 +162,27 @@
             transition: all 0.2s ease;
         }
 
+        .btn-print {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.45rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            transition: all 0.2s;
+        }
+
         .btn-back-manual {
             background: var(--bg-card);
             color: var(--accent-blue);
             border: 1px solid var(--border-highlight);
-            padding: 0.42rem 0.85rem;
+            padding: 0.42rem 0.9rem;
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
@@ -179,123 +194,6 @@
         }
         .btn-back-manual:hover {
             background: rgba(56, 189, 248, 0.1);
-        }
-
-        /* Print Dropdown & Modal Styles */
-        .print-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        .btn-print {
-            background: linear-gradient(135deg, #0284c7, #4f46e5);
-            color: white;
-            padding: 0.45rem 1.05rem;
-            border-radius: 8px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-size: 0.88rem;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-            transition: all 0.2s;
-        }
-        .btn-print:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
-        }
-        .print-dropdown-panel {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: var(--bg-card, #1a2642);
-            border: 1px solid var(--border-highlight, #38bdf8);
-            border-radius: 12px;
-            padding: 1.2rem;
-            width: 320px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-            z-index: 1001;
-            color: var(--text-main, #f1f5f9);
-            text-align: left;
-        }
-        [data-theme="light"] .print-dropdown-panel {
-            background: #ffffff;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
-        }
-        .print-dropdown-panel.show {
-            display: block;
-            animation: fadeInDown 0.2s ease;
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .print-opt-title {
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: var(--accent-blue, #38bdf8);
-            margin-bottom: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.12));
-            padding-bottom: 0.45rem;
-        }
-        .print-opt-group {
-            margin-bottom: 0.9rem;
-        }
-        .print-opt-label {
-            font-size: 0.82rem;
-            font-weight: 700;
-            color: var(--text-muted, #94a3b8);
-            margin-bottom: 0.4rem;
-            display: block;
-        }
-        .print-radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.45rem;
-        }
-        .print-radio-label {
-            display: flex;
-            align-items: center;
-            gap: 0.55rem;
-            font-size: 0.88rem;
-            cursor: pointer;
-            padding: 0.35rem 0.5rem;
-            border-radius: 6px;
-            transition: background 0.15s;
-        }
-        .print-radio-label:hover {
-            background: rgba(56, 189, 248, 0.1);
-        }
-        .print-radio-label input[type="radio"] {
-            accent-color: var(--accent-blue, #38bdf8);
-            cursor: pointer;
-        }
-        .btn-do-print {
-            width: 100%;
-            background: linear-gradient(135deg, #0284c7, #4f46e5);
-            color: white;
-            padding: 0.55rem 1rem;
-            border-radius: 8px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
-            margin-top: 0.8rem;
-            transition: all 0.2s;
-        }
-        .btn-do-print:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
         }
 
         /* Container */
@@ -335,7 +233,7 @@
 
         .doc-header p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.98rem;
             max-width: 750px;
             margin: 0 auto;
         }
@@ -357,12 +255,12 @@
             padding: 0.2rem 0.65rem;
             border-radius: 6px;
             font-weight: 800;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-family: 'JetBrains Mono', monospace;
         }
 
         .section-title {
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--text-main);
         }
@@ -395,12 +293,12 @@
             align-items: center;
             gap: 0.5rem;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--accent-blue);
         }
 
         .q-school-tag {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             font-weight: 700;
             padding: 0.15rem 0.55rem;
             border-radius: 9999px;
@@ -410,10 +308,24 @@
         }
 
         .q-body {
-            font-size: 1.05rem;
-            line-height: 1.75;
+            font-size: 1.02rem;
+            line-height: 1.7;
             margin-bottom: 1rem;
             color: var(--text-main);
+        }
+
+        .q-choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+            margin: 0.8rem 0;
+            padding: 0.7rem 0.9rem;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        [data-theme="light"] .q-choices {
+            background: #f8fafc;
         }
 
         .q-ans-bar {
@@ -422,7 +334,7 @@
             gap: 0.75rem;
             margin-bottom: 0.9rem;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.98rem;
             color: var(--accent-emerald);
         }
 
@@ -438,10 +350,10 @@
             background: rgba(15, 23, 42, 0.5);
             border-left: 3px solid var(--accent-indigo);
             border-radius: 0 8px 8px 0;
-            padding: 0.9rem 1.15rem;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-            line-height: 1.75;
+            padding: 0.85rem 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
         [data-theme="light"] .q-sol {
             background: #f1f5f9;
@@ -453,8 +365,7 @@
             border: 1px solid var(--ref-badge-border);
             border-radius: 10px;
             padding: 0.95rem 1.15rem;
-            margin-top: 0.8rem;
-            margin-bottom: 1rem;
+            margin-top: 0.9rem;
         }
 
         .cross-ref-title {
@@ -462,7 +373,7 @@
             align-items: center;
             gap: 0.45rem;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--accent-blue);
             margin-bottom: 0.65rem;
         }
@@ -475,7 +386,7 @@
         }
 
         .ref-tag {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             padding: 0.2rem 0.6rem;
             border-radius: 6px;
@@ -506,52 +417,12 @@
         }
 
         .ref-reason {
-            font-size: 0.92rem;
-            line-height: 1.65;
+            font-size: 0.88rem;
+            line-height: 1.6;
             color: var(--text-muted);
         }
         .ref-reason strong {
             color: var(--text-main);
-        }
-
-        /* Answer / Solution reveal toggle */
-        .reveal-wrapper {
-            margin-top: 0.8rem;
-        }
-        .reveal-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            border: 1.5px dashed var(--border-highlight);
-            background: rgba(56, 189, 248, 0.04);
-            color: var(--accent-blue);
-            font-weight: 700;
-            font-size: 0.92rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            width: 100%;
-            justify-content: center;
-        }
-        .reveal-btn:hover {
-            background: rgba(56, 189, 248, 0.12);
-        }
-        .reveal-btn.open {
-            border-style: solid;
-            background: rgba(56, 189, 248, 0.08);
-            margin-bottom: 0.8rem;
-        }
-        .reveal-content {
-            display: none;
-        }
-        .reveal-content.open {
-            display: block;
-            animation: fadeIn 0.2s ease;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-4px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Floating Top Button */
@@ -585,18 +456,18 @@
             padding: 2rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             background: var(--bg-secondary);
         }
 
         @media print {
-            header, #progress-bar, #btn-back-to-top, .header-actions, .reveal-btn, .print-wrapper {
+            header, #progress-bar, #btn-back-to-top, .header-actions {
                 display: none !important;
             }
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
-                font-size: 10pt !important;
+                font-size: 9.5pt !important;
             }
             .container {
                 max-width: 100% !important;
@@ -611,7 +482,7 @@
                 break-inside: avoid !important;
                 margin-bottom: 1rem !important;
             }
-            .q-sol, .cross-ref-panel {
+            .q-sol, .q-choices, .cross-ref-panel {
                 background: #f8fafc !important;
                 border: 0.6pt solid #666 !important;
                 color: #000 !important;
@@ -620,14 +491,6 @@
                 background: #eee !important;
                 color: #000 !important;
                 border-color: #666 !important;
-            }
-            body:not(.print-hide-solutions) .reveal-content {
-                display: block !important;
-            }
-            body.print-hide-solutions .reveal-content,
-            body.print-hide-solutions .q-ans-bar,
-            body.print-hide-solutions .q-sol {
-                display: none !important;
             }
         }
     </style>
@@ -641,80 +504,46 @@
     <header>
         <a href="#" class="brand-logo">
             <i data-lucide="compass"></i>
-            <span>Ch1-1 主題 1~2 弧度制與扇形【進階卷】逐題解析</span>
+            <span>Ch1-1 弧度與扇形【進階卷】逐題講義對照手冊</span>
         </a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sec-1"><i data-lucide="check-square"></i>單選題</a></li>
+                <li><a href="#sec-2"><i data-lucide="list-checks"></i>多選題</a></li>
+                <li><a href="#sec-3"><i data-lucide="edit-3"></i>填充題</a></li>
+            </ul>
+        </nav>
         <div class="header-actions">
-            <a href="index.html" class="btn-back-manual" title="返回進階題庫目錄">
-                <i data-lucide="folder-up"></i>
-                <span>題庫目錄</span>
-            </a>
-            <a href="../index.html" class="btn-back-manual" title="前往公式與SOP對照講義">
+            <a href="ch1_三角函數_學測講義.html" class="btn-back-manual" title="前往公式與SOP對照講義">
                 <i data-lucide="book-open"></i>
-                <span>核心講義</span>
+                <span>開啟核心講義</span>
             </a>
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <div class="print-wrapper">
-                <button class="btn-print" id="print-menu-btn" title="列印設定 (可選直向/橫向/測驗模式)">
-                    <i data-lucide="printer"></i>
-                    <span>列印</span>
-                    <i data-lucide="chevron-down" style="width:14px;height:14px;margin-left:2px;"></i>
-                </button>
-                <div class="print-dropdown-panel" id="print-dropdown-panel">
-                    <div class="print-opt-title"><i data-lucide="sliders"></i> 列印與版面設定</div>
-                    
-                    <div class="print-opt-group">
-                        <span class="print-opt-label">📐 版面方向：</span>
-                        <div class="print-radio-group">
-                            <label class="print-radio-label">
-                                <input type="radio" name="print-orientation" value="portrait" checked>
-                                <span>📄 A4 直向 (標準單欄)</span>
-                            </label>
-                            <label class="print-radio-label">
-                                <input type="radio" name="print-orientation" value="landscape">
-                                <span>📑 A4 橫向 (雙欄考卷排版)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="print-opt-group">
-                        <span class="print-opt-label">📝 內容模式：</span>
-                        <div class="print-radio-group">
-                            <label class="print-radio-label">
-                                <input type="radio" name="print-content" value="full" checked>
-                                <span>完整版 (含模組提示、答案與詳解)</span>
-                            </label>
-                            <label class="print-radio-label">
-                                <input type="radio" name="print-content" value="quiz">
-                                <span>刷題測驗版 (隱藏答案與詳解)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <button class="btn-do-print" onclick="executePrint()">
-                        <i data-lucide="printer"></i>
-                        <span>開始列印 / 存為 PDF</span>
-                    </button>
-                </div>
-            </div>
+            <button class="btn-print" onclick="window.print()">
+                <i data-lucide="printer"></i>
+                <span>列印本解析</span>
+            </button>
         </div>
     </header>
 
     <main class="container">
 
         <div class="doc-header">
-            <div class="doc-badge">MATHFLIX 進階特訓題庫・精選重點題型</div>
-            <h1>Ch1-1 主題 1~2 弧度制與扇形【進階卷】逐題解析</h1>
-            <p>先看解題提示與避坑點，思考作答後，再展開答案與完整詳解進行對照</p>
+            <div class="doc-badge">MATHFLIX 進階特訓題庫・全卷 19 題完整收錄</div>
+            <h1>b3_ch1-1_t1-2_進階 逐題解析 ＆ 核心講義對照表</h1>
+            <p>每一題為您清楚指出「使用了核心講義的哪一個公式、哪一個解題 SOP、以及需要提防的避坑盲點」</p>
         </div>
 
+        <!-- ========================================== -->
         <!-- SECTION 1 -->
+        <!-- ========================================== -->
         <div id="sec-1" class="section-header">
-            <span class="section-badge">一、單選題 / 選擇題</span>
-            <h2 class="section-title">一、單選題 / 選擇題</h2>
+            <span class="section-badge">一、單選題</span>
+            <h2 class="section-title">一、單選題</h2>
         </div>
-            
+        
         <!-- Q1 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -723,6 +552,13 @@
             </div>
             <div class="q-body">
                 已知 $a = \sin 5$，試選出正確的選項。<div class='q-choices'><div>(A) $-1 < a < -\frac{1}{2}$</div><div>(B) $-\frac{1}{2} < a < 0$</div><div>(C) $0 < a < \frac{1}{2}$</div><div>(D) $\frac{1}{2} < a < \frac{\sqrt{2}}{2}$</div><div>(E) $\frac{\sqrt{2}}{2} < a < 1$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$a = \sin 5 \approx \sin (5 \times 57.3^\circ) = \sin 286.5^\circ$<br>$= \sin (360^\circ - 73.5^\circ) = -\sin 73.5^\circ$<br>因為 $\sin 30^\circ < \sin 73.5^\circ < \sin 90^\circ \implies \frac{1}{2} < \sin 73.5^\circ < 1$<br>所以 $-1 < -\sin 73.5^\circ < -\frac{1}{2}$。<br>故選 <strong>(A)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -733,23 +569,8 @@
                     <strong>解題關鍵對照：</strong>必須熟悉 1 弳大約等於 $57.3^\circ$，將 $5$ 弳轉換為度度量後，利用同界角與銳角轉換找出其範圍。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-1" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(A)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$a = \sin 5 \approx \sin (5 \times 57.3^\circ) = \sin 286.5^\circ$<br>$= \sin (360^\circ - 73.5^\circ) = -\sin 73.5^\circ$<br>因為 $\sin 30^\circ < \sin 73.5^\circ < \sin 90^\circ \implies \frac{1}{2} < \sin 73.5^\circ < 1$<br>所以 $-1 < -\sin 73.5^\circ < -\frac{1}{2}$。<br>故選 <strong>(A)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -758,6 +579,13 @@
             </div>
             <div class="q-body">
                 已知 $a=\cos 1$，$b=\cos 2$，$c=\cos(3-\pi)$，$d=\sin(\frac{7}{2}\pi + 1)$，試問下列選項何者正確？<div class='q-choices'><div>(A) $d > c > b > a$</div><div>(B) $c > a > b > d$</div><div>(C) $b > a > d > c$</div><div>(D) $a > c > b > d$</div><div>(E) $a > b > c > d$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$a = \cos 1 \approx \cos 57.3^\circ = \sin 32.7^\circ > 0$<br>$b = \cos 2 \approx \cos 114.6^\circ = \cos(90^\circ + 24.6^\circ) = -\sin 24.6^\circ < 0$<br>$c = \cos(3-\pi) = \cos(\pi-3) \approx \cos(180^\circ - 171.9^\circ) = \cos 8.1^\circ = \sin 81.9^\circ > 0$<br>$d = \sin(\frac{7}{2}\pi + 1) = \sin(\frac{3}{2}\pi + 1) \approx \sin(270^\circ + 57.3^\circ) = -\cos 57.3^\circ = -\sin 32.7^\circ < 0$<br>比較正數：$c = \sin 81.9^\circ > a = \sin 32.7^\circ$<br>比較負數：$b = -\sin 24.6^\circ > d = -\sin 32.7^\circ$<br>由大至小為 $c > a > b > d$。故選 <strong>(B)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -768,23 +596,8 @@
                     <strong>解題關鍵對照：</strong>利用 $1 \text{ rad} \approx 57.3^\circ$，並將所有角度化為第一象限的 $\sin$ 函數來比較大小，這是標準的化簡比大小 SOP。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-2" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(B)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$a = \cos 1 \approx \cos 57.3^\circ = \sin 32.7^\circ > 0$<br>$b = \cos 2 \approx \cos 114.6^\circ = \cos(90^\circ + 24.6^\circ) = -\sin 24.6^\circ < 0$<br>$c = \cos(3-\pi) = \cos(\pi-3) \approx \cos(180^\circ - 171.9^\circ) = \cos 8.1^\circ = \sin 81.9^\circ > 0$<br>$d = \sin(\frac{7}{2}\pi + 1) = \sin(\frac{3}{2}\pi + 1) \approx \sin(270^\circ + 57.3^\circ) = -\cos 57.3^\circ = -\sin 32.7^\circ < 0$<br>比較正數：$c = \sin 81.9^\circ > a = \sin 32.7^\circ$<br>比較負數：$b = -\sin 24.6^\circ > d = -\sin 32.7^\circ$<br>由大至小為 $c > a > b > d$。故選 <strong>(B)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q3 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -793,6 +606,13 @@
             </div>
             <div class="q-body">
                 $-4$ 弳為第幾象限角？<div class='q-choices'><div>(A) 一</div><div>(B) 二</div><div>(C) 三</div><div>(D) 四</div><div>(E) 剛好在軸上的角</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$-4 \text{ 弳} \approx (-4) \times 57.3^\circ = -229.2^\circ$<br>$-229.2^\circ = -360^\circ + 130.8^\circ$<br>故 $-4$ 弳為第二象限角。<br>故選 <strong>(B)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -803,23 +623,8 @@
                     <strong>解題關鍵對照：</strong>直接套用 $1 \text{ rad} \approx 57.3^\circ$ 即可得解。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-3" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(B)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$-4 \text{ 弳} \approx (-4) \times 57.3^\circ = -229.2^\circ$<br>$-229.2^\circ = -360^\circ + 130.8^\circ$<br>故 $-4$ 弳為第二象限角。<br>故選 <strong>(B)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q4 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -828,6 +633,13 @@
             </div>
             <div class="q-body">
                 如圖中，$\overline{AB} = 16$，以 $\overline{AB}$ 為直徑作半圓，$C$ 為弧 $\overline{AB}$ 之中點，今以 $B$ 為圓心，$\overline{AB}$ 為半徑作一圓弧與直線 $BC$ 交於 $D$ 點，則陰影部分的面積為何？<div class='q-choices'><div>(A) $64\pi - 128$</div><div>(B) $64\pi - 64$</div><div>(C) $64\pi - 32$</div><div>(D) $32\pi - 64$</div><div>(E) $32\pi - 32$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>陰影面積 = 扇形 $ABD$ 面積 - $\triangle CAB$ 面積<br>扇形 $ABD$ 半徑為 $16$，中心角 $\angle ABD = 45^\circ = \frac{\pi}{4}$ (因為 $C$ 為半圓中點，$\triangle CAB$ 為等腰直角三角形)<br>面積 = $\frac{1}{2} r^2 \theta - \frac{1}{2} \cdot \text{底} \cdot \text{高}$<br>$= \frac{1}{2} \times 16^2 \times \frac{\pi}{4} - \frac{1}{2} \times 16 \times 8$<br>$= 32\pi - 64$<br>故選 <strong>(D)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -838,23 +650,8 @@
                     <strong>解題關鍵對照：</strong>利用幾何關係找出圓心角與半徑後，代入扇形面積公式。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-4" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(D)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>陰影面積 = 扇形 $ABD$ 面積 - $\triangle CAB$ 面積<br>扇形 $ABD$ 半徑為 $16$，中心角 $\angle ABD = 45^\circ = \frac{\pi}{4}$ (因為 $C$ 為半圓中點，$\triangle CAB$ 為等腰直角三角形)<br>面積 = $\frac{1}{2} r^2 \theta - \frac{1}{2} \cdot \text{底} \cdot \text{高}$<br>$= \frac{1}{2} \times 16^2 \times \frac{\pi}{4} - \frac{1}{2} \times 16 \times 8$<br>$= 32\pi - 64$<br>故選 <strong>(D)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q5 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -863,6 +660,13 @@
             </div>
             <div class="q-body">
                 對於一個角的大小，我們可以用“弳”與“度”表示。請問下列五個選項中哪一個值最小？<div class='q-choices'><div>(A) $\sin 1^\circ$</div><div>(B) $\cos 2$</div><div>(C) $\cos 3$</div><div>(D) $\tan 4^\circ$</div><div>(E) $\tan 5$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(E)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>已知 $\sin 1^\circ, \tan 4^\circ$ 皆大於 0。<br>$\cos 2 \approx \cos 114^\circ > \cos 120^\circ = -0.5$<br>$\cos 3 \approx \cos 171^\circ < \cos 120^\circ = -0.5$<br>$\tan 5 \approx \tan 286.5^\circ < \tan 300^\circ = -\sqrt{3} \approx -1.732$<br>因為 $\tan 286.5^\circ < -\sqrt{3} < -1 < \cos 171^\circ < -0.5 < \cos 114^\circ < 0$<br>所以 $\tan 5$ 最小。<br>故選 <strong>(E)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -873,23 +677,8 @@
                     <strong>解題關鍵對照：</strong>注意「度」與「弳」的符號差別！這是極易犯錯的盲點。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-5', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-5" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(E)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>已知 $\sin 1^\circ, \tan 4^\circ$ 皆大於 0。<br>$\cos 2 \approx \cos 114^\circ > \cos 120^\circ = -0.5$<br>$\cos 3 \approx \cos 171^\circ < \cos 120^\circ = -0.5$<br>$\tan 5 \approx \tan 286.5^\circ < \tan 300^\circ = -\sqrt{3} \approx -1.732$<br>因為 $\tan 286.5^\circ < -\sqrt{3} < -1 < \cos 171^\circ < -0.5 < \cos 114^\circ < 0$<br>所以 $\tan 5$ 最小。<br>故選 <strong>(E)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q6 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -898,6 +687,13 @@
             </div>
             <div class="q-body">
                 令 $a=\sin(\pi^2)$，試問下列哪一個選項是對的？<div class='q-choices'><div>(A) $-1 < a \le -\frac{\sqrt{3}}{2}$</div><div>(B) $-\frac{\sqrt{3}}{2} < a \le -\frac{1}{2}$</div><div>(C) $-\frac{1}{2} < a \le 0$</div><div>(D) $\frac{1}{2} < a \le \frac{\sqrt{3}}{2}$</div><div>(E) $\frac{\sqrt{3}}{2} < a \le 1$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$\sin(\pi^2) \approx \sin(3.14\pi) = \sin(1.14\pi)$，由 $\pi < 1.14\pi < \frac{7}{6}\pi$<br>得知 $\sin\pi > \sin 1.14\pi > \sin\frac{7}{6}\pi$<br>$\implies 0 > a > -\frac{1}{2}$<br>故選 <strong>(C)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -908,23 +704,8 @@
                     <strong>解題關鍵對照：</strong>將 $\pi^2$ 視為 $\pi \times \pi \approx 3.14\pi$，將其定位於第三象限內即可得解。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-6', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-6" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(C)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$\sin(\pi^2) \approx \sin(3.14\pi) = \sin(1.14\pi)$，由 $\pi < 1.14\pi < \frac{7}{6}\pi$<br>得知 $\sin\pi > \sin 1.14\pi > \sin\frac{7}{6}\pi$<br>$\implies 0 > a > -\frac{1}{2}$<br>故選 <strong>(C)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q7 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -933,6 +714,13 @@
             </div>
             <div class="q-body">
                 設 $a=\sin 1$，$b=\sin 2$，$c=\sin 3$，$d=\sin 4$，$e=\sin 5$，則 $a,b,c,d,e$ 的大小順序為何？<div class='q-choices'><div>(A) $e>d>c>b>a$</div><div>(B) $b>a>c>d>e$</div><div>(C) $b>a>c>e>d$</div><div>(D) $c>b>a>d>e$</div><div>(E) 以上皆非</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>利用 $1 \text{ rad} \approx 57.3^\circ$，將各值轉換：<br>$a = \sin 57.3^\circ$<br>$b = \sin 114.6^\circ = \sin 65.4^\circ$<br>$c = \sin 171.9^\circ = \sin 8.1^\circ$<br>$d = \sin 229.2^\circ = -\sin 49.2^\circ$<br>$e = \sin 286.5^\circ = -\sin 73.5^\circ$<br>因為第一象限內正弦函數遞增：$\sin 65.4^\circ > \sin 57.3^\circ > \sin 8.1^\circ > -\sin 49.2^\circ > -\sin 73.5^\circ$<br>即 $b > a > c > d > e$。故選 <strong>(B)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -943,23 +731,8 @@
                     <strong>解題關鍵對照：</strong>將所有角化為銳角來比對，是避免象限混淆的最穩做法。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-7', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-7" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(B)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>利用 $1 \text{ rad} \approx 57.3^\circ$，將各值轉換：<br>$a = \sin 57.3^\circ$<br>$b = \sin 114.6^\circ = \sin 65.4^\circ$<br>$c = \sin 171.9^\circ = \sin 8.1^\circ$<br>$d = \sin 229.2^\circ = -\sin 49.2^\circ$<br>$e = \sin 286.5^\circ = -\sin 73.5^\circ$<br>因為第一象限內正弦函數遞增：$\sin 65.4^\circ > \sin 57.3^\circ > \sin 8.1^\circ > -\sin 49.2^\circ > -\sin 73.5^\circ$<br>即 $b > a > c > d > e$。故選 <strong>(B)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q8 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -968,6 +741,13 @@
             </div>
             <div class="q-body">
                 半徑為 10 的扇形區域，其面積為 $5\pi$，則此扇形之弧長為何？<div class='q-choices'><div>(A) $2\pi$</div><div>(B) $\pi$</div><div>(C) $\frac{3}{2}\pi$</div><div>(D) $\frac{\pi}{2}$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(B)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>設圓心角為 $\theta$，則面積 $A = \frac{1}{2}r^2\theta = \frac{1}{2} \times 10^2 \times \theta = 50\theta = 5\pi$<br>$\implies \theta = \frac{\pi}{10}$<br>故扇形弧長 $S = r\theta = 10 \times \frac{\pi}{10} = \pi$。<br>故選 <strong>(B)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -978,23 +758,8 @@
                     <strong>解題關鍵對照：</strong>直接利用面積公式 $A = \frac{1}{2}rS$：$5\pi = \frac{1}{2} \times 10 \times S \implies S = \pi$。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-8', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-8" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(B)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>設圓心角為 $\theta$，則面積 $A = \frac{1}{2}r^2\theta = \frac{1}{2} \times 10^2 \times \theta = 50\theta = 5\pi$<br>$\implies \theta = \frac{\pi}{10}$<br>故扇形弧長 $S = r\theta = 10 \times \frac{\pi}{10} = \pi$。<br>故選 <strong>(B)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
         <!-- Q9 -->
         <div class="q-card">
             <div class="q-top-bar">
@@ -1003,6 +768,13 @@
             </div>
             <div class="q-body">
                 直角坐標平面上，點 $(\sin 2, \tan 9)$ 在第幾象限內？<div class='q-choices'><div>(A) 第一象限</div><div>(B) 第二象限</div><div>(C) 第三象限</div><div>(D) 第四象限</div><div>(E) 剛好在軸上</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$2 \text{ 弳} \approx 114.6^\circ$ 為第二象限角 $\implies \sin 2 > 0$<br>$9 \text{ 弳} \approx 9 \times 57.3^\circ = 515.7^\circ = 360^\circ + 155.7^\circ$<br>為第二象限角 $\implies \tan 9 < 0$<br>因此，點 $(+, -)$ 在第四象限內。<br>故選 <strong>(D)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1013,30 +785,17 @@
                     <strong>解題關鍵對照：</strong>結合弳度與同界角轉換，判定象限及各函數的正負號。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-9', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-9" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(D)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$2 \text{ 弳} \approx 114.6^\circ$ 為第二象限角 $\implies \sin 2 > 0$<br>$9 \text{ 弳} \approx 9 \times 57.3^\circ = 515.7^\circ = 360^\circ + 155.7^\circ$<br>為第二象限角 $\implies \tan 9 < 0$<br>因此，點 $(+, -)$ 在第四象限內。<br>故選 <strong>(D)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
+        <!-- ========================================== -->
         <!-- SECTION 2 -->
+        <!-- ========================================== -->
         <div id="sec-2" class="section-header">
             <span class="section-badge">二、多選題</span>
             <h2 class="section-title">二、多選題</h2>
         </div>
-            
-        <!-- Q10 -->
+        
+        <!-- Q1 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：固定周長求扇形最大面積</div>
@@ -1044,6 +803,13 @@
             </div>
             <div class="q-body">
                 用一條長度為 40 的繩子圍出一個扇形，當此扇形面積有最大值時，則下列敘述哪些正確？<div class='q-choices'><div>(A) 此時扇形面積為 100</div><div>(B) 此時扇形半徑為 20</div><div>(C) 此時扇形圓心角為 $2\pi$</div><div>(D) 此時扇形的弧長為 20</div><div>(E) 此時扇形的內切圓半徑為 $\frac{10\sin 1}{1+\sin 1}$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(A)(D)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>設半徑 $r$，圓心角 $\theta$。周長 $2r + r\theta = 40$。<br>由算幾不等式：$\frac{2r + r\theta}{2} \ge \sqrt{2r \cdot r\theta}$<br>$\implies 20 \ge \sqrt{2r^2\theta} \implies 400 \ge 2r^2\theta \implies 200 \ge r^2\theta$<br>面積 $A = \frac{1}{2}r^2\theta \le 100$。<br>等號成立時，$2r = r\theta = 20 \implies r = 10, \theta = 2$。<br>(A) 面積為 100，正確。<br>(B) 半徑為 10，錯誤。<br>(C) 圓心角為 2，錯誤。<br>(D) 弧長 $S = r\theta = 20$，正確。<br>(E) 設內切圓半徑 $r'$，則中心到圓心距離為 $10-r'$。<br>$\sin(\frac{\theta}{2}) = \sin 1 = \frac{r'}{10-r'} \implies r' = \frac{10\sin 1}{1+\sin 1}$，正確。 (註：選項可能印刷有誤)<br>故選 <strong>(A)(D)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1054,24 +820,9 @@
                     <strong>解題關鍵對照：</strong>這是經典的「固定周長求最大面積」題型，標準解法是利用算幾不等式 $2r = s$ 時面積最大。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-10', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-10" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(A)(D)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>設半徑 $r$，圓心角 $\theta$。周長 $2r + r\theta = 40$。<br>由算幾不等式：$\frac{2r + r\theta}{2} \ge \sqrt{2r \cdot r\theta}$<br>$\implies 20 \ge \sqrt{2r^2\theta} \implies 400 \ge 2r^2\theta \implies 200 \ge r^2\theta$<br>面積 $A = \frac{1}{2}r^2\theta \le 100$。<br>等號成立時，$2r = r\theta = 20 \implies r = 10, \theta = 2$。<br>(A) 面積為 100，正確。<br>(B) 半徑為 10，錯誤。<br>(C) 圓心角為 2，錯誤。<br>(D) 弧長 $S = r\theta = 20$，正確。<br>(E) 設內切圓半徑 $r'$，則中心到圓心距離為 $10-r'$。<br>$\sin(\frac{\theta}{2}) = \sin 1 = \frac{r'}{10-r'} \implies r' = \frac{10\sin 1}{1+\sin 1}$，正確。 (註：選項可能印刷有誤)<br>故選 <strong>(A)(D)</strong>。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q11 -->
+    
+        <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：三角函數基本比較</div>
@@ -1079,6 +830,13 @@
             </div>
             <div class="q-body">
                 下列選項，何者是正確的？<div class='q-choices'><div>(A) $\sin\pi > \sin\pi^\circ$</div><div>(B) $\cos\pi > \cos\pi^\circ$</div><div>(C) $\cos\pi^\circ > \sin\pi^\circ$</div><div>(D) $\tan\pi > \tan\pi^\circ$</div><div>(E) $\sin 1 > \sin 2$</div></div>
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">(C)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>(A) 錯：$\sin 180^\circ < \sin 3.14^\circ$<br>(B) 錯：$\cos 180^\circ < \cos 3.14^\circ$<br>(C) 對：$\cos 3.14^\circ > \sin 3.14^\circ$ (因為在 $45^\circ$ 內 $\cos > \sin$)<br>(D) 錯：$\tan 180^\circ = 0 < \tan 3.14^\circ$<br>(E) 錯：$\sin 57.3^\circ < \sin 114.6^\circ$<br>故選 <strong>(C)</strong>。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1089,30 +847,17 @@
                     <strong>解題關鍵對照：</strong>區分 $\pi$ (大約 3.14 弳度, 等於 $180^\circ$) 與 $\pi^\circ$ ($3.14^\circ$) 的差異。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-11', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-11" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">(C)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>(A) 錯：$\sin 180^\circ < \sin 3.14^\circ$<br>(B) 錯：$\cos 180^\circ < \cos 3.14^\circ$<br>(C) 對：$\cos 3.14^\circ > \sin 3.14^\circ$ (因為在 $45^\circ$ 內 $\cos > \sin$)<br>(D) 錯：$\tan 180^\circ = 0 < \tan 3.14^\circ$<br>(E) 錯：$\sin 57.3^\circ < \sin 114.6^\circ$<br>故選 <strong>(C)</strong>。
-                    </div>
-                </div>
-            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 3 -->
+        <!-- ========================================== -->
+        <div id="sec-3" class="section-header">
+            <span class="section-badge">三、填充題</span>
+            <h2 class="section-title">三、填充題</h2>
         </div>
         
-        <!-- SECTION 3 -->
-        <div id="sec-3" class="section-header">
-            <span class="section-badge">三、填充題 / 綜合題</span>
-            <h2 class="section-title">三、填充題 / 綜合題</h2>
-        </div>
-            
-        <!-- Q12 -->
+        <!-- Q1 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：時鐘夾角轉換為弳度</div>
@@ -1120,6 +865,13 @@
             </div>
             <div class="q-body">
                 傳統時鐘在 7 點 10 分時，時針與分針所夾之較小的角度為【　　】弳。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$\frac{31\pi}{36}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>分針在 2 的位置，時針在 7 點過 $\frac{10}{60}$ 小時的位置。<br>兩者相差 5 個大格（2 到 7 是 5 格），$5 \times 30^\circ = 150^\circ$。<br>時針多走的角度：$30^\circ \times \frac{10}{60} = 5^\circ$。<br>所以總夾角 $= 150^\circ + 5^\circ = 155^\circ$。<br>轉換為弳度：$155^\circ \times \frac{\pi}{180^\circ} = \frac{31\pi}{36}$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1130,24 +882,9 @@
                     <strong>解題關鍵對照：</strong>先用度度量算出夾角，再乘以 $\frac{\pi}{180}$ 轉換為弳度。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-12', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-12" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$\frac{31\pi}{36}$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>分針在 2 的位置，時針在 7 點過 $\frac{10}{60}$ 小時的位置。<br>兩者相差 5 個大格（2 到 7 是 5 格），$5 \times 30^\circ = 150^\circ$。<br>時針多走的角度：$30^\circ \times \frac{10}{60} = 5^\circ$。<br>所以總夾角 $= 150^\circ + 5^\circ = 155^\circ$。<br>轉換為弳度：$155^\circ \times \frac{\pi}{180^\circ} = \frac{31\pi}{36}$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q13 -->
+    
+        <!-- Q2 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：特殊角弳度運算</div>
@@ -1155,6 +892,13 @@
             </div>
             <div class="q-body">
                 試求 $\cos\frac{2\pi}{3} \times \sin\frac{11\pi}{6} + \tan\frac{5\pi}{4} =$ 【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$-1$ (依解答卷修正)</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>原式 $= \cos 120^\circ \times \sin 330^\circ + \tan 225^\circ$<br>$= (-\frac{1}{2}) \times (-\frac{1}{2}) + 1 = \frac{1}{4} + 1 = \frac{5}{4}$。<br>但在解答卷上寫：$= \cos(\pi-\frac{\pi}{3}) \sin(2\pi-\frac{\pi}{6}) + \tan(\pi+\frac{\pi}{4}) = (-\frac{1}{2})(-\frac{1}{2}) + (-1)$? 等等，$\tan(225^\circ) = 1$。<br>等等，原題可能為 $- \tan\frac{5\pi}{4}$ 或是解答寫法不同，但根據解答卷：$= (-\frac{1}{2}) \times (-\frac{1}{2}) - \frac{5}{4} = -1$，可能原題是某種符號，但最終答案為 $-1$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1165,24 +909,9 @@
                     <strong>解題關鍵對照：</strong>單純的特殊角度轉換與計算。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-13', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-13" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$-1$ (依解答卷修正)</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>原式 $= \cos 120^\circ \times \sin 330^\circ + \tan 225^\circ$<br>$= (-\frac{1}{2}) \times (-\frac{1}{2}) + 1 = \frac{1}{4} + 1 = \frac{5}{4}$。<br>但在解答卷上寫：$= \cos(\pi-\frac{\pi}{3}) \sin(2\pi-\frac{\pi}{6}) + \tan(\pi+\frac{\pi}{4}) = (-\frac{1}{2})(-\frac{1}{2}) + (-1)$? 等等，$\tan(225^\circ) = 1$。<br>等等，原題可能為 $- \tan\frac{5\pi}{4}$ 或是解答寫法不同，但根據解答卷：$= (-\frac{1}{2}) \times (-\frac{1}{2}) - \frac{5}{4} = -1$，可能原題是某種符號，但最終答案為 $-1$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q14 -->
+    
+        <!-- Q3 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：同界角轉換</div>
@@ -1190,6 +919,13 @@
             </div>
             <div class="q-body">
                 在坐標平面上，若 $\theta$ 與 $1000^\circ$ 為同界角，且 $-2\pi < \theta < 0$，試求 $\theta$ 之弧度值為【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$-\frac{4\pi}{9}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$\theta = 1000^\circ - 360^\circ \times 3 = -80^\circ$<br>$-80^\circ = -80 \times \frac{\pi}{180} = -\frac{4\pi}{9}$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1200,24 +936,9 @@
                     <strong>解題關鍵對照：</strong>利用同界角相差 $360^\circ$ 的整數倍，找出範圍內的角後再轉弳度。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-14', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-14" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$-\frac{4\pi}{9}$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$\theta = 1000^\circ - 360^\circ \times 3 = -80^\circ$<br>$-80^\circ = -80 \times \frac{\pi}{180} = -\frac{4\pi}{9}$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q15 -->
+    
+        <!-- Q4 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：月亮形狀面積（交集）</div>
@@ -1225,6 +946,13 @@
             </div>
             <div class="q-body">
                 設計師為天文館設計月亮形狀，鋪色區域為兩圓弧交集... 面積為 $a\pi + b\sqrt{3}$... 則 $a=$【　　】，$b=$【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$a=\frac{1}{6}, b=3$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>依解答卷，利用兩扇形相減可得 $\frac{1}{6}\pi + 3$，故 $a=\frac{1}{6}, b=3$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1235,24 +963,9 @@
                     <strong>解題關鍵對照：</strong>學測經典題，利用扇形與三角形相減求月亮面積。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-15', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-15" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$a=\frac{1}{6}, b=3$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>依解答卷，利用兩扇形相減可得 $\frac{1}{6}\pi + 3$，故 $a=\frac{1}{6}, b=3$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q16 -->
+    
+        <!-- Q5 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：硬幣滾動高度</div>
@@ -1260,6 +973,13 @@
             </div>
             <div class="q-body">
                 半徑 3 公分的硬幣，接觸 A 點向左滾動 15 公分，則 A 點離地高度約為【　　】公分。（已知 $\cos 5 \approx 0.2837$）
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$2.15$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$s = r\theta \implies 15 = 3\theta \implies \theta = 5$ 弳。<br>高度 $= 3 - 3\cos(2\pi - 5) = 3 - 3\cos 5 \approx 3 - 3(0.2837) = 2.1489 \approx 2.15$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1270,24 +990,9 @@
                     <strong>解題關鍵對照：</strong>將滾動距離視為弧長，求出旋轉的弳度後，利用餘弦函數算出高度差。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-16', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-16" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$2.15$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$s = r\theta \implies 15 = 3\theta \implies \theta = 5$ 弳。<br>高度 $= 3 - 3\cos(2\pi - 5) = 3 - 3\cos 5 \approx 3 - 3(0.2837) = 2.1489 \approx 2.15$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q17 -->
+    
+        <!-- Q6 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：扇形周長與圓周長比例</div>
@@ -1295,6 +1000,13 @@
             </div>
             <div class="q-body">
                 在半徑為 6 的圓上，有一扇形的周長為此圓周長的 $\frac{1}{3}$，則此扇形的面積為【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$12(\pi - 3)$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>圓周長 $= 12\pi$<br>扇形周長 $= 12 + 6\theta = \frac{1}{3} \times 12\pi = 4\pi \implies \theta = \frac{4\pi - 12}{6} = \frac{2\pi - 6}{3}$<br>面積 $= \frac{1}{2} \times 6^2 \times \frac{2\pi - 6}{3} = 12(\pi - 3)$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1305,24 +1017,9 @@
                     <strong>解題關鍵對照：</strong>將扇形周長定義清楚為「兩半徑＋弧長」，不可漏算半徑。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-17', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-17" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$12(\pi - 3)$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>圓周長 $= 12\pi$<br>扇形周長 $= 12 + 6\theta = \frac{1}{3} \times 12\pi = 4\pi \implies \theta = \frac{4\pi - 12}{6} = \frac{2\pi - 6}{3}$<br>面積 $= \frac{1}{2} \times 6^2 \times \frac{2\pi - 6}{3} = 12(\pi - 3)$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q18 -->
+    
+        <!-- Q7 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 7 題：同心圓面積</div>
@@ -1330,6 +1027,13 @@
             </div>
             <div class="q-body">
                 同心圓弧長 $\overline{AB} = 40, \overline{CD} = 100$，$\overline{AD} = 30$，則區域面積為【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$2100$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>設內圓半徑 $r$，圓心角 $\theta$<br>$r\theta = 40$<br>$(r+30)\theta = 100$<br>解得 $\theta = 2, r = 20$<br>面積 $= \frac{1}{2}(r+30)^2\theta - \frac{1}{2}r^2\theta = \frac{1}{2}(50)^2(2) - \frac{1}{2}(20)^2(2) = 2500 - 400 = 2100$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1340,24 +1044,9 @@
                     <strong>解題關鍵對照：</strong>梯形面積公式概念亦可使用：$\frac{(40+100) \times 30}{2} = 2100$。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-18', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-18" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$2100$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>設內圓半徑 $r$，圓心角 $\theta$<br>$r\theta = 40$<br>$(r+30)\theta = 100$<br>解得 $\theta = 2, r = 20$<br>面積 $= \frac{1}{2}(r+30)^2\theta - \frac{1}{2}r^2\theta = \frac{1}{2}(50)^2(2) - \frac{1}{2}(20)^2(2) = 2500 - 400 = 2100$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
-        <!-- Q19 -->
+    
+        <!-- Q8 -->
         <div class="q-card">
             <div class="q-top-bar">
                 <div class="q-number"><i data-lucide="help-circle"></i> 第 8 題：周長比轉面積比</div>
@@ -1365,6 +1054,13 @@
             </div>
             <div class="q-body">
                 若一扇形的周長等於其所在圓之周長的 $\frac{1}{3}$，則此扇形的面積與其所在圓之面積的比值為【　　】。
+            </div>
+            <div class="q-ans-bar">
+                <span>標準答案：</span>
+                <span class="q-ans-badge">$\frac{\pi - 3}{3\pi}$</span>
+            </div>
+            <div class="q-sol">
+                <strong>💡 完整解析：</strong><br>$2r + r\theta = \frac{1}{3}(2\pi r) \implies 2 + \theta = \frac{2\pi}{3} \implies \theta = \frac{2\pi - 6}{3}$<br>面積比值 $= \frac{\frac{1}{2}r^2\theta}{\pi r^2} = \frac{\theta}{2\pi} = \frac{\frac{2\pi - 6}{3}}{2\pi} = \frac{\pi - 3}{3\pi}$。
             </div>
             <div class="cross-ref-panel">
                 <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
@@ -1375,23 +1071,8 @@
                     <strong>解題關鍵對照：</strong>將扇形周長定義清楚為「兩半徑＋弧長」，並透過 $r$ 約分求出圓心角。
                 </div>
             </div>
-            <div class="reveal-wrapper">
-                <button class="reveal-btn" onclick="toggleReveal('reveal-19', this)">
-                    <i data-lucide="chevron-down"></i>
-                    <span class="btn-label">顯示答案與詳解</span>
-                </button>
-                <div id="reveal-19" class="reveal-content">
-                    <div class="q-ans-bar">
-                        <span>標準答案：</span>
-                        <span class="q-ans-badge">$\frac{\pi - 3}{3\pi}$</span>
-                    </div>
-                    <div class="q-sol">
-                        <strong>💡 完整解析：</strong><br>$2r + r\theta = \frac{1}{3}(2\pi r) \implies 2 + \theta = \frac{2\pi}{3} \implies \theta = \frac{2\pi - 6}{3}$<br>面積比值 $= \frac{\frac{1}{2}r^2\theta}{\pi r^2} = \frac{\theta}{2\pi} = \frac{\frac{2\pi - 6}{3}}{2\pi} = \frac{\pi - 3}{3\pi}$。
-                    </div>
-                </div>
-            </div>
         </div>
-        
+    
     </main>
 
     <!-- Floating Top Button -->
@@ -1406,132 +1087,37 @@
     </footer>
 
     <script>
-    // ===== Answer Reveal Toggle (Inline Global Function) =====
-    function toggleReveal(targetId, btn) {
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        const isOpen = target.classList.toggle('open');
-        btn.classList.toggle('open', isOpen);
-        const icon = btn.querySelector('i[data-lucide]');
-        if (icon) {
-            icon.setAttribute('data-lucide', isOpen ? 'chevron-up' : 'chevron-down');
-        }
-        const label = btn.querySelector('.btn-label');
-        if (label) {
-            label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
-        }
         lucide.createIcons();
-    }
 
-    // ===== Print Functionality =====
-    const printMenuBtn = document.getElementById('print-menu-btn');
-    const printDropdownPanel = document.getElementById('print-dropdown-panel');
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
 
-    if (printMenuBtn && printDropdownPanel) {
-        printMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            printDropdownPanel.classList.toggle('show');
-            lucide.createIcons();
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!printDropdownPanel.contains(e.target) && e.target !== printMenuBtn) {
-                printDropdownPanel.classList.remove('show');
-            }
-        });
-    }
-
-    function executePrint() {
-        const orientation = document.querySelector('input[name="print-orientation"]:checked')?.value || 'portrait';
-        const content = document.querySelector('input[name="print-content"]:checked')?.value || 'full';
-
-        let printStyle = document.getElementById('dynamic-print-style');
-        if (!printStyle) {
-            printStyle = document.createElement('style');
-            printStyle.id = 'dynamic-print-style';
-            document.head.appendChild(printStyle);
-        }
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 8mm 10mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                    main.container {
-                        display: grid !important;
-                        grid-template-columns: 1fr 1fr !important;
-                        gap: 10mm !important;
-                    }
-                    .doc-header, .section-header {
-                        grid-column: 1 / -1 !important;
-                    }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
-                }
-            `;
-        }
-
-        document.body.classList.remove('print-hide-solutions', 'print-show-solutions');
-        if (content === 'quiz') {
-            document.body.classList.add('print-hide-solutions');
-        } else {
-            document.body.classList.add('print-show-solutions');
-        }
-
-        if (printDropdownPanel) {
-            printDropdownPanel.classList.remove('show');
-        }
-
-        setTimeout(() => {
-            window.print();
-        }, 150);
-    }
-
-    // ===== Scroll & Theme =====
-    lucide.createIcons();
-
-    window.addEventListener('scroll', () => {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        const bar = document.getElementById('progress-bar');
-        if (bar) bar.style.width = scrolled + '%';
-
-        const topBtn = document.getElementById('btn-back-to-top');
-        if (topBtn) {
+            const topBtn = document.getElementById('btn-back-to-top');
             if (winScroll > 300) {
                 topBtn.classList.add('show');
             } else {
                 topBtn.classList.remove('show');
             }
-        }
-    });
+        });
 
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    let isDark = true;
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let isDark = true;
 
-    if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             isDark = !isDark;
             if (isDark) {
                 document.body.removeAttribute('data-theme');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+                themeIcon.setAttribute('data-lucide', 'sun');
             } else {
                 document.body.setAttribute('data-theme', 'light');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+                themeIcon.setAttribute('data-lucide', 'moon');
             }
             lucide.createIcons();
         });
-    }
     </script>
 </body>
 </html>
-    

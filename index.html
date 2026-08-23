@@ -10,18 +10,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <!-- MathJax 3 for crystal clear mathematical formulas -->
     <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      options: {
-        renderActions: {
-          addMenu: []
+    // ===== Font Size Zoom Controller =====
+    function setFontScale(scale) {
+        document.documentElement.style.fontSize = (scale * 16.5) + 'px';
+        document.body.style.fontSize = (scale * 16.5) + 'px';
+        document.querySelectorAll('.btn-font-scale').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById('btn-scale-' + scale);
+        if (activeBtn) activeBtn.classList.add('active');
+        localStorage.setItem('math_font_scale', scale);
+    }
+
+    // Restore saved font scale
+    (function() {
+        const savedScale = localStorage.getItem('math_font_scale');
+        if (savedScale) {
+            setFontScale(parseFloat(savedScale));
         }
-      }
-    };
+    })();
+
+    // ===== Main Manual Print Functionality =====
+    const printMenuBtn = document.getElementById('print-menu-btn');
+    const printDropdownPanel = document.getElementById('print-dropdown-panel');
+
+    if (printMenuBtn && printDropdownPanel) {
+        printMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            printDropdownPanel.classList.toggle('show');
+            lucide.createIcons();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!printDropdownPanel.contains(e.target) && e.target !== printMenuBtn) {
+                printDropdownPanel.classList.remove('show');
+            }
+        });
+    }
+
+    function executePrint() {
+        const orientation = document.querySelector('input[name="print-orientation"]:checked')?.value || 'portrait';
+
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 7mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 94vh !important; }
+                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .print-page { min-height: 96vh !important; }
+                }
+            `;
+        }
+
+        if (printDropdownPanel) {
+            printDropdownPanel.classList.remove('show');
+        }
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
+    // ===== Scroll & Theme =====
+    lucide.createIcons();
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('progress-bar');
+        if (bar) bar.style.width = scrolled + '%';
+
+        const topBtn = document.getElementById('btn-back-to-top');
+        if (topBtn) {
+            if (winScroll > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        }
+    });
+
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isDark = true;
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+    }
+
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Lucide Icons -->
@@ -776,10 +876,10 @@
             </ul>
         </nav>
         <div class="header-actions">
-        <div class="font-scale-control" title="字體大小調節">
-            <button class="btn-font-scale" onclick="setFontScale(0.95)" title="稍微縮小">A-</button>
+                        <div class="font-scale-control" title="字體大小調節">
+            <button class="btn-font-scale" id="btn-scale-0.95" onclick="setFontScale(0.95)" title="稍微縮小">A-</button>
             <button class="btn-font-scale active" id="btn-scale-1" onclick="setFontScale(1)" title="預設字體 (大)">標準</button>
-            <button class="btn-font-scale" onclick="setFontScale(1.18)" title="放大字體">特大</button>
+            <button class="btn-font-scale" id="btn-scale-1.18" onclick="setFontScale(1.18)" title="放大字體">特大</button>
         </div>
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
@@ -1379,6 +1479,23 @@
     </footer>
 
     <script>
+    // ===== Font Size Zoom Controller =====
+    function setFontScale(scale) {
+        document.documentElement.style.fontSize = (scale * 16.5) + 'px';
+        document.body.style.fontSize = (scale * 16.5) + 'px';
+        document.querySelectorAll('.btn-font-scale').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById('btn-scale-' + scale);
+        if (activeBtn) activeBtn.classList.add('active');
+        localStorage.setItem('math_font_scale', scale);
+    }
+
+    // Restore saved font scale
+    (function() {
+        const savedScale = localStorage.getItem('math_font_scale');
+        if (savedScale) {
+            setFontScale(parseFloat(savedScale));
+        }
+    })();
 
     // ===== Main Manual Print Functionality =====
     const printMenuBtn = document.getElementById('print-menu-btn');
@@ -1388,24 +1505,7 @@
         printMenuBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             printDropdownPanel.classList.toggle('show');
-            
-    // ===== Font Size Zoom Controller =====
-    function setFontScale(scale) {
-        document.documentElement.style.fontSize = (scale * 16.5) + 'px';
-        document.querySelectorAll('.btn-font-scale').forEach(b => b.classList.remove('active'));
-        if (event && event.target) {
-            event.target.classList.add('active');
-        }
-        localStorage.setItem('math_font_scale', scale);
-    }
-
-    // Restore saved font scale
-    const savedScale = localStorage.getItem('math_font_scale');
-    if (savedScale) {
-        document.documentElement.style.fontSize = (parseFloat(savedScale) * 16.5) + 'px';
-    }
-
-        lucide.createIcons();
+            lucide.createIcons();
         });
 
         document.addEventListener('click', (e) => {
@@ -1453,37 +1553,44 @@
         }, 150);
     }
 
-        lucide.createIcons();
+    // ===== Scroll & Theme =====
+    lucide.createIcons();
 
-        window.addEventListener('scroll', () => {
-            const winScroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progress-bar').style.width = scrolled + '%';
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('progress-bar');
+        if (bar) bar.style.width = scrolled + '%';
 
-            const topBtn = document.getElementById('btn-back-to-top');
+        const topBtn = document.getElementById('btn-back-to-top');
+        if (topBtn) {
             if (winScroll > 300) {
                 topBtn.classList.add('show');
             } else {
                 topBtn.classList.remove('show');
             }
-        });
+        }
+    });
 
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        let isDark = true;
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isDark = true;
 
+    if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             isDark = !isDark;
             if (isDark) {
                 document.body.removeAttribute('data-theme');
-                themeIcon.setAttribute('data-lucide', 'sun');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
             } else {
                 document.body.setAttribute('data-theme', 'light');
-                themeIcon.setAttribute('data-lucide', 'moon');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
             }
             lucide.createIcons();
         });
+    }
+
     </script>
 </body>
 </html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進階題庫解析目錄｜Ch1 三角函數・高中數學加強班</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #0b1120;
+            --bg2: #131d33;
+            --card: rgba(26, 38, 66, 0.9);
+            --text: #f1f5f9;
+            --muted: #94a3b8;
+            --blue: #38bdf8;
+            --indigo: #818cf8;
+            --purple: #c084fc;
+            --emerald: #34d399;
+            --amber: #fbbf24;
+            --rose: #f43f5e;
+            --border: rgba(255,255,255,0.12);
+            --border-hi: rgba(56,189,248,0.4);
+        }
+        [data-theme="light"] {
+            --bg: #f8fafc; --bg2: #edf2f7; --card: #fff;
+            --text: #0f172a; --muted: #475569;
+            --blue: #0284c7; --indigo: #4338ca; --purple: #7e22ce;
+            --emerald: #047857; --amber: #b45309; --rose: #be123c;
+            --border: #cbd5e1; --border-hi: #0284c7;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* Progress bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--blue), var(--purple), var(--rose));
+            z-index: 1000; transition: width 0.1s;
+        }
+
+        /* Header */
+        header {
+            position: sticky; top: 0; z-index: 999;
+            backdrop-filter: blur(16px);
+            background: rgba(11,17,32,0.92);
+            border-bottom: 1px solid var(--border);
+            padding: 0.6rem 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        [data-theme="light"] header { background: rgba(248,250,252,0.94); }
+
+        .brand {
+            display: flex; align-items: center; gap: 0.55rem;
+            font-weight: 800; font-size: 1.05rem; text-decoration: none;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+
+        .header-right {
+            display: flex; align-items: center; gap: 0.65rem;
+        }
+
+        .btn-outline {
+            display: flex; align-items: center; gap: 0.35rem;
+            padding: 0.4rem 0.9rem; border-radius: 8px;
+            border: 1px solid var(--border-hi);
+            color: var(--blue); background: rgba(56,189,248,0.08);
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover { background: rgba(56,189,248,0.18); }
+
+        .btn-icon {
+            background: var(--card); border: 1px solid var(--border);
+            color: var(--text); width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .btn-icon:hover { border-color: var(--blue); color: var(--blue); }
+
+        /* Main */
+        main { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 2rem 0 2.5rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 2.5rem;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 0.22rem 0.8rem; border-radius: 9999px;
+            background: rgba(56,189,248,0.15); color: var(--blue);
+            font-size: 0.82rem; font-weight: 700; margin-bottom: 0.9rem;
+            border: 1px solid rgba(56,189,248,0.3);
+        }
+        .hero h1 {
+            font-size: 2rem; font-weight: 900; letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+        .hero p { color: var(--muted); font-size: 0.95rem; }
+
+        /* Chapter Section */
+        .chapter { margin-bottom: 2.5rem; }
+        .chapter-label {
+            display: flex; align-items: center; gap: 0.65rem;
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 2px solid var(--indigo);
+        }
+        .ch-badge {
+            background: var(--indigo); color: #fff;
+            font-size: 0.82rem; font-weight: 800;
+            padding: 0.18rem 0.6rem; border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .chapter-label h2 { font-size: 1.15rem; font-weight: 800; }
+
+        /* Test Cards Grid */
+        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+
+        .test-card {
+            display: block; text-decoration: none;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.15rem 1.3rem;
+            transition: all 0.22s ease;
+            position: relative; overflow: hidden;
+        }
+        .test-card::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+            background: linear-gradient(180deg, var(--blue), var(--indigo));
+            opacity: 0; transition: opacity 0.22s;
+        }
+        .test-card:hover { border-color: var(--border-hi); transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+        .test-card:hover::before { opacity: 1; }
+
+        .card-top {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 0.55rem;
+        }
+        .card-tag {
+            font-size: 0.72rem; font-weight: 700;
+            padding: 0.15rem 0.5rem; border-radius: 9999px;
+            background: rgba(56,189,248,0.12);
+            border: 1px solid rgba(56,189,248,0.25);
+            color: var(--blue);
+        }
+        .card-tag.adv { background: rgba(192,132,252,0.12); border-color: rgba(192,132,252,0.3); color: var(--purple); }
+        .card-tag.mix { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.3); color: var(--amber); }
+
+        .card-icon { color: var(--muted); }
+
+        .card-title {
+            font-size: 1rem; font-weight: 700; color: var(--text);
+            margin-bottom: 0.3rem; line-height: 1.4;
+        }
+        .card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+        .card-footer {
+            display: flex; align-items: center; gap: 0.35rem;
+            margin-top: 0.85rem;
+            font-size: 0.8rem; font-weight: 600; color: var(--blue);
+        }
+
+        /* Floating top btn */
+        #btn-top {
+            position: fixed; bottom: 2rem; right: 2rem;
+            background: var(--indigo); color: white; border: none;
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 998;
+        }
+        #btn-top.show { opacity: 1; pointer-events: auto; }
+
+        footer {
+            border-top: 1px solid var(--border); background: var(--bg2);
+            padding: 1.75rem; text-align: center;
+            color: var(--muted); font-size: 0.84rem;
+        }
+    </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header>
+    <a href="../index.html" class="brand">
+        <i data-lucide="compass"></i>
+        <span>高中數學加強班・Ch1 三角函數</span>
+    </a>
+    <div class="header-right">
+        <a href="../index.html" class="btn-outline">
+            <i data-lucide="book-open"></i>
+            <span>核心公式講義</span>
+        </a>
+        <button class="btn-icon" id="theme-toggle" title="深淺模式">
+            <i data-lucide="sun" id="theme-icon"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <div class="hero">
+        <div class="hero-badge">MATHFLIX 進階題庫・逐題解析 ＆ 講義對照</div>
+        <h1>進階題庫 解析目錄</h1>
+        <p>選擇您要練習的卷次，每份均附逐題解析、核心公式對照與避坑提醒</p>
+    </div>
+
+    <!-- Chapter 1-1 -->
+    <div class="chapter">
+        <div class="chapter-label">
+            <span class="ch-badge">Ch 1-1</span>
+            <h2>弧度制・扇形・三角函數圖形</h2>
+        </div>
+        <div class="cards">
+            <a href="b3_ch1-1_t1-2_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 1~2 進階</div>
+                <div class="card-desc">弧度制換算、扇形面積公式、圓弧滾動幾何應用</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+            <a href="b3_ch1-1_t3_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 3 進階</div>
+                <div class="card-desc">三角函數圖形伸縮平移、絕對值圖形、週期與振幅</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+            <a href="b3_ch1-1_t4~6_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 4~6 進階</div>
+                <div class="card-desc">三角函數方程式、圖形交點個數、根之對稱與求和</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+            <a href="b3_ch1-1_t7_基礎+進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag mix">基礎+進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 7 基礎+進階</div>
+                <div class="card-desc">正弦餘弦疊合、受限區間極值、輔助角象限判定</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Chapter 1-2 -->
+    <div class="chapter">
+        <div class="chapter-label">
+            <span class="ch-badge">Ch 1-2</span>
+            <h2>和差角・二倍角・半角・正弦定理・餘弦定理</h2>
+        </div>
+        <div class="cards">
+            <a href="b3_ch1-2_t1-3_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 1~3 進階</div>
+                <div class="card-desc">和差角公式、積化和差、三角比綜合應用</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+            <a href="b3_ch1-2_t4~6_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 4~6 進階</div>
+                <div class="card-desc">二倍角、半角公式、面積公式、外角半角應用</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Chapter 1-3 -->
+    <div class="chapter">
+        <div class="chapter-label">
+            <span class="ch-badge">Ch 1-3</span>
+            <h2>正弦定理・餘弦定理・三角形解題</h2>
+        </div>
+        <div class="cards">
+            <a href="b3_ch1-3_進階題型解析與講義對照.html" class="test-card">
+                <div class="card-top">
+                    <span class="card-tag adv">進階</span>
+                    <span class="card-icon"><i data-lucide="file-text" width="16" height="16"></i></span>
+                </div>
+                <div class="card-title">主題 1~3 進階</div>
+                <div class="card-desc">正弦定理、餘弦定理、三角形面積、外接圓內切圓</div>
+                <div class="card-footer"><i data-lucide="arrow-right" width="14" height="14"></i> 開啟解析</div>
+            </a>
+        </div>
+    </div>
+
+</main>
+
+<button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i data-lucide="arrow-up"></i>
+</button>
+
+<footer>
+    <p style="font-weight:700; color:var(--text); margin-bottom:0.3rem;">高中數學加強班 進階題庫解析系統</p>
+    <p>© 2026 學測中心特訓教材｜<a href="../index.html" style="color:var(--blue); text-decoration:none;">← 返回核心公式講義</a></p>
+</footer>
+
+<script>
+    lucide.createIcons();
+
+    window.addEventListener('scroll', () => {
+        const s = document.documentElement.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById('progress-bar').style.width = (s/h*100) + '%';
+        document.getElementById('btn-top').classList.toggle('show', s > 300);
+    });
+
+    const btn = document.getElementById('theme-toggle');
+    const icon = document.getElementById('theme-icon');
+    let dark = true;
+    btn.addEventListener('click', () => {
+        dark = !dark;
+        document.body.setAttribute('data-theme', dark ? '' : 'light');
+        icon.setAttribute('data-lucide', dark ? 'sun' : 'moon');
+        lucide.createIcons();
+    });
+</script>
+</body>
+</html>

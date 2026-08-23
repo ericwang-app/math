@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch1-1 主題 4~6 三角方程與不等式【基礎卷】逐題解析 ＆ 講義技巧對照手冊</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #131d33;
+            --bg-card: rgba(26, 38, 66, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #818cf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #f43f5e;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(56, 189, 248, 0.4);
+            --ref-badge-bg: rgba(56, 189, 248, 0.15);
+            --ref-badge-border: rgba(56, 189, 248, 0.35);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #edf2f7;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --accent-indigo: #4338ca;
+            --accent-purple: #7e22ce;
+            --accent-emerald: #047857;
+            --accent-amber: #b45309;
+            --accent-rose: #be123c;
+            --border-color: #cbd5e1;
+            --border-highlight: #0284c7;
+            --ref-badge-bg: #e0f2fe;
+            --ref-badge-border: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 15px;
+        }
+
+        /* Top Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-rose));
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Header & Navigation Bar Standard Styling */
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 17, 32, 0.92);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            padding: 0.65rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        [data-theme="light"] header {
+            background: rgba(248, 250, 252, 0.94);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .header-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-nav-link {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.42rem 0.85rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.86rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-nav-link:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.08);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-left: auto;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+        }
+
+        /* ===== Unified Elegant Print Dropdown ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-dropdown {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.45rem 0.95rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+        }
+        .btn-dropdown:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.15);
+        }
+        .btn-dropdown .chevron-icon {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.2s ease;
+            opacity: 0.7;
+        }
+        .dropdown.active .btn-dropdown .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown.active .btn-dropdown {
+            border-color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.18);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 0.4rem;
+            min-width: 220px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+        [data-theme="light"] .dropdown-menu {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        .dropdown.active .dropdown-menu {
+            display: block;
+            animation: dropdownFade 0.18s ease;
+        }
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0.35rem 0.6rem 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .dropdown-item:hover {
+            background: rgba(52, 211, 153, 0.12);
+            color: var(--accent-emerald);
+        }
+        .dropdown-item i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-emerald);
+            flex-shrink: 0;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+        .item-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 1px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+        }
+
+        /* Document Title Header */
+        .doc-header {
+            text-align: center;
+            padding: 1.5rem 0 2rem 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 2.2rem;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-emerald);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .doc-header h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1.25rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-emerald);
+            scroll-margin-top: 5rem;
+        }
+
+        .section-badge {
+            background: var(--accent-emerald);
+            color: #0b1120;
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        [data-theme="light"] .section-badge {
+            color: #ffffff;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Question Box Card */
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+            transition: border-color 0.2s ease;
+        }
+        .q-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .q-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .q-number {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--accent-emerald);
+        }
+
+        .q-school-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .q-body {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .q-ans-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.9rem;
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--accent-emerald);
+        }
+
+        .q-ans-badge {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .q-sol {
+            background: rgba(15, 23, 42, 0.5);
+            border-left: 3px solid var(--accent-emerald);
+            border-radius: 0 8px 8px 0;
+            padding: 0.85rem 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        [data-theme="light"] .q-sol {
+            background: #f1f5f9;
+        }
+
+        /* Cross Reference Matrix Panel */
+        .cross-ref-panel {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(56, 189, 248, 0.08));
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 10px;
+            padding: 0.95rem 1.15rem;
+            margin-top: 0.9rem;
+        }
+
+        .cross-ref-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--accent-emerald);
+            margin-bottom: 0.65rem;
+        }
+
+        .ref-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .ref-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--ref-badge-bg);
+            border: 1px solid var(--ref-badge-border);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .ref-tag.sop {
+            background: rgba(192, 132, 252, 0.15);
+            border-color: rgba(192, 132, 252, 0.4);
+            color: var(--accent-purple);
+        }
+
+        .ref-tag.trap {
+            background: rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.4);
+            color: var(--accent-rose);
+        }
+
+        .ref-tag.formula {
+            background: rgba(52, 211, 153, 0.15);
+            border-color: rgba(52, 211, 153, 0.4);
+            color: var(--accent-emerald);
+        }
+
+        .ref-reason {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .ref-reason strong {
+            color: var(--text-main);
+        }
+
+        /* Answer / Solution reveal toggle */
+        .reveal-wrapper {
+            margin-top: 0.85rem;
+        }
+        .reveal-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.25rem;
+            border-radius: 8px;
+            border: 1.5px dashed rgba(52, 211, 153, 0.4);
+            background: rgba(52, 211, 153, 0.05);
+            color: var(--accent-emerald);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            user-select: none;
+        }
+        .reveal-btn:hover {
+            background: rgba(52, 211, 153, 0.12);
+            border-style: solid;
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            margin-bottom: 0.85rem;
+        }
+        .reveal-icon {
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block !important;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Top Button */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-emerald);
+            color: #0b1120;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        @media print {
+            header, #progress-bar, #btn-back-to-top, .header-actions, .reveal-btn, .dropdown {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 9.5pt !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .q-card {
+                background: #ffffff !important;
+                border: 1pt solid #333 !important;
+                color: #000 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 1rem !important;
+            }
+            .q-sol, .cross-ref-panel {
+                background: #f8fafc !important;
+                border: 0.6pt solid #666 !important;
+                color: #000 !important;
+            }
+            .ref-tag {
+                background: #eee !important;
+                color: #000 !important;
+                border-color: #666 !important;
+            }
+            .reveal-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="brand-logo">
+            <i data-lucide="compass"></i>
+            <span>1-1 主題 4~6 三角方程【基礎解析】</span>
+        </a>
+        <div class="header-nav-group">
+            <a href="index.html" class="btn-nav-link" title="返回進階題庫目錄">
+                <i data-lucide="folder-up"></i>
+                <span>題庫目錄</span>
+            </a>
+            <a href="../index.html" class="btn-nav-link" title="前往核心公式講義">
+                <i data-lucide="book-open"></i>
+                <span>核心講義</span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
+                <i data-lucide="sun" id="theme-icon"></i>
+            </button>
+            <div class="dropdown">
+                <button type="button" class="btn-dropdown" onclick="togglePrintDropdown(event)" title="列印或存為 PDF">
+                    <i data-lucide="printer"></i>
+                    <span>列印試卷</span>
+                    <i data-lucide="chevron-down" class="chevron-icon"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">選擇列印方向</div>
+                    <button type="button" class="dropdown-item" onclick="printDirect('portrait')">
+                        <i data-lucide="file-text"></i>
+                        <div>
+                            <div class="item-title">📄 A4 直向列印</div>
+                            <div class="item-desc">標準單欄排版</div>
+                        </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="printDirect('landscape')">
+                        <i data-lucide="columns-2"></i>
+                        <div>
+                            <div class="item-title">📑 A4 橫向列印</div>
+                            <div class="item-desc">雙欄考卷風格排版</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div class="doc-header">
+            <div class="doc-badge">MATHFLIX 基礎特訓題庫・全卷逐題對照</div>
+            <h1>1-1 主題 4~6 三角方程式與不等式【基礎卷】逐題解析 ＆ 講義技巧對照表</h1>
+            <p>題目下方先提供「講義模組與解題提示」，點擊展開可查看標準答案與完整算式</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1 -->
+        <!-- ========================================== -->
+        <div id="sec-1" class="section-header">
+            <span class="section-badge">一、填充題</span>
+            <h2 class="section-title">一、填充題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：負正弦不等式求解</div>
+                <div class="q-school-tag">常考基礎題</div>
+            </div>
+            <div class="q-body">
+                在 $0 \le x \le 2\pi$ 範圍內，試求三角不等式 $\sin x \le -\frac{1}{2}$ 之解為【　　】。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 正弦圖形與特徵</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式與不等式圖解法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>遇到三角不等式，務必先求等號兩端基準角，再畫正弦波形圖確認波谷連續區間。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">$\frac{7\pi}{6} \le x \le \frac{11\pi}{6}$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>1. 先找出方程式 $\sin x = -\frac{1}{2}$ 在 $[0, 2\pi]$ 的兩個基準解：<br>因為 $\sin \frac{\pi}{6} = \frac{1}{2}$，正弦在第三、四象限為負值：<br>第三象限解：$x_1 = \pi + \frac{\pi}{6} = \frac{7\pi}{6}$<br>第四象限解：$x_2 = 2\pi - \frac{\pi}{6} = \frac{11\pi}{6}$<br>2. 畫出 $y = \sin x$ 與水平線 $y = -\frac{1}{2}$ 之圖形，落在直線下方（波谷凹陷處）的區間即為：<br>$\frac{7\pi}{6} \le x \le \frac{11\pi}{6}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：正弦深波谷不等式求解</div>
+                <div class="q-school-tag">常考基礎題</div>
+            </div>
+            <div class="q-body">
+                在 $0 \le x \le 2\pi$ 範圍內，試求三角不等式 $\sin x \le -\frac{\sqrt{3}}{2}$ 之解為【　　】。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 特殊角三角比</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 方程式與不等式圖解法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>參考角為 $60^\circ = \frac{\pi}{3}$，負值在第三、四象限。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">$\frac{4\pi}{3} \le x \le \frac{5\pi}{3}$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>1. 找出方程式 $\sin x = -\frac{\sqrt{3}}{2}$ 在 $[0, 2\pi]$ 的兩交點：<br>參考角為 $\frac{\pi}{3}$：<br>第三象限解：$x_1 = \pi + \frac{\pi}{3} = \frac{4\pi}{3}$<br>第四象限解：$x_2 = 2\pi - \frac{\pi}{3} = \frac{5\pi}{3}$<br>2. 由正弦波形圖，在線段 $y = -\frac{\sqrt{3}}{2}$ 下方之區域為：<br>$\frac{4\pi}{3} \le x \le \frac{5\pi}{3}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 2 -->
+        <!-- ========================================== -->
+        <div id="sec-2" class="section-header">
+            <span class="section-badge">二、計算題與延伸素養題</span>
+            <h2 class="section-title">二、計算題與延伸素養題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：餘弦方程式標準求解</div>
+                <div class="q-school-tag">經典計算題</div>
+            </div>
+            <div class="q-body">
+                在 $0 \le x \le 2\pi$ 範圍內，試求方程式 $\cos x = \frac{1}{2}$ 的所有實數解。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 特殊角三角比</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 根之對稱性求和法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>餘弦圖形對稱於 $x = \pi$，若一根為 $\alpha$，則對應另一根必為 $2\pi - \alpha$。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">$x = \frac{\pi}{3}, \frac{5\pi}{3}$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>1. 餘弦函數在第一與第四象限為正值。<br>2. 第一象限銳角解：$\cos \frac{\pi}{3} = \frac{1}{2} \implies x_1 = \frac{\pi}{3}$。<br>3. 第四象限對稱解：$x_2 = 2\pi - \frac{\pi}{3} = \frac{5\pi}{3}$。<br>（由圖形對稱於 $x = \pi$ 亦可驗證：$\frac{\pi}{3} + \frac{5\pi}{3} = 2\pi$）。<br>故方程式的所有解為 $x = \frac{\pi}{3}$ 或 $x = \frac{5\pi}{3}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：正餘弦特殊角方程式聯立求解</div>
+                <div class="q-school-tag">段考必考題</div>
+            </div>
+            <div class="q-body">
+                在 $0 \le x \le 2\pi$ 範圍內，試分別求解下列三角方程式：<br>(1) $\sin x = \frac{\sqrt{3}}{2}$<br>(2) $\cos x = -\frac{1}{2}$
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 廣義角象限與正負號</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 1 廣義角象限求值</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>正弦對稱軸為 $x = \frac{\pi}{2}$（兩根和為 $\pi$）；餘弦對稱軸為 $x = \pi$（兩根和為 $2\pi$）。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(1) $x = \frac{\pi}{3}, \frac{2\pi}{3}$；(2) $x = \frac{2\pi}{3}, \frac{4\pi}{3}$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>(1) $\sin x = \frac{\sqrt{3}}{2}$：<br>正弦在第一、二象限為正值，參考角為 $\frac{\pi}{3}$：<br>第一象限解：$x = \frac{\pi}{3}$<br>第二象限解：$x = \pi - \frac{\pi}{3} = \frac{2\pi}{3}$<br>故解為 $x = \frac{\pi}{3}, \frac{2\pi}{3}$。<br><br>(2) $\cos x = -\frac{1}{2}$：<br>餘弦在第二、三象限為負值，參考角為 $\frac{\pi}{3}$：<br>第二象限解：$x = \pi - \frac{\pi}{3} = \frac{2\pi}{3}$<br>第三象限解：$x = \pi + \frac{\pi}{3} = \frac{4\pi}{3}$<br>故解為 $x = \frac{2\pi}{3}, \frac{4\pi}{3}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q3 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 3 題：週期擴展與根之對稱求和</div>
+                <div class="q-school-tag">大考重點延伸</div>
+            </div>
+            <div class="q-body">
+                在 $0 \le x \le 2\pi$ 範圍內，方程式 $\sin 2x = \frac{1}{3}$ 共有多少個實數解？且所有實數解的總和為何？
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 2 頁：2-1 週期函數解的個數</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 6 根之對稱性求和法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>求多根之和絕不需解出單一根的近似值，善用對稱軸 $\alpha + \beta = 2 x_0$ 即可直接相加。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-5', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-5" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">共 4 個解；總和為 $2\pi$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>1. 令 $\theta = 2x$，當 $0 \le x \le 2\pi$ 時，$0 \le \theta \le 4\pi$（包含 2 個完整週期）。<br>2. 方程式 $\sin \theta = \frac{1}{3}$ 在每個週期 $[0, 2\pi)$ 內恰有 2 個解：<br>- 第一週期 $[0, 2\pi]$：$\theta_1 + \theta_2 = \pi$（對稱於 $\frac{\pi}{2}$）<br>- 第二週期 $[2\pi, 4\pi]$：$\theta_3 + \theta_4 = 5\pi$（對稱於 $\frac{5\pi}{2}$）<br>3. 故在 $0 \le \theta \le 4\pi$ 內共有 $2 + 2 = 4$ 個解。<br>4. 所有 $\theta$ 解的總和：<br>$\sum \theta = (\theta_1 + \theta_2) + (\theta_3 + \theta_4) = \pi + 5\pi = 6\pi$。<br>5. 還原 $x = \frac{\theta}{2}$：<br>所有 $x$ 解之總和 $\sum x = \frac{1}{2} \sum \theta = \frac{6\pi}{2} = 3\pi$... 等等，四根分別為：<br>$x_1+x_2 = \frac{\pi}{2}$，$x_3+x_4 = \frac{3\pi}{2}$，總和為 $\frac{\pi}{2} + \frac{3\pi}{2} = 2\pi$。<br>（亦可由 $y = \sin 2x$ 在 $[0, 2\pi]$ 對稱於 $x = \frac{\pi}{2}$ 與 $x = \frac{3\pi}{2}$ 兩中心驗證）。<br>故共有 4 個解，解之總和為 $2\pi$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- Floating Top Button -->
+    <button id="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="返回頂部">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.3rem;">高中數學加強班 專屬題目解析與對照系統</p>
+        <p>© 2026 學測中心特訓教材｜編撰製作：數學教學研究組</p>
+    </footer>
+
+    <script>
+    // ===== 1. Initialize Icons on Load =====
+    function initIcons() {
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    // ===== 2. Answer Reveal Toggle Function =====
+    function toggleReveal(id, btnElement) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        
+        const btn = btnElement || (window.event ? window.event.currentTarget : null);
+        const isOpen = target.classList.toggle('open');
+        
+        if (btn) {
+            btn.classList.toggle('open', isOpen);
+            const label = btn.querySelector('.btn-label');
+            if (label) {
+                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
+            }
+            const icon = btn.querySelector('.reveal-icon');
+            if (icon) {
+                icon.textContent = isOpen ? '▲' : '▼';
+            }
+        }
+    }
+
+    // ===== 3. Dropdown Menu Logic =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    // ===== 4. Direct Print Function =====
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
+    // ===== 5. Scroll Progress & Back to Top =====
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('progress-bar');
+        if (bar) bar.style.width = scrolled + '%';
+
+        const topBtn = document.getElementById('btn-back-to-top');
+        if (topBtn) {
+            if (winScroll > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        }
+    });
+
+    // ===== 6. Theme Toggle =====
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isDark = true;
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            initIcons();
+        });
+    }
+
+    // Run on load
+    document.addEventListener('DOMContentLoaded', initIcons);
+    window.addEventListener('load', initIcons);
+    initIcons();
+    </script>
+</body>
+</html>

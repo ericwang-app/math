@@ -596,6 +596,125 @@
             }
         }
 
+
+        /* ===== Unified Elegant Print Dropdown ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-dropdown {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.45rem 0.95rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+        }
+        .btn-dropdown:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.15);
+        }
+        .btn-dropdown .chevron-icon {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.2s ease;
+            opacity: 0.7;
+        }
+        .dropdown.active .btn-dropdown .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown.active .btn-dropdown {
+            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.18);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 0.4rem;
+            min-width: 220px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+        [data-theme="light"] .dropdown-menu {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        .dropdown.active .dropdown-menu {
+            display: block;
+            animation: dropdownFade 0.18s ease;
+        }
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0.35rem 0.6rem 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .dropdown-item:hover {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-blue);
+        }
+        .dropdown-item i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-blue);
+            flex-shrink: 0;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+        .item-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 1px;
+        }
+
+        @media print {
+            .dropdown, .btn-dropdown, .dropdown-menu {
+                display: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -603,7 +722,7 @@
     <!-- Progress Bar -->
     <div id="progress-bar"></div>
 
-        <!-- Header -->
+            <!-- Header -->
     <header>
         <a href="index.html" class="brand-logo">
             <i data-lucide="compass"></i>
@@ -623,15 +742,29 @@
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-            <div class="print-actions-group">
-                <button class="btn-print" onclick="printDirect('portrait')" title="以 A4 直向列印">
+            <div class="dropdown">
+                <button type="button" class="btn-dropdown" onclick="togglePrintDropdown(event)" title="列印或存為 PDF">
                     <i data-lucide="printer"></i>
-                    <span>直向列印</span>
+                    <span>列印試卷</span>
+                    <i data-lucide="chevron-down" class="chevron-icon"></i>
                 </button>
-                <button class="btn-print btn-print-alt" onclick="printDirect('landscape')" title="以 A4 橫向雙欄列印 (考卷排版)">
-                    <i data-lucide="columns-2"></i>
-                    <span>橫向列印</span>
-                </button>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">選擇列印方向</div>
+                    <button type="button" class="dropdown-item" onclick="printDirect('portrait')">
+                        <i data-lucide="file-text"></i>
+                        <div>
+                            <div class="item-title">📄 A4 直向列印</div>
+                            <div class="item-desc">標準單欄排版</div>
+                        </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="printDirect('landscape')">
+                        <i data-lucide="columns-2"></i>
+                        <div>
+                            <div class="item-title">📑 A4 橫向列印</div>
+                            <div class="item-desc">雙欄考卷風格排版</div>
+                        </div>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -849,6 +982,24 @@
             window.print();
         }, 150);
     }
+
+
+    // ===== Dropdown Menu Logic =====
+    function togglePrintDropdown(event) {
+        event.stopPropagation();
+        const dropdown = event.currentTarget.closest('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
 
     lucide.createIcons();
             }

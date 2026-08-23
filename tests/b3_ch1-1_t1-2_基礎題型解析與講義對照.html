@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ch1-1 主題 1~2 弧度與扇形【基礎卷】逐題解析 ＆ 講義技巧對照手冊</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <!-- MathJax 3 -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        renderActions: {
+          addMenu: []
+        }
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #131d33;
+            --bg-card: rgba(26, 38, 66, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-indigo: #818cf8;
+            --accent-purple: #c084fc;
+            --accent-emerald: #34d399;
+            --accent-amber: #fbbf24;
+            --accent-rose: #f43f5e;
+            --border-color: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(56, 189, 248, 0.4);
+            --ref-badge-bg: rgba(56, 189, 248, 0.15);
+            --ref-badge-border: rgba(56, 189, 248, 0.35);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #edf2f7;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-blue: #0284c7;
+            --accent-indigo: #4338ca;
+            --accent-purple: #7e22ce;
+            --accent-emerald: #047857;
+            --accent-amber: #b45309;
+            --accent-rose: #be123c;
+            --border-color: #cbd5e1;
+            --border-highlight: #0284c7;
+            --ref-badge-bg: #e0f2fe;
+            --ref-badge-border: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.65;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 15px;
+        }
+
+        /* Top Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-rose));
+            width: 0%;
+            z-index: 1000;
+        }
+
+        /* Header & Navigation Bar Standard Styling */
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(11, 17, 32, 0.92);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 999;
+            padding: 0.65rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        [data-theme="light"] header {
+            background: rgba(248, 250, 252, 0.94);
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .header-nav-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-nav-link {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.42rem 0.85rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.86rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-nav-link:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.08);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            margin-left: auto;
+        }
+
+        .btn-icon {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .btn-icon:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+        }
+
+        /* ===== Unified Elegant Print Dropdown ===== */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-dropdown {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.45rem 0.95rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: all 0.2s ease;
+        }
+        .btn-dropdown:hover {
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.15);
+        }
+        .btn-dropdown .chevron-icon {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.2s ease;
+            opacity: 0.7;
+        }
+        .dropdown.active .btn-dropdown .chevron-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown.active .btn-dropdown {
+            border-color: var(--accent-emerald);
+            background: rgba(52, 211, 153, 0.18);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-highlight);
+            border-radius: 12px;
+            padding: 0.4rem;
+            min-width: 220px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+        }
+        [data-theme="light"] .dropdown-menu {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+        .dropdown.active .dropdown-menu {
+            display: block;
+            animation: dropdownFade 0.18s ease;
+        }
+        @keyframes dropdownFade {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0.35rem 0.6rem 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .dropdown-item:hover {
+            background: rgba(52, 211, 153, 0.12);
+            color: var(--accent-emerald);
+        }
+        .dropdown-item i {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-emerald);
+            flex-shrink: 0;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
+        .item-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-top: 1px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 5rem 1.5rem;
+        }
+
+        /* Document Title Header */
+        .doc-header {
+            text-align: center;
+            padding: 1.5rem 0 2rem 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 2.2rem;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-emerald);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .doc-header h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 2.5rem 0 1.25rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-emerald);
+            scroll-margin-top: 5rem;
+        }
+
+        .section-badge {
+            background: var(--accent-emerald);
+            color: #0b1120;
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        [data-theme="light"] .section-badge {
+            color: #ffffff;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Question Box Card */
+        .q-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            margin-bottom: 1.6rem;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+            transition: border-color 0.2s ease;
+        }
+        .q-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .q-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .q-number {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--accent-emerald);
+        }
+
+        .q-school-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .q-body {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .q-choices {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        [data-theme="light"] .q-choices {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        .q-ans-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.9rem;
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--accent-emerald);
+        }
+
+        .q-ans-badge {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 0.2rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .q-sol {
+            background: rgba(15, 23, 42, 0.5);
+            border-left: 3px solid var(--accent-emerald);
+            border-radius: 0 8px 8px 0;
+            padding: 0.85rem 1.1rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        [data-theme="light"] .q-sol {
+            background: #f1f5f9;
+        }
+
+        /* Cross Reference Matrix Panel */
+        .cross-ref-panel {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.08), rgba(56, 189, 248, 0.08));
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            border-radius: 10px;
+            padding: 0.95rem 1.15rem;
+            margin-top: 0.9rem;
+        }
+
+        .cross-ref-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 800;
+            font-size: 0.92rem;
+            color: var(--accent-emerald);
+            margin-bottom: 0.65rem;
+        }
+
+        .ref-tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .ref-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: var(--ref-badge-bg);
+            border: 1px solid var(--ref-badge-border);
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .ref-tag.sop {
+            background: rgba(192, 132, 252, 0.15);
+            border-color: rgba(192, 132, 252, 0.4);
+            color: var(--accent-purple);
+        }
+
+        .ref-tag.trap {
+            background: rgba(244, 63, 94, 0.15);
+            border-color: rgba(244, 63, 94, 0.4);
+            color: var(--accent-rose);
+        }
+
+        .ref-tag.formula {
+            background: rgba(52, 211, 153, 0.15);
+            border-color: rgba(52, 211, 153, 0.4);
+            color: var(--accent-emerald);
+        }
+
+        .ref-reason {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        .ref-reason strong {
+            color: var(--text-main);
+        }
+
+        /* Answer / Solution reveal toggle */
+        .reveal-wrapper {
+            margin-top: 0.85rem;
+        }
+        .reveal-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.25rem;
+            border-radius: 8px;
+            border: 1.5px dashed rgba(52, 211, 153, 0.4);
+            background: rgba(52, 211, 153, 0.05);
+            color: var(--accent-emerald);
+            font-weight: 700;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            user-select: none;
+        }
+        .reveal-btn:hover {
+            background: rgba(52, 211, 153, 0.12);
+            border-style: solid;
+        }
+        .reveal-btn.open {
+            border-style: solid;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            margin-bottom: 0.85rem;
+        }
+        .reveal-icon {
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+        }
+        .reveal-content {
+            display: none;
+        }
+        .reveal-content.open {
+            display: block !important;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Top Button */
+        #btn-back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--accent-emerald);
+            color: #0b1120;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+        #btn-back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-secondary);
+        }
+
+        @media print {
+            header, #progress-bar, #btn-back-to-top, .header-actions, .reveal-btn, .dropdown {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 9.5pt !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            .q-card {
+                background: #ffffff !important;
+                border: 1pt solid #333 !important;
+                color: #000 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                margin-bottom: 1rem !important;
+            }
+            .q-sol, .q-choices, .cross-ref-panel {
+                background: #f8fafc !important;
+                border: 0.6pt solid #666 !important;
+                color: #000 !important;
+            }
+            .ref-tag {
+                background: #eee !important;
+                color: #000 !important;
+                border-color: #666 !important;
+            }
+            .reveal-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="brand-logo">
+            <i data-lucide="compass"></i>
+            <span>1-1 主題 1~2 弧度與扇形【基礎解析】</span>
+        </a>
+        <div class="header-nav-group">
+            <a href="index.html" class="btn-nav-link" title="返回進階題庫目錄">
+                <i data-lucide="folder-up"></i>
+                <span>題庫目錄</span>
+            </a>
+            <a href="../index.html" class="btn-nav-link" title="前往核心公式講義">
+                <i data-lucide="book-open"></i>
+                <span>核心講義</span>
+            </a>
+        </div>
+        <div class="header-actions">
+            <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
+                <i data-lucide="sun" id="theme-icon"></i>
+            </button>
+            <div class="dropdown">
+                <button type="button" class="btn-dropdown" onclick="togglePrintDropdown(event)" title="列印或存為 PDF">
+                    <i data-lucide="printer"></i>
+                    <span>列印試卷</span>
+                    <i data-lucide="chevron-down" class="chevron-icon"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">選擇列印方向</div>
+                    <button type="button" class="dropdown-item" onclick="printDirect('portrait')">
+                        <i data-lucide="file-text"></i>
+                        <div>
+                            <div class="item-title">📄 A4 直向列印</div>
+                            <div class="item-desc">標準單欄排版</div>
+                        </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="printDirect('landscape')">
+                        <i data-lucide="columns-2"></i>
+                        <div>
+                            <div class="item-title">📑 A4 橫向列印</div>
+                            <div class="item-desc">雙欄考卷風格排版</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <div class="doc-header">
+            <div class="doc-badge">MATHFLIX 基礎特訓題庫・全卷逐題對照</div>
+            <h1>1-1 主題 1~2 弧度與扇形【基礎卷】逐題解析 ＆ 講義技巧對照表</h1>
+            <p>題目下方先提供「講義模組與解題提示」，點擊展開可查看標準答案與完整算式</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 1 -->
+        <!-- ========================================== -->
+        <div id="sec-1" class="section-header">
+            <span class="section-badge">一、單選題</span>
+            <h2 class="section-title">一、單選題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：角度與弧度單位換算</div>
+                <div class="q-school-tag">基礎題</div>
+            </div>
+            <div class="q-body">
+                已知世界上傾斜度最高的摩天大樓坐落於阿布達比，其傾斜度達到 $18^\circ$，此傾斜度換算成弳（或弧度）為下列哪一個選項？<div class='q-choices'><div>(A) $\frac{\pi}{36}$</div><div>(B) $\frac{\pi}{18}$</div><div>(C) $\frac{\pi}{20}$</div><div>(D) $\frac{\pi}{10}$</div><div>(E) $\frac{\pi}{8}$</div></div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 弧度量定義與換算</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>牢記基本換算關係：$180^\circ = \pi \text{ rad}$，度數轉弧度乘上 $\frac{\pi}{180}$。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-1" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(D)</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>依據弧度（弳）與度數的轉換公式：<br>$1^\circ = \frac{\pi}{180} \text{ rad}$<br>故 $18^\circ = 18 \times \frac{\pi}{180} = \frac{\pi}{10} \text{ rad}$。<br>故選 <strong>(D)</strong>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：無單位正弦值估計</div>
+                <div class="q-school-tag">基礎題</div>
+            </div>
+            <div class="q-body">
+                若 $a = \sin 2$，則下列選項何者正確？<div class='q-choices'><div>(A) $-1 < a < -\frac{\sqrt{3}}{2}$</div><div>(B) $-\frac{\sqrt{3}}{2} < a < -\frac{\sqrt{2}}{2}$</div><div>(C) $-\frac{\sqrt{2}}{2} < a < -\frac{1}{2}$</div><div>(D) $\frac{\sqrt{2}}{2} < a < \frac{\sqrt{3}}{2}$</div><div>(E) $\frac{\sqrt{3}}{2} < a < 1$</div></div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 弧度制定義</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 1 單位圓角度與投影法</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>看到 $\sin 2$ 務必記得轉換為大約 $114.6^\circ$，落在第二象限，正弦看高度。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-2" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(E)</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>無度數符號表示為弧度：<br>$1 \text{ rad} \approx 57.3^\circ \implies 2 \text{ rad} \approx 114.6^\circ$<br>在第二象限中，角度越大正弦值越小：<br>$90^\circ < 114.6^\circ < 120^\circ$<br>$\implies \sin 90^\circ > \sin 2 > \sin 120^\circ$<br>$\implies 1 > a > \frac{\sqrt{3}}{2}$。<br>故 $\frac{\sqrt{3}}{2} < a < 1$。故選 <strong>(E)</strong>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 2 -->
+        <!-- ========================================== -->
+        <div id="sec-2" class="section-header">
+            <span class="section-badge">二、多選題</span>
+            <h2 class="section-title">二、多選題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：多個三角比大小比較</div>
+                <div class="q-school-tag">新竹高中</div>
+            </div>
+            <div class="q-body">
+                下列選項哪些是正確的？<div class='q-choices'><div>(A) $\cos 10 > \cos 10^\circ$</div><div>(B) $\tan 3 > \tan 3^\circ$</div><div>(C) $\cos 1 > \sin 1^\circ$</div><div>(D) $\sin 2 > \sin 1 > \sin 3$</div><div>(E) $\tan 1 > \tan 3 > \tan 2$</div></div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 1 單位圓角度與投影法</span><span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：弧度 vs 度數混淆陷阱</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>正弦看高度、餘弦看橫寬、正切看斜率，這是解無單位三角比比大小的最佳 SOP。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-3" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(C)(D)(E)</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>(A) ╳：$10 \text{ rad} \approx 573^\circ = 360^\circ + 213^\circ$，落在第三象限，$\cos 10 < 0$；而 $\cos 10^\circ > 0$，故 $\cos 10 < \cos 10^\circ$。<br>(B) ╳：$3 \text{ rad} \approx 171.9^\circ$，第二象限 $\tan 3 < 0$；而 $\tan 3^\circ > 0$，故 $\tan 3 < \tan 3^\circ$。<br>(C) ○：$1 \text{ rad} \approx 57.3^\circ$，$\cos 1 \approx \cos 57.3^\circ \approx 0.54$；而 $\sin 1^\circ \approx 0.017$，故 $\cos 1 > \sin 1^\circ$。<br>(D) ○：$1 \approx 57.3^\circ, 2 \approx 114.6^\circ, 3 \approx 171.9^\circ$。<br>在單位圓上看 $y$ 坐標高度：$114.6^\circ$ 離 $90^\circ$ 最近，高度最高；$171.9^\circ$ 最低。故 $\sin 2 > \sin 1 > \sin 3$。<br>(E) ○：正切看直線斜率：$1 \text{ rad}$ 斜率為正（$\tan 1 > 0$）；$3 \text{ rad}$ 與 $2 \text{ rad}$ 皆為負斜率，但 $3$ 的傾斜較平緩（$\tan 3 > \tan 2$）。故 $\tan 1 > \tan 3 > \tan 2$。<br>故選 <strong>(C)(D)(E)</strong>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q2 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 2 題：圓周率弧度與度數比較</div>
+                <div class="q-school-tag">常考題</div>
+            </div>
+            <div class="q-body">
+                下列哪些選項正確？<div class='q-choices'><div>(A) $\sin \pi > \sin \pi^\circ$</div><div>(B) $\cos \pi > \cos \pi^\circ$</div><div>(C) $\cos \pi^\circ > \sin \pi^\circ$</div><div>(D) $\tan \pi > \tan \pi^\circ$</div><div>(E) $\sin \frac{\sqrt{3}}{2} < \frac{\sqrt{3}}{2}$</div></div>
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag trap"><i data-lucide="alert-triangle"></i> 第 4 頁：弧度 vs 度數混淆陷阱</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>千萬不可將 $\pi$ 與 $\pi^\circ$ 混為一談，$\pi^\circ \approx 3.14^\circ$ 是微小銳角。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-4" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(C)(E)</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>注意區分 $\pi \text{ rad} = 180^\circ$，而 $\pi^\circ \approx 3.14^\circ$（極小的第一象限銳角）。<br>(A) ╳：$\sin \pi = \sin 180^\circ = 0$；而 $\sin \pi^\circ = \sin 3.14^\circ > 0$。故 $\sin \pi < \sin \pi^\circ$。<br>(B) ╳：$\cos \pi = -1$；而 $\cos \pi^\circ = \cos 3.14^\circ \approx 0.998$。故 $\cos \pi < \cos \pi^\circ$。<br>(C) ○：$\cos 3.14^\circ \approx 0.998 > \sin 3.14^\circ \approx 0.055$。正確。<br>(D) ╳：$\tan \pi = 0$；而 $\tan \pi^\circ > 0$。故 $\tan \pi < \tan \pi^\circ$。<br>(E) ○：$\frac{\sqrt{3}}{2} \approx 0.866 \text{ rad} \approx 49.6^\circ$。<br>$\sin 49.6^\circ < \sin 60^\circ = \frac{\sqrt{3}}{2}$。正確。<br>故選 <strong>(C)(E)</strong>。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- ========================================== -->
+        <!-- SECTION 3 -->
+        <!-- ========================================== -->
+        <div id="sec-3" class="section-header">
+            <span class="section-badge">三、填充題</span>
+            <h2 class="section-title">三、填充題</h2>
+        </div>
+        
+        <!-- Q1 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 1 題：扇形弧長與面積基本計算</div>
+                <div class="q-school-tag">常考基礎題</div>
+            </div>
+            <div class="q-body">
+                已知一扇形半徑為 $12$ 公分，圓心角為 $60^\circ$，則此扇形的弧長為【　　】公分，面積為【　　】平方公分。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 扇形幾何公式</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>扇形公式 $s=r\theta$ 與 $A=\frac{1}{2}r^2\theta$ 必須在 $\theta$ 為弧度制時才能直接套用。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-5', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-5" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">弧長 $4\pi$；面積 $24\pi$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>1. 先將圓心角化為弧度：$\theta = 60^\circ = \frac{\pi}{3} \text{ rad}$。<br>2. 弧長公式：$s = r\theta = 12 \times \frac{\pi}{3} = 4\pi \text{ (公分)}$。<br>3. 面積公式：$A = \frac{1}{2}r^2\theta = \frac{1}{2} \times 12^2 \times \frac{\pi}{3} = 24\pi \text{ (平方公分)}$。<br>（亦可用 $A = \frac{1}{2}rs = \frac{1}{2} \times 12 \times 4\pi = 24\pi$）。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q4 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 4 題：鐘錶指針尖端弧長</div>
+                <div class="q-school-tag">生活素養題</div>
+            </div>
+            <div class="q-body">
+                已知時鐘的分針長 $24$ 公分，則從 9 點 10 分到 9 點 35 分這 25 分鐘間，分針尖端所移動的弧長為【　　】公分。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 扇形幾何公式</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 2 鐘錶指針與旋轉角</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>分針旋轉速度為 $\frac{\pi}{30} \text{ rad/分}$，25 分鐘轉動 $\frac{25\pi}{30} = \frac{5\pi}{6}$。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-6', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-6" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">$20\pi$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>分針每分鐘旋轉 $\frac{360^\circ}{60} = 6^\circ$。<br>25 分鐘旋轉之角度：<br>$\theta = 25 \times 6^\circ = 150^\circ = 150 \times \frac{\pi}{180} = \frac{5\pi}{6} \text{ rad}$。<br>分針尖端移動弧長：<br>$s = r\theta = 24 \times \frac{5\pi}{6} = 20\pi \text{ (公分)}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q5 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 5 題：由弧長與面積反求半徑與圓心角</div>
+                <div class="q-school-tag">常考填充題</div>
+            </div>
+            <div class="q-body">
+                設一扇形的弧長與面積分別為 $6$ 與 $12$，則此扇形的圓心角為【　　】弳，半徑為【　　】。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 扇形幾何公式 $A = \frac{1}{2}rs$</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>已知 $A$ 與 $s$ 時，直接用 $A = \frac{1}{2}rs$ 先解出半徑 $r$，最快且不易出錯。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-7', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-7" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">圓心角 $\frac{3}{2}$；半徑 $4$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>利用面積與弧長關係式：$A = \frac{1}{2}rs$<br>$12 = \frac{1}{2} \times r \times 6 \implies 3r = 12 \implies r = 4$。<br>再由弧長公式 $s = r\theta$：<br>$6 = 4\theta \implies \theta = \frac{6}{4} = \frac{3}{2} \text{ (弳)}$。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Q6 -->
+        <div class="q-card">
+            <div class="q-top-bar">
+                <div class="q-number"><i data-lucide="help-circle"></i> 第 6 題：鐘錶指針掃過面積綜合題</div>
+                <div class="q-school-tag">生活素養題</div>
+            </div>
+            <div class="q-body">
+                時鐘分針長 $12$ 公分，則 5 點 12 分到 5 點 47 分這 35 分鐘間：<br>(1) 分針的尖端走了【　　】公分。<br>(2) 分針掃過的面積為【　　】平方公分。
+            </div>
+            <div class="cross-ref-panel">
+                <div class="cross-ref-title"><i data-lucide="bookmark-check"></i> 本題用到講義的哪些模組？</div>
+                <div class="ref-tag-list">
+                    <span class="ref-tag formula"><i data-lucide="file-text"></i> 第 1 頁：1-1 扇形幾何公式</span><span class="ref-tag sop"><i data-lucide="zap"></i> 第 3 頁：SOP 2 鐘錶指針與旋轉角</span>
+                </div>
+                <div class="ref-reason">
+                    <strong>解題關鍵對照：</strong>先求佔一圈之比例 $\frac{\Delta t}{60}$，直接乘以周長 $2\pi r$ 與圓面積 $\pi r^2$ 亦可秒殺。
+                </div>
+            </div>
+            <div class="reveal-wrapper">
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-8', this)">
+                    <span class="reveal-icon">▼</span>
+                    <span class="btn-label">顯示答案與詳解</span>
+                </button>
+                <div id="reveal-8" class="reveal-content">
+                    <div class="q-ans-bar">
+                        <span>標準答案：</span>
+                        <span class="q-ans-badge">(1) $14\pi$；(2) $84\pi$</span>
+                    </div>
+                    <div class="q-sol">
+                        <strong>💡 完整解析：</strong><br>35 分鐘佔一整圈（60 分鐘）的比例為 $\frac{35}{60} = \frac{7}{12}$。<br>旋轉圓心角 $\theta = 2\pi \times \frac{7}{12} = \frac{7\pi}{6} \text{ rad}$。<br>(1) 分針尖端走過的弧長：<br>$s = r\theta = 12 \times \frac{7\pi}{6} = 14\pi \text{ (公分)}$。<br>(2) 分針掃過的扇形面積：<br>$A = \frac{1}{2}r^2\theta = \frac{1}{2} \times 12^2 \times \frac{7\pi}{6} = 84\pi \text{ (平方公分)}$<br>（或 $A = \frac{1}{2}rs = \frac{1}{2} \times 12 \times 14\pi = 84\pi$）。
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+
+    <!-- Floating Top Button -->
+    <button id="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="返回頂部">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-weight: 700; color: var(--text-main); margin-bottom: 0.3rem;">高中數學加強班 專屬題目解析與對照系統</p>
+        <p>© 2026 學測中心特訓教材｜編撰製作：數學教學研究組</p>
+    </footer>
+
+    <script>
+    // ===== 1. Initialize Icons on Load =====
+    function initIcons() {
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    }
+
+    // ===== 2. Answer Reveal Toggle Function =====
+    function toggleReveal(id, btnElement) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        
+        const btn = btnElement || (window.event ? window.event.currentTarget : null);
+        const isOpen = target.classList.toggle('open');
+        
+        if (btn) {
+            btn.classList.toggle('open', isOpen);
+            const label = btn.querySelector('.btn-label');
+            if (label) {
+                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
+            }
+            const icon = btn.querySelector('.reveal-icon');
+            if (icon) {
+                icon.textContent = isOpen ? '▲' : '▼';
+            }
+        }
+    }
+
+    // ===== 3. Dropdown Menu Logic =====
+    function togglePrintDropdown(event) {
+        if (event) event.stopPropagation();
+        const dropdown = event ? event.currentTarget.closest('.dropdown') : document.querySelector('.dropdown');
+        if (dropdown) {
+            dropdown.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', (e) => {
+        document.querySelectorAll('.dropdown.active').forEach(d => {
+            if (!d.contains(e.target)) {
+                d.classList.remove('active');
+            }
+        });
+    });
+
+    // ===== 4. Direct Print Function =====
+    function printDirect(orientation) {
+        let printStyle = document.getElementById('dynamic-print-style');
+        if (!printStyle) {
+            printStyle = document.createElement('style');
+            printStyle.id = 'dynamic-print-style';
+            document.head.appendChild(printStyle);
+        }
+
+        if (orientation === 'landscape') {
+            printStyle.innerHTML = `
+                @page { size: A4 landscape; margin: 8mm 10mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                    main.container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr !important;
+                        gap: 8mm !important;
+                    }
+                    .doc-header, .section-header {
+                        grid-column: 1 / -1 !important;
+                    }
+                }
+            `;
+        } else {
+            printStyle.innerHTML = `
+                @page { size: A4 portrait; margin: 8mm 9mm; }
+                @media print {
+                    .container { max-width: 100% !important; }
+                    .q-card { break-inside: avoid !important; page-break-inside: avoid !important; }
+                }
+            `;
+        }
+
+        document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+
+        setTimeout(() => {
+            window.print();
+        }, 150);
+    }
+
+    // ===== 5. Scroll Progress & Back to Top =====
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const bar = document.getElementById('progress-bar');
+        if (bar) bar.style.width = scrolled + '%';
+
+        const topBtn = document.getElementById('btn-back-to-top');
+        if (topBtn) {
+            if (winScroll > 300) {
+                topBtn.classList.add('show');
+            } else {
+                topBtn.classList.remove('show');
+            }
+        }
+    });
+
+    // ===== 6. Theme Toggle =====
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    let isDark = true;
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            initIcons();
+        });
+    }
+
+    // Run on load
+    document.addEventListener('DOMContentLoaded', initIcons);
+    window.addEventListener('load', initIcons);
+    initIcons();
+    </script>
+</body>
+</html>

@@ -66,11 +66,8 @@
             --table-stripe: #f8fafc;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
+        html {
+            font-size: 17.5px;
         }
 
         body {
@@ -79,7 +76,7 @@
             color: var(--text-main);
             line-height: 1.75;
             transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 18px;
+            font-size: 1rem;
         }
 
         /* Top Progress Bar */
@@ -99,16 +96,16 @@
             top: 0;
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            background: rgba(11, 17, 32, 0.9);
+            background: rgba(11, 17, 32, 0.92);
             border-bottom: 1px solid var(--border-color);
             z-index: 999;
-            padding: 0.65rem 2rem;
+            padding: 0.75rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         [data-theme="light"] header {
-            background: rgba(248, 250, 252, 0.92);
+            background: rgba(248, 250, 252, 0.94);
         }
 
         .brand-logo {
@@ -116,7 +113,7 @@
             align-items: center;
             gap: 0.6rem;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -134,7 +131,7 @@
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.2s ease;
             display: flex;
             align-items: center;
@@ -155,8 +152,8 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -170,12 +167,18 @@
             color: var(--accent-blue);
         }
 
+        .print-actions-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
         .btn-print {
             background: linear-gradient(135deg, #0284c7, #4f46e5);
             color: white;
-            padding: 0.45rem 1.1rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             cursor: pointer;
             display: flex;
@@ -190,30 +193,35 @@
             transform: translateY(-1px);
         }
 
+        .btn-print.btn-print-alt {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
         /* Container */
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 2rem 1.5rem 5rem 1.5rem;
+            padding: 2.2rem 1.75rem 5rem 1.75rem;
         }
 
         /* Document Title Header */
         .doc-header {
             text-align: center;
-            padding: 1rem 0 1.8rem 0;
+            padding: 1rem 0 2rem 0;
             border-bottom: 2px solid var(--border-color);
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .doc-badge {
             display: inline-block;
-            padding: 0.25rem 0.85rem;
+            padding: 0.28rem 0.95rem;
             border-radius: 9999px;
             background: rgba(56, 189, 248, 0.15);
             color: var(--accent-blue);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.75rem;
             border: 1px solid rgba(56, 189, 248, 0.3);
         }
 
@@ -221,15 +229,16 @@
             font-size: 2.35rem;
             font-weight: 900;
             letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             color: var(--text-main);
         }
 
         .doc-header p {
             color: var(--text-muted);
-            font-size: 1.12rem;
-            max-width: 750px;
+            font-size: 1.1rem;
+            max-width: 800px;
             margin: 0 auto;
+            line-height: 1.7;
         }
 
         /* Print Page Section */
@@ -251,9 +260,9 @@
             background: var(--accent-blue);
             color: #0b1120;
             font-weight: 900;
-            padding: 0.2rem 0.6rem;
+            padding: 0.22rem 0.65rem;
             border-radius: 6px;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-family: 'JetBrains Mono', monospace;
         }
         [data-theme="light"] .section-num {
@@ -261,7 +270,7 @@
         }
 
         .section-title {
-            font-size: 1.6rem;
+            font-size: 1.55rem;
             font-weight: 800;
             color: var(--text-main);
         }
@@ -269,16 +278,16 @@
         /* Grid */
         .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-            gap: 1.1rem;
-            margin-bottom: 1.25rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 1.35rem;
         }
 
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1.1rem 1.3rem;
+            border-radius: 12px;
+            padding: 1.25rem 1.45rem;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         }
 
@@ -286,20 +295,20 @@
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--accent-blue);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.4rem;
+            padding-bottom: 0.5rem;
         }
 
         .formula-box {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.7rem 0.9rem;
-            margin: 0.55rem 0;
+            padding: 0.85rem 1rem;
+            margin: 0.75rem 0;
             text-align: center;
             font-size: 1.22rem;
         }
@@ -309,13 +318,13 @@
 
         .bullet-list {
             list-style: none;
-            margin-top: 0.4rem;
+            margin-top: 0.5rem;
         }
         .bullet-list li {
             position: relative;
-            padding-left: 1.2rem;
-            margin-bottom: 0.35rem;
-            font-size: 1.08rem;
+            padding-left: 1.3rem;
+            margin-bottom: 0.45rem;
+            font-size: 1.05rem;
             line-height: 1.75;
         }
         .bullet-list li::before {
@@ -330,16 +339,16 @@
         .ref-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0.75rem 0 1.25rem 0;
+            margin: 0.85rem 0 1.35rem 0;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             font-size: 1.02rem;
         }
         .ref-table th {
             background: var(--table-head);
-            padding: 0.6rem 0.8rem;
+            padding: 0.75rem 0.95rem;
             text-align: left;
             font-weight: 700;
             color: var(--accent-blue);
@@ -350,10 +359,10 @@
             border-right: none;
         }
         .ref-table td {
-            padding: 0.6rem 0.8rem;
+            padding: 0.75rem 0.95rem;
             border-bottom: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            line-height: 1.75;
+            line-height: 1.7;
         }
         .ref-table td:last-child {
             border-right: none;
@@ -370,9 +379,9 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-left: 4px solid var(--sop-color, #38bdf8);
-            border-radius: 8px;
-            padding: 0.85rem 1.05rem;
-            margin-bottom: 0.85rem;
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
         }
         .sop-title {
             font-size: 1.18rem;
@@ -381,12 +390,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
         .sop-tag {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             font-weight: 700;
-            padding: 0.12rem 0.5rem;
+            padding: 0.15rem 0.55rem;
             border-radius: 4px;
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--border-color);
@@ -397,23 +406,24 @@
             line-height: 1.75;
         }
         .sop-step {
-            margin: 0.25rem 0;
-            padding-left: 0.65rem;
-            border-left: 2px solid rgba(255, 255, 255, 0.15);
+            margin: 0.35rem 0;
+            padding-left: 0.75rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.18);
         }
 
         /* Pitfall alert compact */
         .pitfall-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 0.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0.95rem;
         }
         .pitfall-box {
             background: rgba(244, 63, 94, 0.08);
             border: 1px solid rgba(244, 63, 94, 0.25);
-            border-radius: 8px;
-            padding: 0.8rem 0.95rem;
+            border-radius: 10px;
+            padding: 0.95rem 1.15rem;
             font-size: 1.02rem;
+            line-height: 1.7;
         }
         .pitfall-head {
             font-size: 1.15rem;
@@ -422,7 +432,7 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
         }
 
         /* Floating Top Button */
@@ -433,8 +443,8 @@
             background: var(--accent-indigo);
             color: white;
             border: none;
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -453,29 +463,22 @@
 
         footer {
             border-top: 1px solid var(--border-color);
-            padding: 2rem;
+            padding: 2.2rem;
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             background: var(--bg-secondary);
         }
 
-        /* ==================================================== */
-        /* EXACT 1 PAGE PER MAJOR SECTION PRINT STYLING         */
-        /* ==================================================== */
         @media print {
-            @page {
-                size: A4 portrait;
-                margin: 8mm 9mm 8mm 9mm;
+            header, #progress-bar, #btn-back-to-top, .header-actions {
+                display: none !important;
             }
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
-                font-size: 10pt !important;
-                line-height: 1.35 !important;
-            }
-            header, #progress-bar, #btn-back-to-top, .header-actions, .print-wrapper {
-                display: none !important;
+                font-size: 9pt !important;
+                line-height: 1.3 !important;
             }
             .container {
                 max-width: 100% !important;
@@ -488,15 +491,14 @@
                 border-bottom: 1.5pt solid #000 !important;
             }
             .doc-header h1 {
-                font-size: 14.5pt !important;
+                font-size: 13.5pt !important;
                 color: #000 !important;
             }
             .doc-header p {
-                font-size: 8.8pt !important;
+                font-size: 8pt !important;
                 color: #333 !important;
             }
             
-            /* EACH MAJOR PART FORCED TO BE EXACTLY ONE PRINT PAGE */
             .print-page {
                 page-break-after: always !important;
                 break-after: page !important;
@@ -518,11 +520,11 @@
             .section-num {
                 background: #000 !important;
                 color: #fff !important;
-                font-size: 8.5pt !important;
+                font-size: 8pt !important;
                 padding: 0.1rem 0.35rem !important;
             }
             .section-title {
-                font-size: 11pt !important;
+                font-size: 10.5pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
             }
@@ -537,7 +539,7 @@
                 padding: 0.4rem 0.6rem !important;
             }
             .card-header {
-                font-size: 9.5pt !important;
+                font-size: 9pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
                 padding-bottom: 0.15rem !important;
@@ -550,15 +552,15 @@
                 color: #000 !important;
                 padding: 0.25rem 0.45rem !important;
                 margin: 0.3rem 0 !important;
-                font-size: 9.5pt !important;
+                font-size: 9pt !important;
             }
             .bullet-list li {
-                font-size: 8.8pt !important;
-                line-height: 1.35 !important;
+                font-size: 8pt !important;
+                line-height: 1.3 !important;
                 margin-bottom: 0.2rem !important;
             }
             .ref-table {
-                font-size: 8.2pt !important;
+                font-size: 7.6pt !important;
                 margin: 0.25rem 0 !important;
             }
             .ref-table th {
@@ -571,10 +573,10 @@
             .ref-table td {
                 border-color: #333 !important;
                 padding: 0.3rem 0.4rem !important;
-                line-height: 1.3 !important;
+                line-height: 1.28 !important;
             }
             .sop-title {
-                font-size: 9pt !important;
+                font-size: 8.6pt !important;
                 color: #000 !important;
                 font-weight: bold !important;
                 margin-bottom: 0.2rem !important;
@@ -583,12 +585,12 @@
                 background: #eee !important;
                 color: #000 !important;
                 border-color: #666 !important;
-                font-size: 7pt !important;
+                font-size: 6.8pt !important;
                 padding: 0.08rem 0.25rem !important;
             }
             .sop-body {
-                font-size: 8.2pt !important;
-                line-height: 1.3 !important;
+                font-size: 7.6pt !important;
+                line-height: 1.28 !important;
             }
             .sop-step {
                 margin: 0.15rem 0 !important;
@@ -598,12 +600,12 @@
             .pitfall-head {
                 color: #000 !important;
                 font-weight: bold !important;
-                font-size: 8.8pt !important;
+                font-size: 8.2pt !important;
                 margin-bottom: 0.1rem !important;
             }
             .pitfall-box {
-                font-size: 8.2pt !important;
-                line-height: 1.28 !important;
+                font-size: 7.5pt !important;
+                line-height: 1.25 !important;
                 padding: 0.3rem 0.45rem !important;
             }
             .grid-2 {
@@ -639,32 +641,20 @@
                 <li><a href="tests/index.html" target="_blank" style="color: var(--accent-emerald); font-weight: bold;"><i data-lucide="folder-open"></i>進階題庫解析專區</a></li>
             </ul>
         </nav>
-        <div class="header-actions">
-                        <div class="font-scale-control" title="字體大小調節">
-            <button class="btn-font-scale" id="btn-scale-0.95" onclick="setFontScale(0.95)" title="稍微縮小">A-</button>
-            <button class="btn-font-scale active" id="btn-scale-1" onclick="setFontScale(1)" title="預設字體 (大)">標準</button>
-            <button class="btn-font-scale" id="btn-scale-1.18" onclick="setFontScale(1.18)" title="放大字體">特大</button>
-        </div>
+                <div class="header-actions">
             <button class="btn-icon" id="theme-toggle" title="切換深淺模式">
                 <i data-lucide="sun" id="theme-icon"></i>
             </button>
-                            <div class="print-actions-group">
-            <button class="btn-print" onclick="printDirect('portrait')" title="直接以 A4 直向列印">
-                <i data-lucide="printer"></i>
-                <span>直向列印</span>
-            </button>
-            <button class="btn-print btn-print-alt" onclick="printDirect('landscape')" title="直接以 A4 橫向寬版列印">
-                <i data-lucide="columns-2"></i>
-                <span>橫向列印</span>
-            </button>
-        </div>
-
-                <button class="btn-do-print" onclick="executePrint()">
+            <div class="print-actions-group">
+                <button class="btn-print" onclick="printDirect('portrait')" title="以 A4 直向列印">
                     <i data-lucide="printer"></i>
-                    <span>開始列印 / 存為 PDF</span>
+                    <span>直向列印</span>
+                </button>
+                <button class="btn-print btn-print-alt" onclick="printDirect('landscape')" title="以 A4 橫向寬版列印">
+                    <i data-lucide="columns-2"></i>
+                    <span>橫向列印</span>
                 </button>
             </div>
-        </div>
         </div>
     </header>
 
@@ -1231,25 +1221,6 @@
     </footer>
 
     <script>
-    // ===== Font Size Zoom Controller =====
-    function setFontScale(scale) {
-        document.documentElement.style.fontSize = (scale * 16.5) + 'px';
-        document.body.style.fontSize = (scale * 16.5) + 'px';
-        document.querySelectorAll('.btn-font-scale').forEach(b => b.classList.remove('active'));
-        const activeBtn = document.getElementById('btn-scale-' + scale);
-        if (activeBtn) activeBtn.classList.add('active');
-        localStorage.setItem('math_font_scale', scale);
-    }
-
-    // Restore saved font scale
-    (function() {
-        const savedScale = localStorage.getItem('math_font_scale');
-        if (savedScale) {
-            setFontScale(parseFloat(savedScale));
-        }
-    })();
-
-    
     // ===== Direct 1-Click Print Function =====
     function printDirect(orientation) {
         let printStyle = document.getElementById('dynamic-print-style');
@@ -1276,33 +1247,6 @@
                     .print-page { min-height: 96vh !important; }
                 }
             `;
-        }
-
-        window.print();
-    }
-
-
-        if (orientation === 'landscape') {
-            printStyle.innerHTML = `
-                @page { size: A4 landscape; margin: 7mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 94vh !important; }
-                    .grid-2 { grid-template-columns: 1fr 1fr !important; gap: 6mm !important; }
-                }
-            `;
-        } else {
-            printStyle.innerHTML = `
-                @page { size: A4 portrait; margin: 8mm 9mm; }
-                @media print {
-                    .container { max-width: 100% !important; }
-                    .print-page { min-height: 96vh !important; }
-                }
-            `;
-        }
-
-        if (printDropdownPanel) {
-            printDropdownPanel.classList.remove('show');
         }
 
         setTimeout(() => {
@@ -1342,12 +1286,11 @@
                 if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
             } else {
                 document.body.setAttribute('data-theme', 'light');
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+                themeIcon.setAttribute('data-lucide', 'moon');
             }
             lucide.createIcons();
         });
     }
-
     </script>
 </body>
 </html>

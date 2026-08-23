@@ -429,40 +429,49 @@
             color: var(--text-main);
         }
 
+        
         /* Answer / Solution reveal toggle */
         .reveal-wrapper {
-            margin-top: 0.8rem;
+            margin-top: 0.85rem;
         }
         .reveal-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.5rem 1rem;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.25rem;
             border-radius: 8px;
             border: 1.5px dashed var(--border-highlight);
-            background: rgba(56, 189, 248, 0.04);
+            background: rgba(56, 189, 248, 0.05);
             color: var(--accent-blue);
             font-weight: 700;
             font-size: 0.92rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             width: 100%;
-            justify-content: center;
+            user-select: none;
         }
         .reveal-btn:hover {
             background: rgba(56, 189, 248, 0.12);
+            border-style: solid;
         }
         .reveal-btn.open {
             border-style: solid;
-            background: rgba(56, 189, 248, 0.08);
-            margin-bottom: 0.8rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+            margin-bottom: 0.85rem;
+        }
+        .reveal-icon {
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
         }
         .reveal-content {
             display: none;
         }
         .reveal-content.open {
-            display: block;
-            animation: fadeIn 0.2s ease;
+            display: block !important;
+            animation: fadeIn 0.25s ease;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-4px); }
@@ -660,8 +669,8 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" data-target="reveal-1" onclick="toggleReveal('reveal-1', this)">
-                    <i data-lucide="chevron-down"></i>
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-1', this)">
+                    <span class="reveal-icon">▼</span>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
                 <div id="reveal-1" class="reveal-content">
@@ -701,8 +710,8 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" data-target="reveal-2" onclick="toggleReveal('reveal-2', this)">
-                    <i data-lucide="chevron-down"></i>
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-2', this)">
+                    <span class="reveal-icon">▼</span>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
                 <div id="reveal-2" class="reveal-content">
@@ -736,8 +745,8 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" data-target="reveal-3" onclick="toggleReveal('reveal-3', this)">
-                    <i data-lucide="chevron-down"></i>
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-3', this)">
+                    <span class="reveal-icon">▼</span>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
                 <div id="reveal-3" class="reveal-content">
@@ -771,8 +780,8 @@
                 </div>
             </div>
             <div class="reveal-wrapper">
-                <button class="reveal-btn" data-target="reveal-4" onclick="toggleReveal('reveal-4', this)">
-                    <i data-lucide="chevron-down"></i>
+                <button type="button" class="reveal-btn" onclick="toggleReveal('reveal-4', this)">
+                    <span class="reveal-icon">▼</span>
                     <span class="btn-label">顯示答案與詳解</span>
                 </button>
                 <div id="reveal-4" class="reveal-content">
@@ -850,39 +859,35 @@
         });
     });
 
-        // ===== Robust Answer Reveal Toggle Function =====
-    function toggleReveal(id, btn) {
-        const target = document.getElementById(id);
-        if (!target) return;
-        const isOpen = target.classList.toggle('open');
-        if (btn) {
-            btn.classList.toggle('open', isOpen);
-            const icon = btn.querySelector('i[data-lucide], svg');
-            if (icon) {
-                icon.setAttribute('data-lucide', isOpen ? 'chevron-up' : 'chevron-down');
-            }
-            const label = btn.querySelector('.btn-label');
-            if (label) {
-                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
-            }
-        }
+        
         if (window.lucide) {
             lucide.createIcons();
         }
     }
 
-    // Direct event delegation fallback
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.reveal-btn').forEach(btn => {
-            btn.onclick = function(e) {
-                e.preventDefault();
-                const targetId = this.dataset.target || (this.getAttribute('onclick') && this.getAttribute('onclick').match(/toggleReveal\(['"]([^'"]+)['"]/)?.[1]);
-                if (targetId) {
-                    toggleReveal(targetId, this);
-                }
-            };
-        });
+    
     });
+
+        // ===== Clean & Guaranteed Answer Reveal Toggle =====
+    function toggleReveal(id, btnElement) {
+        const target = document.getElementById(id);
+        if (!target) return;
+        
+        const btn = btnElement || (window.event ? window.event.currentTarget : null);
+        const isOpen = target.classList.toggle('open');
+        
+        if (btn) {
+            btn.classList.toggle('open', isOpen);
+            const label = btn.querySelector('.btn-label');
+            if (label) {
+                label.textContent = isOpen ? '收起答案與詳解' : '顯示答案與詳解';
+            }
+            const icon = btn.querySelector('.reveal-icon');
+            if (icon) {
+                icon.textContent = isOpen ? '▲' : '▼';
+            }
+        }
+    }
 
     // ===== Scroll & Theme =====
     lucide.createIcons();
